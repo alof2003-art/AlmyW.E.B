@@ -50,8 +50,8 @@ export const DashboardPage = () => {
   }
 
   return (
-    <div className=\"min-h-screen bg-gray-50 flex\" data-testid=\"dashboard-page\">
-      <Toaster position=\"top-center\" richColors />
+    <div className="min-h-screen bg-gray-50 flex" data-testid="dashboard-page">
+      <Toaster position="top-center" richColors />
 
       {/* Sidebar */}
       <aside
