@@ -89,52 +89,57 @@ export const HomePage = () => {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white/80"></div>
         
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="floating-logo pulse-glow mb-8"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+            className="floating-logo pulse-glow mb-12"
             data-testid="hero-logo"
           >
             {content.logo_url ? (
-              <img src={content.logo_url} alt="Almy.W.E.B. Logo" className="w-32 h-32 md:w-48 md:h-48 mx-auto" />
+              <img src={content.logo_url} alt="Almy.W.E.B. Logo" className="w-40 h-40 md:w-56 md:h-56 mx-auto drop-shadow-2xl" />
             ) : (
-              <CircuitBoard className="w-32 h-32 md:w-48 md:h-48 mx-auto text-[#6D28D9]" />
+              <CircuitBoard className="w-40 h-40 md:w-56 md:h-56 mx-auto text-[#6D28D9]" />
             )}
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-5xl md:text-7xl font-bold mb-4"
+            className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 leading-none"
             data-testid="hero-title"
           >
             <span className="gradient-text">{content.hero_title}</span>
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className={`text-xl md:text-2xl text-gray-600 mb-8 italic ${showTypewriter ? 'typewriter' : ''}`}
-            data-testid="hero-slogan"
+            className="mb-12"
           >
-            {content.hero_slogan}
-          </motion.p>
+            <p
+              className={`text-2xl md:text-3xl lg:text-4xl text-gray-600 font-light italic ${showTypewriter ? 'typewriter' : ''}`}
+              data-testid="hero-slogan"
+              style={{ display: 'inline-block' }}
+            >
+              {content.hero_slogan}
+            </p>
+          </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
-            <a href="#services" className="btn-primary" data-testid="hero-cta-services">
-              Ver Servicios
+            <a href="#services" className="btn-primary shimmer-effect" data-testid="hero-cta-services">
+              Ver Servicios <ArrowRight className="inline ml-2" size={20} />
             </a>
             <a href="/portfolio" className="btn-secondary" data-testid="hero-cta-portfolio">
-              Portafolio
+              Explorar Portafolio
             </a>
           </motion.div>
         </div>
