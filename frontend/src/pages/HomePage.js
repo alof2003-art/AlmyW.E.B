@@ -73,7 +73,7 @@ export const HomePage = () => {
 
   return (
     <div className="min-h-screen" data-testid="home-page">
-      {/* Fondos animados */}
+      {/* Fondos animados mejorados */}
       <div className="animated-gradient-bg"></div>
       <div className="floating-orbs">
         <div className="orb orb-1"></div>
@@ -81,13 +81,22 @@ export const HomePage = () => {
         <div className="orb orb-3"></div>
       </div>
       <div className="circuit-grid"></div>
+      <div className="floating-shapes">
+        {[...Array(20)].map((_, i) => (
+          <div key={i} className={`shape shape-${i % 3}`} style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animationDelay: `${Math.random() * 10}s`
+          }}></div>
+        ))}
+      </div>
       
       {/* Hero Section */}
       <section
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
         data-testid="hero-section"
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 to-white/70"></div>
         
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <motion.div
@@ -97,22 +106,19 @@ export const HomePage = () => {
             className="floating-logo pulse-glow mb-12"
             data-testid="hero-logo"
           >
-            {content.logo_url ? (
-              <img src={content.logo_url} alt="Almy.W.E.B. Logo" className="w-40 h-40 md:w-56 md:h-56 mx-auto drop-shadow-2xl" />
-            ) : (
-              <CircuitBoard className="w-40 h-40 md:w-56 md:h-56 mx-auto text-[#6D28D9]" />
-            )}
+            <div className="logo-container mx-auto" style={{ width: '280px', height: '280px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              {content.logo_url ? (
+                <img 
+                  src={content.logo_url} 
+                  alt="Almy.W.E.B. Logo" 
+                  className="w-full h-full object-contain drop-shadow-2xl"
+                  style={{ maxWidth: '100%', maxHeight: '100%' }}
+                />
+              ) : (
+                <CircuitBoard className="w-56 h-56 text-[#6D28D9]" />
+              )}
+            </div>
           </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 leading-none"
-            data-testid="hero-title"
-          >
-            <span className="gradient-text">{content.hero_title}</span>
-          </motion.h1>
 
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -121,7 +127,7 @@ export const HomePage = () => {
             className="mb-12"
           >
             <p
-              className={`text-2xl md:text-3xl lg:text-4xl text-gray-600 font-light italic ${showTypewriter ? 'typewriter' : ''}`}
+              className={`text-3xl md:text-4xl lg:text-5xl text-gray-600 font-light italic ${showTypewriter ? 'typewriter' : ''}`}
               data-testid="hero-slogan"
               style={{ display: 'inline-block' }}
             >
@@ -132,7 +138,7 @@ export const HomePage = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
+            transition={{ duration: 0.8, delay: 1 }}
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
             <a href="#services" className="btn-primary shimmer-effect" data-testid="hero-cta-services">
@@ -142,6 +148,33 @@ export const HomePage = () => {
               Explorar Portafolio
             </a>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Tech Stack Section */}
+      <section className="py-20 px-4 overflow-hidden relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#6D28D9]/5 to-transparent"></div>
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="inline-block px-6 py-2 bg-gradient-to-r from-[#0DB4B9]/10 to-[#6D28D9]/10 text-[#6D28D9] rounded-full text-sm font-semibold mb-6 border border-[#6D28D9]/20">
+              TECNOLOGIAS QUE DOMINAMOS
+            </span>
+          </motion.div>
+          
+          <div className="tech-slider">
+            <div className="tech-track">
+              {['React', 'Node.js', 'MongoDB', 'PostgreSQL', 'AWS', 'Docker', 'Python', 'FastAPI', 'Supabase', 'Vercel', 'Firebase', 'Git', 'React', 'Node.js', 'MongoDB', 'PostgreSQL'].map((tech, index) => (
+                <div key={index} className="tech-item glass-card">
+                  <span className="text-2xl font-bold gradient-text">{tech}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
