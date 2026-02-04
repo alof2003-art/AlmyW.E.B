@@ -38,7 +38,7 @@ export const ContentManager = () => {
     }
   };
 
-  if (!content) return <div>Cargando...</div>;
+  if (!content) return <div>Cargando</div>;
 
   return (
     <div data-testid="content-manager">
