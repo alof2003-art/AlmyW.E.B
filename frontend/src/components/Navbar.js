@@ -26,17 +26,21 @@ export const Navbar = () => {
     <nav
       data-testid="navbar"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/90 backdrop-blur-lg shadow-lg' : 'bg-transparent'
+        isScrolled ? 'navbar-scrolled' : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 md:h-20">
+        <div className={`flex justify-between items-center transition-all duration-300 ${
+          isScrolled ? 'h-16' : 'h-20'
+        }`}>
           <Link
             to="/"
             data-testid="navbar-logo"
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-2 nav-logo transition-transform duration-300"
           >
-            <div className="text-2xl md:text-3xl font-bold">
+            <div className={`font-bold transition-all duration-300 ${
+              isScrolled ? 'text-2xl' : 'text-3xl'
+            }`}>
               <span className="text-[#6D28D9]">Almy</span>
               <span className="text-[#0DB4B9]">.W.E.B.</span>
             </div>
@@ -48,7 +52,7 @@ export const Navbar = () => {
                 key={link.path}
                 to={link.path}
                 data-testid={`nav-link-${link.name.toLowerCase()}`}
-                className={`font-medium transition-colors duration-200 ${
+                className={`font-medium transition-colors duration-200 nav-link-underline ${
                   location.pathname === link.path
                     ? 'text-[#0DB4B9]'
                     : 'text-gray-700 hover:text-[#0DB4B9]'
