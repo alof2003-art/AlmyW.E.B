@@ -140,13 +140,13 @@ export const HomePage = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 px-4" data-testid="services-section">
+      <section id="services" className="py-20 px-4 relative" data-testid="services-section">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-16 fade-in-up"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Nuestros Servicios</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -164,9 +164,10 @@ export const HomePage = () => {
                 transition={{ delay: index * 0.2 }}
                 onMouseEnter={() => setHoveredService(service.is_featured ? service.id : null)}
                 onMouseLeave={() => setHoveredService(null)}
-                className={`relative bg-white rounded-3xl p-8 shadow-lg hover-lift service-card ${
+                className={`relative bg-white rounded-3xl p-8 shadow-lg hover-lift service-card fade-in-up ${
                   service.is_featured ? 'featured-card' : ''
                 }`}
+                style={{ transition: 'all 0.3s ease' }}
                 data-testid={`service-card-${index}`}
               >
                 {service.is_featured && (
@@ -175,6 +176,17 @@ export const HomePage = () => {
                     {hoveredService === service.id && particlesInit && (
                       <div className="particles-container" data-testid="gold-particles">
                         <Particles id={`particles-${service.id}`} options={particlesOptions} />
+                        {[...Array(6)].map((_, i) => (
+                          <div
+                            key={i}
+                            className="sparkle"
+                            style={{
+                              left: `${20 + i * 15}%`,
+                              bottom: '10%',
+                              animationDelay: `${i * 0.3}s`
+                            }}
+                          />
+                        ))}
                       </div>
                     )}
                   </>
