@@ -262,88 +262,118 @@ export const HomePage = () => {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-[#F8FAFC] to-white" data-testid="mission-vision-section">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12">
+      <section className="py-32 px-4 relative overflow-hidden" data-testid="mission-vision-section">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0DB4B9]/5 via-transparent to-[#6D28D9]/5"></div>
+        <div className="max-w-7xl mx-auto relative">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <span className="inline-block px-6 py-2 bg-gradient-to-r from-[#6D28D9]/10 to-[#0DB4B9]/10 text-[#6D28D9] rounded-full text-sm font-semibold mb-6 border border-[#6D28D9]/20">
+              NUESTRO PROPOSITO
+            </span>
+            <h2 className="text-5xl md:text-6xl font-black gradient-text">Quienes Somos</h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="glassmorphism rounded-3xl p-8 shadow-xl"
+              transition={{ duration: 0.6 }}
+              className="glass-card rounded-[2rem] p-12 relative overflow-hidden group"
               data-testid="mission-card"
             >
-              <h3 className="text-3xl font-bold mb-4 text-[#6D28D9]">Nuestra Mision</h3>
-              <p className="text-gray-700 leading-relaxed" data-testid="mission-content">
-                {content.mission}
-              </p>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#6D28D9]/10 to-transparent rounded-bl-[4rem]"></div>
+              <div className="relative">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#6D28D9] to-[#8B5CF6] flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
+                  <span className="text-4xl">🎯</span>
+                </div>
+                <h3 className="text-4xl font-black mb-6 text-gray-900">Nuestra Mision</h3>
+                <p className="text-gray-700 text-lg leading-relaxed" data-testid="mission-content">
+                  {content.mission}
+                </p>
+              </div>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="glassmorphism rounded-3xl p-8 shadow-xl"
+              transition={{ duration: 0.6 }}
+              className="glass-card rounded-[2rem] p-12 relative overflow-hidden group"
               data-testid="vision-card"
             >
-              <h3 className="text-3xl font-bold mb-4 text-[#0DB4B9]">Nuestra Vision</h3>
-              <p className="text-gray-700 leading-relaxed" data-testid="vision-content">
-                {content.vision}
-              </p>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#0DB4B9]/10 to-transparent rounded-bl-[4rem]"></div>
+              <div className="relative">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#0DB4B9] to-[#10B981] flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
+                  <span className="text-4xl">🚀</span>
+                </div>
+                <h3 className="text-4xl font-black mb-6 text-gray-900">Nuestra Vision</h3>
+                <p className="text-gray-700 text-lg leading-relaxed" data-testid="vision-content">
+                  {content.vision}
+                </p>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 px-4" data-testid="testimonials-section">
+      <section className="py-32 px-4 relative" data-testid="testimonials-section">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Lo que dicen nuestros clientes</h2>
-            <p className="text-lg text-gray-600">Testimonios reales de empresas que confian en nosotros</p>
+            <span className="inline-block px-6 py-2 bg-gradient-to-r from-[#0DB4B9]/10 to-[#6D28D9]/10 text-[#6D28D9] rounded-full text-sm font-semibold mb-6 border border-[#6D28D9]/20">
+              TESTIMONIOS
+            </span>
+            <h2 className="text-5xl md:text-6xl font-black mb-6 gradient-text">Clientes Satisfechos</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Historias reales de empresas que transformaron su presencia digital</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={testimonial.id}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="bg-white rounded-3xl p-8 shadow-lg hover-lift"
+                transition={{ delay: index * 0.15, duration: 0.5 }}
+                className="glass-card rounded-[2rem] p-10 testimonial-card relative"
                 data-testid={`testimonial-card-${index}`}
               >
-                <div className="flex items-center mb-4">
+                <div className="flex items-center mb-6">
                   {testimonial.avatar_url ? (
                     <img
                       src={testimonial.avatar_url}
                       alt={testimonial.name}
-                      className="w-16 h-16 rounded-full object-cover mr-4"
+                      className="w-20 h-20 rounded-2xl object-cover mr-5 ring-4 ring-white shadow-lg"
                       data-testid={`testimonial-avatar-${index}`}
                     />
                   ) : (
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#0DB4B9] to-[#6D28D9] mr-4"></div>
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#0DB4B9] to-[#6D28D9] mr-5 ring-4 ring-white shadow-lg"></div>
                   )}
                   <div>
-                    <h4 className="font-bold text-lg" data-testid={`testimonial-name-${index}`}>{testimonial.name}</h4>
+                    <h4 className="font-black text-xl text-gray-900" data-testid={`testimonial-name-${index}`}>{testimonial.name}</h4>
                     {testimonial.company && (
-                      <p className="text-sm text-gray-500" data-testid={`testimonial-company-${index}`}>{testimonial.company}</p>
+                      <p className="text-sm text-gray-500 font-medium" data-testid={`testimonial-company-${index}`}>{testimonial.company}</p>
                     )}
                   </div>
                 </div>
 
-                <div className="flex mb-4" data-testid={`testimonial-rating-${index}`}>
+                <div className="flex mb-6" data-testid={`testimonial-rating-${index}`}>
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
 
-                <p className="text-gray-600 italic" data-testid={`testimonial-content-${index}`}>
+                <p className="text-gray-600 text-lg leading-relaxed italic" data-testid={`testimonial-content-${index}`}>
                   "{testimonial.content}"
                 </p>
               </motion.div>
