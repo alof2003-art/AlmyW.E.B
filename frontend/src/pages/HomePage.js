@@ -175,8 +175,8 @@ export const HomePage = () => {
             </p>
           </motion.div>
           
-          {/* Spotlight Center Indicator */}
-          <div className="spotlight-indicator">
+          {/* Spotlight Center Indicator - HIDDEN */}
+          <div className="spotlight-indicator" style={{ display: 'none' }}>
             <div className="spotlight-line"></div>
           </div>
           
