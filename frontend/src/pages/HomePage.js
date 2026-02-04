@@ -211,28 +211,32 @@ export const HomePage = () => {
             <div className="tech-carousel">
               <div className="tech-carousel-track">
                 {[
-                  {name: 'React', icon: 'react', color: '#61DAFB'},
-                  {name: 'Vue.js', icon: 'vuedotjs', color: '#4FC08D'},
-                  {name: 'Angular', icon: 'angular', color: '#DD0031'},
-                  {name: 'Next.js', icon: 'nextdotjs', color: '#000000'},
-                  {name: 'Svelte', icon: 'svelte', color: '#FF3E00'},
-                  {name: 'Node.js', icon: 'nodedotjs', color: '#339933'},
-                  {name: 'Express', icon: 'express', color: '#000000'},
-                  {name: 'NestJS', icon: 'nestjs', color: '#E0234E'},
-                  {name: 'Python', icon: 'python', color: '#3776AB'},
-                  {name: 'Django', icon: 'django', color: '#092E20'},
-                  {name: 'Flask', icon: 'flask', color: '#000000'},
-                  {name: 'FastAPI', icon: 'fastapi', color: '#009688'},
-                  {name: 'MongoDB', icon: 'mongodb', color: '#47A248'},
-                  {name: 'PostgreSQL', icon: 'postgresql', color: '#4169E1'},
-                  {name: 'MySQL', icon: 'mysql', color: '#4479A1'},
-                  {name: 'Redis', icon: 'redis', color: '#DC382D'}
+                  {name: 'React', icon: 'react', color: '61DAFB'},
+                  {name: 'Vue.js', icon: 'vuedotjs', color: '4FC08D'},
+                  {name: 'Angular', icon: 'angular', color: 'DD0031'},
+                  {name: 'Next.js', icon: 'nextdotjs', color: '000000'},
+                  {name: 'Svelte', icon: 'svelte', color: 'FF3E00'},
+                  {name: 'Node.js', icon: 'nodedotjs', color: '339933'},
+                  {name: 'Express', icon: 'express', color: '000000'},
+                  {name: 'NestJS', icon: 'nestjs', color: 'E0234E'},
+                  {name: 'Python', icon: 'python', color: '3776AB'},
+                  {name: 'Django', icon: 'django', color: '092E20'},
+                  {name: 'Flask', icon: 'flask', color: '000000'},
+                  {name: 'FastAPI', icon: 'fastapi', color: '009688'},
+                  {name: 'MongoDB', icon: 'mongodb', color: '47A248'},
+                  {name: 'PostgreSQL', icon: 'postgresql', color: '4169E1'},
+                  {name: 'MySQL', icon: 'mysql', color: '4479A1'},
+                  {name: 'Redis', icon: 'redis', color: 'DC382D'}
                 ].map((tech, index) => (
                   <div key={index} className="tech-pill-logo" data-tech-name={tech.name}>
                     <img 
-                      src={`https://cdn.simpleicons.org/${tech.icon}/${tech.color.replace('#', '')}`} 
+                      src={`https://cdn.simpleicons.org/${tech.icon}/${tech.color}`} 
                       alt={tech.name}
                       className="tech-icon"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.parentElement.innerHTML += `<div class="tech-icon-fallback" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-weight:bold;color:#6D28D9;font-size:14px;">${tech.name.substring(0,3).toUpperCase()}</div>`;
+                      }}
                     />
                     <span className="tech-name">{tech.name}</span>
                   </div>
