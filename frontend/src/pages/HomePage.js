@@ -12,9 +12,23 @@ export const HomePage = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [hoveredService, setHoveredService] = useState(null);
   const [particlesInit, setParticlesInit] = useState(false);
+  const [showTypewriter, setShowTypewriter] = useState(false);
 
   useEffect(() => {
     fetchData();
+    setTimeout(() => setShowTypewriter(true), 1000);
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+    
+    return () => observer.disconnect();
   }, []);
 
   const fetchData = async () => {
