@@ -151,30 +151,82 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* Tech Stack Section */}
-      <section className="py-20 px-4 overflow-hidden relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#6D28D9]/5 to-transparent"></div>
-        <div className="max-w-7xl mx-auto">
+      {/* Tech Stack Section - 3D Pills Style */}
+      <section className="py-24 px-4 overflow-hidden relative bg-gradient-to-b from-white to-gray-50">
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+          <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
             <span className="inline-block px-6 py-2 bg-gradient-to-r from-[#0DB4B9]/10 to-[#6D28D9]/10 text-[#6D28D9] rounded-full text-sm font-semibold mb-6 border border-[#6D28D9]/20">
               TECNOLOGIAS QUE DOMINAMOS
             </span>
+            <h2 className="text-4xl md:text-5xl font-black mb-4">Stack Tecnologico Completo</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Trabajamos con las herramientas mas avanzadas del mercado
+            </p>
           </motion.div>
           
-          <div className="tech-slider">
-            <div className="tech-track">
-              {['React', 'Node.js', 'MongoDB', 'PostgreSQL', 'AWS', 'Docker', 'Python', 'FastAPI', 'Supabase', 'Vercel', 'Firebase', 'Git', 'React', 'Node.js', 'MongoDB', 'PostgreSQL'].map((tech, index) => (
-                <div key={index} className="tech-item glass-card">
-                  <span className="text-2xl font-bold gradient-text">{tech}</span>
-                </div>
-              ))}
+          {/* 3D Pills Carousel - Multiple Rows */}
+          <div className="space-y-8">
+            <div className="tech-carousel">
+              <div className="tech-carousel-track">
+                {['React', 'Vue.js', 'Angular', 'Next.js', 'Svelte', 'Node.js', 'Express', 'NestJS', 'Python', 'Django', 'Flask', 'FastAPI', 'MongoDB', 'PostgreSQL', 'MySQL', 'Redis'].map((tech, index) => (
+                  <div key={index} className="tech-pill">
+                    <span className="font-bold text-lg">{tech}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="tech-carousel tech-carousel-reverse">
+              <div className="tech-carousel-track">
+                {['AWS', 'Google Cloud', 'Azure', 'Docker', 'Kubernetes', 'Vercel', 'Netlify', 'Heroku', 'DigitalOcean', 'Cloudflare', 'Firebase', 'Supabase', 'GitHub', 'GitLab', 'Bitbucket', 'Jenkins'].map((tech, index) => (
+                  <div key={index} className="tech-pill tech-pill-cyan">
+                    <span className="font-bold text-lg">{tech}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="tech-carousel">
+              <div className="tech-carousel-track">
+                {['Stripe', 'PayPal', 'Twilio', 'SendGrid', 'Mailchimp', 'Figma', 'Adobe XD', 'Tailwind', 'Bootstrap', 'Material-UI', 'GraphQL', 'REST API', 'Webpack', 'Vite', 'TypeScript', 'JavaScript'].map((tech, index) => (
+                  <div key={index} className="tech-pill tech-pill-purple">
+                    <span className="font-bold text-lg">{tech}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
+
+          {/* Trust Indicators */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8"
+          >
+            {[
+              { number: '50+', label: 'Proyectos Completados' },
+              { number: '98%', label: 'Satisfaccion Cliente' },
+              { number: '24/7', label: 'Soporte Disponible' },
+              { number: '100%', label: 'Codigo Optimizado' }
+            ].map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-4xl md:text-5xl font-black gradient-text mb-2">{stat.number}</div>
+                <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
