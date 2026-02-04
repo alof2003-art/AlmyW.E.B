@@ -58,27 +58,27 @@ export const DashboardPage = () => {
         className={`bg-white border-r border-gray-200 transition-all duration-300 ${
           sidebarOpen ? 'w-64' : 'w-20'
         } flex flex-col`}
-        data-testid=\"dashboard-sidebar\"
+        data-testid="dashboard-sidebar"
       >
-        <div className=\"p-6 border-b border-gray-200\">
-          <div className=\"flex items-center justify-between\">
+        <div className="p-6 border-b border-gray-200">
+          <div className="flex items-center justify-between">
             {sidebarOpen && (
-              <h2 className=\"text-xl font-bold\">
-                <span className=\"text-[#6D28D9]\">Almy</span>
-                <span className=\"text-[#0DB4B9]\">.W.E.B.</span>
+              <h2 className="text-xl font-bold">
+                <span className="text-[#6D28D9]">Almy</span>
+                <span className="text-[#0DB4B9]">.W.E.B.</span>
               </h2>
             )}
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className=\"p-2 hover:bg-gray-100 rounded-lg transition-colors\"
-              data-testid=\"sidebar-toggle\"
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              data-testid="sidebar-toggle"
             >
               {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
 
-        <nav className=\"flex-1 p-4 space-y-2\">
+        <nav className="flex-1 p-4 space-y-2">
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = location.pathname === item.path;
@@ -94,42 +94,42 @@ export const DashboardPage = () => {
                 data-testid={`nav-${item.name.toLowerCase()}`}
               >
                 <Icon size={20} />
-                {sidebarOpen && <span className=\"font-medium\">{item.name}</span>}
+                {sidebarOpen && <span className="font-medium">{item.name}</span>}
               </Link>
             );
           })}
         </nav>
 
-        <div className=\"p-4 border-t border-gray-200\">
-          <div className=\"mb-4\">
+        <div className="p-4 border-t border-gray-200">
+          <div className="mb-4">
             {sidebarOpen && (
-              <div className=\"text-sm text-gray-600\">
-                <p className=\"font-medium\">Usuario:</p>
+              <div className="text-sm text-gray-600">
+                <p className="font-medium">Usuario:</p>
                 <p>{getUsername()}</p>
               </div>
             )}
           </div>
           <button
             onClick={handleLogout}
-            className=\"flex items-center space-x-3 px-4 py-3 w-full rounded-lg text-red-600 hover:bg-red-50 transition-colors\"
-            data-testid=\"logout-button\"
+            className="flex items-center space-x-3 px-4 py-3 w-full rounded-lg text-red-600 hover:bg-red-50 transition-colors"
+            data-testid="logout-button"
           >
             <LogOut size={20} />
-            {sidebarOpen && <span className=\"font-medium\">Cerrar Sesion</span>}
+            {sidebarOpen && <span className="font-medium">Cerrar Sesion</span>}
           </button>
         </div>
       </aside>
 
       {/* Main Content */}
-      <main className=\"flex-1 overflow-auto\">
-        <div className=\"p-8\">
+      <main className="flex-1 overflow-auto">
+        <div className="p-8">
           <Routes>
-            <Route path=\"dashboard\" element={<ContentManager />} />
-            <Route path=\"services\" element={<ServicesManager />} />
-            <Route path=\"portfolio\" element={<PortfolioManager />} />
-            <Route path=\"testimonials\" element={<TestimonialsManager />} />
-            <Route path=\"footer\" element={<FooterManager />} />
-            <Route path=\"*\" element={<Navigate to=\"/admin/dashboard\" replace />} />
+            <Route path="dashboard" element={<ContentManager />} />
+            <Route path="services" element={<ServicesManager />} />
+            <Route path="portfolio" element={<PortfolioManager />} />
+            <Route path="testimonials" element={<TestimonialsManager />} />
+            <Route path="footer" element={<FooterManager />} />
+            <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />
           </Routes>
         </div>
       </main>
