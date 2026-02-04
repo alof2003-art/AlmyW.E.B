@@ -615,7 +615,7 @@
   min-width: 150px;
   display: flex;
   align-items: center;
-  justify-center;
+  justify-content: center;
 }
 
 .tech-item:hover {
