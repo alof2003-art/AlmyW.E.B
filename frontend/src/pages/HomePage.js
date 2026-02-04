@@ -73,22 +73,49 @@ export const HomePage = () => {
 
   return (
     <div className="min-h-screen" data-testid="home-page">
-      {/* Fondos animados mejorados */}
-      <div className="animated-gradient-bg"></div>
-      <div className="floating-orbs">
-        <div className="orb orb-1"></div>
-        <div className="orb orb-2"></div>
-        <div className="orb orb-3"></div>
-      </div>
-      <div className="circuit-grid"></div>
-      <div className="floating-shapes">
-        {[...Array(20)].map((_, i) => (
-          <div key={i} className={`shape shape-${i % 3}`} style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 10}s`
-          }}></div>
-        ))}
+      {/* Fondos animados ULTRA PREMIUM */}
+      <div className="premium-animated-bg">
+        {/* Mesh Gradient Background */}
+        <div className="mesh-gradient-bg"></div>
+        
+        {/* Animated Grid */}
+        <div className="perspective-grid"></div>
+        
+        {/* Floating Orbs con Blur */}
+        <div className="floating-orbs">
+          <div className="orb orb-1"></div>
+          <div className="orb orb-2"></div>
+          <div className="orb orb-3"></div>
+        </div>
+        
+        {/* Light Beams */}
+        <div className="light-beams">
+          <div className="beam beam-1"></div>
+          <div className="beam beam-2"></div>
+          <div className="beam beam-3"></div>
+        </div>
+        
+        {/* Particles System */}
+        <div className="particles-system">
+          {[...Array(30)].map((_, i) => (
+            <div 
+              key={i} 
+              className="particle"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 10}s`,
+                animationDuration: `${15 + Math.random() * 10}s`
+              }}
+            ></div>
+          ))}
+        </div>
+        
+        {/* Wave Lines */}
+        <svg className="wave-lines" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+          <path className="wave-path wave-1" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,186.7C672,203,768,181,864,154.7C960,128,1056,96,1152,101.3C1248,107,1344,149,1392,170.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" fill="rgba(109, 40, 217, 0.03)"/>
+          <path className="wave-path wave-2" d="M0,224L48,213.3C96,203,192,181,288,186.7C384,192,480,224,576,234.7C672,245,768,235,864,213.3C960,192,1056,160,1152,154.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" fill="rgba(13, 180, 185, 0.02)"/>
+        </svg>
       </div>
       
       {/* Hero Section */}
