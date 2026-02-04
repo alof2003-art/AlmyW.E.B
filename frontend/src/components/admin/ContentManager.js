@@ -48,11 +48,11 @@ export const ContentManager = () => {
         <Card>
           <CardHeader>
             <CardTitle>Hero Section</CardTitle>
-            <CardDescription>Contenido de la sección principal</CardDescription>
+            <CardDescription>Contenido de la seccion principal</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <label className="block text-sm font-medium mb-2">Título</label>
+              <label className="block text-sm font-medium mb-2">Titulo</label>
               <Input
                 value={content.hero_title}
                 onChange={(e) => setContent({ ...content, hero_title: e.target.value })}
@@ -90,11 +90,11 @@ export const ContentManager = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>Misión y Visión</CardTitle>
+            <CardTitle>Mision y Vision</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <label className="block text-sm font-medium mb-2">Misión</label>
+              <label className="block text-sm font-medium mb-2">Mision</label>
               <Textarea
                 value={content.mission || ''}
                 onChange={(e) => setContent({ ...content, mission: e.target.value })}
@@ -103,7 +103,7 @@ export const ContentManager = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Visión</label>
+              <label className="block text-sm font-medium mb-2">Vision</label>
               <Textarea
                 value={content.vision || ''}
                 onChange={(e) => setContent({ ...content, vision: e.target.value })}

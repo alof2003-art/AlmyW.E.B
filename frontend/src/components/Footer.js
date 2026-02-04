@@ -56,7 +56,7 @@ export const Footer = () => {
           </div>
 
           <div data-testid="footer-location">
-            <h4 className="font-bold mb-4 text-lg">Ubicación</h4>
+            <h4 className="font-bold mb-4 text-lg">Ubicacion</h4>
             <p className="text-gray-400 mb-4">{config.location_name}</p>
             <p className="text-sm text-gray-500">{config.location_address}</p>
             <a
@@ -71,7 +71,7 @@ export const Footer = () => {
           </div>
 
           <div data-testid="footer-social">
-            <h4 className="font-bold mb-4 text-lg">Síguenos</h4>
+            <h4 className="font-bold mb-4 text-lg">Siguenos</h4>
             <div className="flex space-x-4">
               {socialLinks.map((link) => {
                 const IconComponent = getIconComponent(link.icon_name);

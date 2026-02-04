@@ -52,7 +52,7 @@ export const TestimonialsManager = () => {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('¿Eliminar testimonio?')) {
+    if (window.confirm('Eliminar testimonio?')) {
       try {
         await api.delete(`/admin/testimonials/${id}`);
         toast.success('Testimonio eliminado');
@@ -103,7 +103,7 @@ export const TestimonialsManager = () => {
                 <Textarea value={formData.content} onChange={(e) => setFormData({ ...formData, content: e.target.value })} rows={4} required />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Calificación (1-5)</label>
+                <label className="block text-sm font-medium mb-2">Calificacion (1-5)</label>
                 <Input type="number" min="1" max="5" value={formData.rating} onChange={(e) => setFormData({ ...formData, rating: parseInt(e.target.value) })} required />
               </div>
               <div>

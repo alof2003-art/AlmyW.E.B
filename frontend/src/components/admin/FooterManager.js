@@ -24,7 +24,7 @@ export const FooterManager = () => {
       setConfig(configRes.data);
       setSocialLinks(socialRes.data);
     } catch (error) {
-      toast.error('Error al cargar configuración');
+      toast.error('Error al cargar configuracion');
     }
   };
 
@@ -34,7 +34,7 @@ export const FooterManager = () => {
 
     try {
       await api.put('/admin/footer', config);
-      toast.success('Configuración actualizada');
+      toast.success('Configuracion actualizada');
     } catch (error) {
       toast.error('Error al actualizar');
     } finally {
@@ -61,7 +61,7 @@ export const FooterManager = () => {
       <form onSubmit={handleSubmit} className="space-y-6">
         <Card>
           <CardHeader>
-            <CardTitle>Ubicación</CardTitle>
+            <CardTitle>Ubicacion</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
@@ -69,7 +69,7 @@ export const FooterManager = () => {
               <Input value={config.location_name} onChange={(e) => setConfig({ ...config, location_name: e.target.value })} data-testid="location-name-input" />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Dirección Completa</label>
+              <label className="block text-sm font-medium mb-2">Direccion Completa</label>
               <Input value={config.location_address} onChange={(e) => setConfig({ ...config, location_address: e.target.value })} data-testid="location-address-input" />
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -101,7 +101,7 @@ export const FooterManager = () => {
           <CardContent className="space-y-4">
             <div className="flex items-center space-x-2">
               <input type="checkbox" id="show_authors" checked={config.show_authors} onChange={(e) => setConfig({ ...config, show_authors: e.target.checked })} className="rounded" data-testid="show-authors-checkbox" />
-              <label htmlFor="show_authors" className="text-sm font-medium">Mostrar autores en todas las páginas</label>
+              <label htmlFor="show_authors" className="text-sm font-medium">Mostrar autores en todas las paginas</label>
             </div>
             <div>
               <label className="block text-sm font-medium mb-2">Nombres de autores (separados por |)</label>

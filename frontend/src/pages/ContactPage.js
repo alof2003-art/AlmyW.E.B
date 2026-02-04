@@ -26,9 +26,9 @@ export const ContactPage = () => {
     }
 
     const message = `Hola, soy ${formData.firstName} ${formData.lastName}.%0A%0A${formData.description}${
-      formData.cedula ? `%0A%0ACédula: ${formData.cedula}` : ''
+      formData.cedula ? `%0A%0ACedula: ${formData.cedula}` : ''
     }${
-      formData.address ? `%0A%0ADirección: ${formData.address}` : ''
+      formData.address ? `%0A%0ADireccion: ${formData.address}` : ''
     }`;
 
     const whatsappUrl = `https://wa.me/593992286986?text=${message}`;
@@ -49,7 +49,7 @@ export const ContactPage = () => {
           <h1 className="text-4xl md:text-6xl font-bold mb-4" data-testid="contact-title">
             <span className="gradient-text">Contacto</span>
           </h1>
-          <p className="text-lg text-gray-600">¿Listo para iniciar tu proyecto? Contáctanos ahora</p>
+          <p className="text-lg text-gray-600">Listo para iniciar tu proyecto? Contactanos ahora</p>
         </motion.div>
 
         <motion.div
@@ -96,7 +96,7 @@ export const ContactPage = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2" data-testid="label-cedula">
-                Cédula (Opcional)
+                Cedula (Opcional)
               </label>
               <input
                 type="text"
@@ -104,14 +104,14 @@ export const ContactPage = () => {
                 value={formData.cedula}
                 onChange={handleChange}
                 className="w-full px-4 py-3 rounded-2xl border-2 border-gray-200 focus:border-[#0DB4B9] outline-none transition-colors"
-                placeholder="Tu número de cédula"
+                placeholder="Tu numero de cedula"
                 data-testid="input-cedula"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2" data-testid="label-address">
-                Dirección (Opcional)
+                Direccion (Opcional)
               </label>
               <input
                 type="text"
@@ -119,14 +119,14 @@ export const ContactPage = () => {
                 value={formData.address}
                 onChange={handleChange}
                 className="w-full px-4 py-3 rounded-2xl border-2 border-gray-200 focus:border-[#0DB4B9] outline-none transition-colors"
-                placeholder="Tu dirección"
+                placeholder="Tu direccion"
                 data-testid="input-address"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2" data-testid="label-description">
-                Descripción de tu proyecto <span className="text-red-500">*</span>
+                Descripcion de tu proyecto <span className="text-red-500">*</span>
               </label>
               <textarea
                 name="description"
@@ -134,7 +134,7 @@ export const ContactPage = () => {
                 onChange={handleChange}
                 rows={6}
                 className="w-full px-4 py-3 rounded-2xl border-2 border-gray-200 focus:border-[#0DB4B9] outline-none transition-colors resize-none"
-                placeholder="Cuéntanos sobre tu proyecto, qué necesitas y cualquier detalle importante..."
+                placeholder="Cuentanos sobre tu proyecto, que necesitas y cualquier detalle importante..."
                 required
                 data-testid="input-description"
               />

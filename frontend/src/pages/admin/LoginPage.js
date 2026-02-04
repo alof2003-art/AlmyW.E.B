@@ -18,7 +18,7 @@ export const LoginPage = () => {
     try {
       const response = await api.post('/auth/login', credentials);
       setAuth(response.data.token, response.data.username);
-      toast.success('¡Bienvenido!');
+      toast.success('Bienvenido!');
       setTimeout(() => navigate('/admin/dashboard'), 500);
     } catch (error) {
       toast.error('Credenciales incorrectas');
@@ -48,7 +48,7 @@ export const LoginPage = () => {
             <span className="text-[#6D28D9]">Almy</span>
             <span className="text-[#0DB4B9]">.W.E.B.</span>
           </h1>
-          <p className="text-gray-600 mt-2">Panel de Administración</p>
+          <p className="text-gray-600 mt-2">Panel de Administracion</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -72,7 +72,7 @@ export const LoginPage = () => {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Contraseña
+              Contrasena
             </label>
             <div className="relative">
               <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
@@ -94,7 +94,7 @@ export const LoginPage = () => {
             className="w-full btn-primary py-3 text-lg"
             data-testid="login-submit"
           >
-            {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+            {loading ? 'Iniciando sesion...' : 'Iniciar Sesion'}
           </button>
         </form>
       </motion.div>

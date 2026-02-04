@@ -33,7 +33,7 @@ export const DashboardPage = () => {
 
   const handleLogout = () => {
     clearAuth();
-    toast.success('Sesión cerrada');
+    toast.success('Sesion cerrada');
     navigate('/admin/login');
   };
 
@@ -115,7 +115,7 @@ export const DashboardPage = () => {
             data-testid=\"logout-button\"
           >
             <LogOut size={20} />
-            {sidebarOpen && <span className=\"font-medium\">Cerrar Sesión</span>}
+            {sidebarOpen && <span className=\"font-medium\">Cerrar Sesion</span>}
           </button>
         </div>
       </aside>

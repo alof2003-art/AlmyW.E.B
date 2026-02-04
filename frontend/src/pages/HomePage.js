@@ -133,7 +133,7 @@ export const HomePage = () => {
           >
             <h2 className=\"text-4xl md:text-5xl font-bold mb-4\">Nuestros Servicios</h2>
             <p className=\"text-lg text-gray-600 max-w-2xl mx-auto\">
-              Tarifas especiales de lanzamiento, diseñadas para ser accesibles y ajustadas a sus necesidades
+              Tarifas especiales de lanzamiento, disenadas para ser accesibles y ajustadas a sus necesidades
             </p>
           </motion.div>
 
@@ -173,7 +173,7 @@ export const HomePage = () => {
                   
                   <div className=\"space-y-2 mb-6\">
                     <p className=\"text-sm text-gray-500\">
-                      <strong>Páginas:</strong> {service.pages}
+                      <strong>Paginas:</strong> {service.pages}
                     </p>
                     {service.features && (
                       <div className=\"text-sm text-gray-500\">
@@ -192,7 +192,7 @@ export const HomePage = () => {
                       ${service.price.toFixed(2)}
                     </div>
                     <p className=\"text-sm text-gray-500\">
-                      Renovación anual: ${service.renewal_price.toFixed(2)}
+                      Renovacion anual: ${service.renewal_price.toFixed(2)}
                     </p>
                   </div>
 
@@ -221,7 +221,7 @@ export const HomePage = () => {
               className=\"glassmorphism rounded-3xl p-8 shadow-xl\"
               data-testid=\"mission-card\"
             >
-              <h3 className=\"text-3xl font-bold mb-4 text-[#6D28D9]\">Nuestra Misión</h3>
+              <h3 className=\"text-3xl font-bold mb-4 text-[#6D28D9]\">Nuestra Mision</h3>
               <p className=\"text-gray-700 leading-relaxed\" data-testid=\"mission-content\">
                 {content.mission}
               </p>
@@ -234,7 +234,7 @@ export const HomePage = () => {
               className=\"glassmorphism rounded-3xl p-8 shadow-xl\"
               data-testid=\"vision-card\"
             >
-              <h3 className=\"text-3xl font-bold mb-4 text-[#0DB4B9]\">Nuestra Visión</h3>
+              <h3 className=\"text-3xl font-bold mb-4 text-[#0DB4B9]\">Nuestra Vision</h3>
               <p className=\"text-gray-700 leading-relaxed\" data-testid=\"vision-content\">
                 {content.vision}
               </p>
@@ -253,7 +253,7 @@ export const HomePage = () => {
             className=\"text-center mb-16\"
           >
             <h2 className=\"text-4xl md:text-5xl font-bold mb-4\">Lo que dicen nuestros clientes</h2>
-            <p className=\"text-lg text-gray-600\">Testimonios reales de empresas que confían en nosotros</p>
+            <p className=\"text-lg text-gray-600\">Testimonios reales de empresas que confian en nosotros</p>
           </motion.div>
 
           <div className=\"grid grid-cols-1 md:grid-cols-3 gap-8\">

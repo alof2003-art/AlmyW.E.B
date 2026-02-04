@@ -55,7 +55,7 @@ export const ServicesManager = () => {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('¿Eliminar este servicio?')) {
+    if (window.confirm('Eliminar este servicio?')) {
       try {
         await api.delete(`/admin/services/${id}`);
         toast.success('Servicio eliminado');
@@ -103,7 +103,7 @@ export const ServicesManager = () => {
             </DialogHeader>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-2">Título</label>
+                <label className="block text-sm font-medium mb-2">Titulo</label>
                 <Input
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
@@ -111,7 +111,7 @@ export const ServicesManager = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Descripción</label>
+                <label className="block text-sm font-medium mb-2">Descripcion</label>
                 <Textarea
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -120,7 +120,7 @@ export const ServicesManager = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Páginas</label>
+                <label className="block text-sm font-medium mb-2">Paginas</label>
                 <Input
                   value={formData.pages}
                   onChange={(e) => setFormData({ ...formData, pages: e.target.value })}
@@ -128,12 +128,12 @@ export const ServicesManager = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Características (separadas por |)</label>
+                <label className="block text-sm font-medium mb-2">Caracteristicas (separadas por |)</label>
                 <Textarea
                   value={formData.features}
                   onChange={(e) => setFormData({ ...formData, features: e.target.value })}
                   rows={3}
-                  placeholder="Hosting y Dominio|Optimización SEO básica"
+                  placeholder="Hosting y Dominio|Optimizacion SEO basica"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -148,7 +148,7 @@ export const ServicesManager = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Precio Renovación</label>
+                  <label className="block text-sm font-medium mb-2">Precio Renovacion</label>
                   <Input
                     type="number"
                     step="0.01"
@@ -171,7 +171,7 @@ export const ServicesManager = () => {
                 </label>
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Orden de visualización</label>
+                <label className="block text-sm font-medium mb-2">Orden de visualizacion</label>
                 <Input
                   type="number"
                   value={formData.display_order}

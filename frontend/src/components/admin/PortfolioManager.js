@@ -51,7 +51,7 @@ export const PortfolioManager = () => {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('¿Eliminar proyecto?')) {
+    if (window.confirm('Eliminar proyecto?')) {
       try {
         await api.delete(`/admin/portfolio/${id}`);
         toast.success('Proyecto eliminado');
@@ -90,15 +90,15 @@ export const PortfolioManager = () => {
             </DialogHeader>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-2">Título</label>
+                <label className="block text-sm font-medium mb-2">Titulo</label>
                 <Input value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} required />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Categoría</label>
+                <label className="block text-sm font-medium mb-2">Categoria</label>
                 <Input value={formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} required placeholder="Arquitectura, Salud, Retail, etc." />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Descripción</label>
+                <label className="block text-sm font-medium mb-2">Descripcion</label>
                 <Textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} rows={3} />
               </div>
               <div>
