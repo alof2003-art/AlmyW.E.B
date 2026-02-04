@@ -73,17 +73,20 @@ export const HomePage = () => {
 
   return (
     <div className="min-h-screen" data-testid="home-page">
+      <div className="circuit-pattern"></div>
+      <div className="animated-background"></div>
+      
       {/* Hero Section */}
       <section
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
         style={{
-          backgroundImage: `linear-gradient(135deg, rgba(13, 180, 185, 0.1) 0%, rgba(109, 40, 217, 0.1) 100%), url(${content.hero_bg_url})`,
+          backgroundImage: `linear-gradient(135deg, rgba(13, 180, 185, 0.05) 0%, rgba(109, 40, 217, 0.05) 100%), url(${content.hero_bg_url})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
         data-testid="hero-section"
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-white/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-white/90 to-white/70"></div>
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <motion.div
