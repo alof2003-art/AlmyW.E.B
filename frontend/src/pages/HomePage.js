@@ -117,7 +117,7 @@ export const HomePage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-xl md:text-2xl text-gray-600 mb-8 italic"
+            className={`text-xl md:text-2xl text-gray-600 mb-8 italic ${showTypewriter ? 'typewriter' : ''}`}
             data-testid="hero-slogan"
           >
             {content.hero_slogan}
