@@ -112,7 +112,7 @@ export const Footer = () => {
             </p>
           )}
           <p 
-            className="text-sm text-gray-400 cursor-pointer hover:text-[#0DB4B9] transition-colors" 
+            className="text-sm text-gray-400 cursor-default select-none" 
             data-testid="footer-copyright"
             onClick={handleCopyrightClick}
           >
