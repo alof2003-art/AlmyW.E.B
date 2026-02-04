@@ -146,50 +146,54 @@ export const HomePage = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 px-4 relative" data-testid="services-section">
+      <section id="services" className="py-32 px-4 relative" data-testid="services-section">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16 fade-in-up"
+            className="text-center mb-20 fade-in-up"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Nuestros Servicios</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Tarifas especiales de lanzamiento, disenadas para ser accesibles y ajustadas a sus necesidades
+            <span className="inline-block px-6 py-2 bg-gradient-to-r from-[#0DB4B9]/10 to-[#6D28D9]/10 text-[#6D28D9] rounded-full text-sm font-semibold mb-6 border border-[#6D28D9]/20">
+              NUESTRAS SOLUCIONES
+            </span>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 gradient-text">Planes a tu Medida</h2>
+            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Tarifas especiales de lanzamiento, disenadas para impulsar tu presencia digital
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
             {services.map((service, index) => (
               <motion.div
                 key={service.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
+                transition={{ delay: index * 0.15, duration: 0.5 }}
                 onMouseEnter={() => setHoveredService(service.is_featured ? service.id : null)}
                 onMouseLeave={() => setHoveredService(null)}
-                className={`relative bg-white rounded-3xl p-8 shadow-lg hover-lift service-card fade-in-up ${
+                className={`relative glass-card rounded-[2rem] p-10 service-card fade-in-up ${
                   service.is_featured ? 'featured-card' : ''
                 }`}
-                style={{ transition: 'all 0.3s ease' }}
                 data-testid={`service-card-${index}`}
               >
                 {service.is_featured && (
                   <>
-                    <div className="featured-badge" data-testid="featured-badge">RECOMENDADO</div>
+                    <div className="featured-badge" data-testid="featured-badge">
+                      ⭐ Mas Popular
+                    </div>
                     {hoveredService === service.id && particlesInit && (
                       <div className="particles-container" data-testid="gold-particles">
                         <Particles id={`particles-${service.id}`} options={particlesOptions} />
-                        {[...Array(6)].map((_, i) => (
+                        {[...Array(8)].map((_, i) => (
                           <div
                             key={i}
                             className="sparkle"
                             style={{
-                              left: `${20 + i * 15}%`,
-                              bottom: '10%',
-                              animationDelay: `${i * 0.3}s`
+                              left: `${15 + i * 12}%`,
+                              bottom: '15%',
+                              animationDelay: `${i * 0.2}s`
                             }}
                           />
                         ))}
@@ -199,44 +203,56 @@ export const HomePage = () => {
                 )}
 
                 <div className="relative z-10">
-                  <h3 className="text-2xl font-bold mb-4 text-[#6D28D9]" data-testid={`service-title-${index}`}>
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 mb-6" data-testid={`service-description-${index}`}>
-                    {service.description}
-                  </p>
-                  
-                  <div className="space-y-2 mb-6">
-                    <p className="text-sm text-gray-500">
-                      <strong>Paginas:</strong> {service.pages}
+                  <div className="mb-8">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0DB4B9] to-[#6D28D9] flex items-center justify-center mb-6 shimmer-effect">
+                      <Star className="text-white" size={32} />
+                    </div>
+                    <h3 className="text-3xl font-black mb-4 text-gray-900" data-testid={`service-title-${index}`}>
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-600 text-lg leading-relaxed" data-testid={`service-description-${index}`}>
+                      {service.description}
                     </p>
+                  </div>
+                  
+                  <div className="space-y-4 mb-8">
+                    <div className="flex items-center gap-2 text-gray-700">
+                      <div className="w-2 h-2 rounded-full bg-[#0DB4B9]"></div>
+                      <span className="font-semibold">Paginas:</span> {service.pages}
+                    </div>
                     {service.features && (
-                      <div className="text-sm text-gray-500">
-                        <strong>Incluye:</strong>
-                        <ul className="list-disc list-inside mt-2 space-y-1">
-                          {service.features.split('|').map((feature, idx) => (
-                            <li key={idx}>{feature}</li>
-                          ))}
-                        </ul>
+                      <div className="space-y-3">
+                        {service.features.split('|').map((feature, idx) => (
+                          <div key={idx} className="flex items-start gap-3">
+                            <div className="w-6 h-6 rounded-full bg-[#10B981]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <div className="w-2 h-2 rounded-full bg-[#10B981]"></div>
+                            </div>
+                            <span className="text-gray-600">{feature}</span>
+                          </div>
+                        ))}
                       </div>
                     )}
                   </div>
 
-                  <div className="border-t pt-6">
-                    <div className="text-4xl font-bold text-[#0DB4B9] mb-2" data-testid={`service-price-${index}`}>
-                      ${service.price.toFixed(2)}
+                  <div className="border-t border-gray-200 pt-8 mb-8">
+                    <div className="flex items-baseline gap-2 mb-2">
+                      <span className="text-6xl font-black gradient-text" data-testid={`service-price-${index}`}>
+                        ${service.price.toFixed(0)}
+                      </span>
+                      <span className="text-gray-500 text-lg">/inicio</span>
                     </div>
-                    <p className="text-sm text-gray-500">
-                      Renovacion anual: ${service.renewal_price.toFixed(2)}
+                    <p className="text-sm text-gray-500 flex items-center gap-2">
+                      <span className="text-2xl">🔄</span>
+                      ${service.renewal_price.toFixed(0)}/ano renovacion
                     </p>
                   </div>
 
                   <button
-                    className="w-full mt-6 btn-primary"
+                    className="w-full btn-primary shimmer-effect"
                     onClick={() => window.location.href = '/contacto'}
                     data-testid={`service-cta-${index}`}
                   >
-                    Contratar ahora
+                    Comenzar Ahora <ArrowRight className="inline ml-2" size={18} />
                   </button>
                 </div>
               </motion.div>
