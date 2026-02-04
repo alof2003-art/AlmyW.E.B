@@ -52,7 +52,7 @@ export const FooterManager = () => {
     }
   };
 
-  if (!config) return <div>Cargando...</div>;
+  if (!config) return <div>Cargando</div>;
 
   return (
     <div data-testid="footer-manager">
