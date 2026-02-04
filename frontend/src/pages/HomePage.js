@@ -151,12 +151,11 @@ export const HomePage = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mb-12"
+            className="mb-12 px-4"
           >
             <p
-              className={`text-3xl md:text-4xl lg:text-5xl text-gray-600 font-light italic ${showTypewriter ? 'typewriter' : ''}`}
+              className="text-3xl md:text-4xl lg:text-5xl text-gray-600 font-light italic inline-block"
               data-testid="hero-slogan"
-              style={{ display: 'inline-block' }}
             >
               {content.hero_slogan}
             </p>
