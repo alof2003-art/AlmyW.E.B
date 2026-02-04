@@ -55,7 +55,7 @@ export const HomePage = () => {
     },
   };
 
-  if (!content) return <div className="min-h-screen flex items-center justify-center">Cargando...</div>;
+  if (!content) return <div className="min-h-screen flex items-center justify-center">Cargando</div>;
 
   return (
     <div className=\"min-h-screen\" data-testid=\"home-page\">
