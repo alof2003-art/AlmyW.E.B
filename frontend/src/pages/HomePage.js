@@ -73,20 +73,21 @@ export const HomePage = () => {
 
   return (
     <div className="min-h-screen" data-testid="home-page">
-      <div className="circuit-pattern"></div>
-      <div className="animated-background"></div>
+      {/* Fondos animados */}
+      <div className="animated-gradient-bg"></div>
+      <div className="floating-orbs">
+        <div className="orb orb-1"></div>
+        <div className="orb orb-2"></div>
+        <div className="orb orb-3"></div>
+      </div>
+      <div className="circuit-grid"></div>
       
       {/* Hero Section */}
       <section
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
-        style={{
-          backgroundImage: `linear-gradient(135deg, rgba(13, 180, 185, 0.05) 0%, rgba(109, 40, 217, 0.05) 100%), url(${content.hero_bg_url})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
         data-testid="hero-section"
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-white/90 to-white/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white/80"></div>
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <motion.div
