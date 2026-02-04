@@ -637,6 +637,56 @@
 }
 
 /* ===== 3D PILLS WITH LOGOS ===== */
+.tech-carousel {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 3rem 0;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.tech-carousel-track {
+  display: flex;
+  gap: 2rem;
+  animation: scroll-pills 50s linear infinite;
+  width: fit-content;
+}
+
+.tech-carousel-reverse .tech-carousel-track {
+  animation: scroll-pills-reverse 55s linear infinite;
+}
+
+@keyframes scroll-pills {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 1rem));
+  }
+}
+
+@keyframes scroll-pills-reverse {
+  0% {
+    transform: translateX(calc(-50% - 1rem));
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .spotlight-indicator {
   position: absolute;
   left: 50%;
@@ -726,16 +776,6 @@
 
 /* Spotlight effect - show name when in center */
 @media (min-width: 768px) {
-  .tech-pill-logo {
-    animation: check-position 0.1s linear infinite;
-  }
-
-  @keyframes check-position {
-    0%, 100% {
-      /* This will be controlled by the position */
-    }
-  }
-
   .tech-pill-logo:hover .tech-name,
   .tech-pill-logo.in-spotlight .tech-name {
     opacity: 1;
