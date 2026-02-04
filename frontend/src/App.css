@@ -590,3 +590,48 @@
     gap: 1.5rem;
   }
 }
+
+/* ===== TECH STACK SLIDER ===== */
+.tech-slider {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.tech-track {
+  display: flex;
+  gap: 2rem;
+  animation: scroll-tech 30s linear infinite;
+  width: fit-content;
+}
+
+.tech-item {
+  flex-shrink: 0;
+  padding: 1.5rem 3rem;
+  border-radius: 1.5rem;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  min-width: 150px;
+  display: flex;
+  align-items: center;
+  justify-center;
+}
+
+.tech-item:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(109, 40, 217, 0.2);
+}
+
+@keyframes scroll-tech {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.tech-slider:hover .tech-track {
+  animation-play-state: paused;
+}
