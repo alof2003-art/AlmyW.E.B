@@ -220,7 +220,7 @@ export const HomePage = () => {
                   {name: 'Express', devicon: 'express', simple: 'express', color: '000000'},
                   {name: 'NestJS', devicon: 'nestjs', simple: 'nestjs', color: 'E0234E'},
                   {name: 'Python', devicon: 'python', simple: 'python', color: '3776AB'},
-                  {name: 'Django', devicon: 'django', simple: 'django', color: '092E20'},
+                  {name: 'Django', devicon: 'django', simple: 'django', color: '092E20', usePlain: true},
                   {name: 'Flask', devicon: 'flask', simple: 'flask', color: '000000'},
                   {name: 'FastAPI', devicon: 'fastapi', simple: 'fastapi', color: '009688'},
                   {name: 'MongoDB', devicon: 'mongodb', simple: 'mongodb', color: '47A248'},
