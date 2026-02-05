@@ -230,12 +230,13 @@ export const HomePage = () => {
                 ].map((tech, index) => (
                   <div key={index} className="tech-pill-logo" data-tech-name={tech.name}>
                     <img 
-                      src={`https://cdn.simpleicons.org/${tech.icon}/${tech.color}`} 
+                      src={`https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${tech.icon}.svg`} 
                       alt={tech.name}
                       className="tech-icon"
+                      style={{filter: `brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(500%) hue-rotate(${index * 30}deg)`}}
                       onError={(e) => {
-                        e.target.style.display = 'none';
-                        e.target.parentElement.innerHTML += `<div class="tech-icon-fallback" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-weight:bold;color:#6D28D9;font-size:14px;">${tech.name.substring(0,3).toUpperCase()}</div>`;
+                        e.target.onerror = null;
+                        e.target.src = `https://cdn.simpleicons.org/${tech.icon}/${tech.color}`;
                       }}
                     />
                     <span className="tech-name">{tech.name}</span>
@@ -247,28 +248,33 @@ export const HomePage = () => {
             <div className="tech-carousel tech-carousel-reverse">
               <div className="tech-carousel-track">
                 {[
-                  {name: 'AWS', icon: 'amazonwebservices', color: '#FF9900'},
-                  {name: 'Google Cloud', icon: 'googlecloud', color: '#4285F4'},
-                  {name: 'Azure', icon: 'microsoftazure', color: '#0078D4'},
-                  {name: 'Docker', icon: 'docker', color: '#2496ED'},
-                  {name: 'Kubernetes', icon: 'kubernetes', color: '#326CE5'},
-                  {name: 'Vercel', icon: 'vercel', color: '#000000'},
-                  {name: 'Netlify', icon: 'netlify', color: '#00C7B7'},
-                  {name: 'Heroku', icon: 'heroku', color: '#430098'},
-                  {name: 'DigitalOcean', icon: 'digitalocean', color: '#0080FF'},
-                  {name: 'Cloudflare', icon: 'cloudflare', color: '#F38020'},
-                  {name: 'Firebase', icon: 'firebase', color: '#FFCA28'},
-                  {name: 'Supabase', icon: 'supabase', color: '#3ECF8E'},
-                  {name: 'GitHub', icon: 'github', color: '#181717'},
-                  {name: 'GitLab', icon: 'gitlab', color: '#FC6D26'},
-                  {name: 'Bitbucket', icon: 'bitbucket', color: '#0052CC'},
-                  {name: 'Jenkins', icon: 'jenkins', color: '#D24939'}
+                  {name: 'AWS', icon: 'amazonaws', color: 'FF9900'},
+                  {name: 'Google Cloud', icon: 'googlecloud', color: '4285F4'},
+                  {name: 'Azure', icon: 'microsoftazure', color: '0078D4'},
+                  {name: 'Docker', icon: 'docker', color: '2496ED'},
+                  {name: 'Kubernetes', icon: 'kubernetes', color: '326CE5'},
+                  {name: 'Vercel', icon: 'vercel', color: '000000'},
+                  {name: 'Netlify', icon: 'netlify', color: '00C7B7'},
+                  {name: 'Railway', icon: 'railway', color: '0B0D0E'},
+                  {name: 'DigitalOcean', icon: 'digitalocean', color: '0080FF'},
+                  {name: 'Cloudflare', icon: 'cloudflare', color: 'F38020'},
+                  {name: 'Firebase', icon: 'firebase', color: 'FFCA28'},
+                  {name: 'Supabase', icon: 'supabase', color: '3ECF8E'},
+                  {name: 'GitHub', icon: 'github', color: '181717'},
+                  {name: 'GitLab', icon: 'gitlab', color: 'FC6D26'},
+                  {name: 'Bitbucket', icon: 'bitbucket', color: '0052CC'},
+                  {name: 'CircleCI', icon: 'circleci', color: '343434'}
                 ].map((tech, index) => (
                   <div key={index} className="tech-pill-logo tech-pill-cyan" data-tech-name={tech.name}>
                     <img 
-                      src={`https://cdn.simpleicons.org/${tech.icon}/${tech.color.replace('#', '')}`} 
+                      src={`https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${tech.icon}.svg`} 
                       alt={tech.name}
                       className="tech-icon"
+                      style={{filter: `brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(500%) hue-rotate(${180 + index * 20}deg)`}}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = `https://cdn.simpleicons.org/${tech.icon}/${tech.color}`;
+                      }}
                     />
                     <span className="tech-name">{tech.name}</span>
                   </div>
@@ -279,28 +285,33 @@ export const HomePage = () => {
             <div className="tech-carousel">
               <div className="tech-carousel-track">
                 {[
-                  {name: 'Stripe', icon: 'stripe', color: '#008CDD'},
-                  {name: 'PayPal', icon: 'paypal', color: '#00457C'},
-                  {name: 'Twilio', icon: 'twilio', color: '#F22F46'},
-                  {name: 'SendGrid', icon: 'sendgrid', color: '#3368FA'},
-                  {name: 'Mailchimp', icon: 'mailchimp', color: '#FFE01B'},
-                  {name: 'Figma', icon: 'figma', color: '#F24E1E'},
-                  {name: 'Adobe XD', icon: 'adobexd', color: '#FF61F6'},
-                  {name: 'Tailwind', icon: 'tailwindcss', color: '#06B6D4'},
-                  {name: 'Bootstrap', icon: 'bootstrap', color: '#7952B3'},
-                  {name: 'Material-UI', icon: 'mui', color: '#007FFF'},
-                  {name: 'GraphQL', icon: 'graphql', color: '#E10098'},
-                  {name: 'Postman', icon: 'postman', color: '#FF6C37'},
-                  {name: 'Webpack', icon: 'webpack', color: '#8DD6F9'},
-                  {name: 'Vite', icon: 'vite', color: '#646CFF'},
-                  {name: 'TypeScript', icon: 'typescript', color: '#3178C6'},
-                  {name: 'JavaScript', icon: 'javascript', color: '#F7DF1E'}
+                  {name: 'Stripe', icon: 'stripe', color: '008CDD'},
+                  {name: 'PayPal', icon: 'paypal', color: '00457C'},
+                  {name: 'Twilio', icon: 'twilio', color: 'F22F46'},
+                  {name: 'Mailchimp', icon: 'mailchimp', color: 'FFE01B'},
+                  {name: 'Notion', icon: 'notion', color: '000000'},
+                  {name: 'Figma', icon: 'figma', color: 'F24E1E'},
+                  {name: 'Sketch', icon: 'sketch', color: 'F7B500'},
+                  {name: 'Tailwind', icon: 'tailwindcss', color: '06B6D4'},
+                  {name: 'Bootstrap', icon: 'bootstrap', color: '7952B3'},
+                  {name: 'MUI', icon: 'mui', color: '007FFF'},
+                  {name: 'GraphQL', icon: 'graphql', color: 'E10098'},
+                  {name: 'Postman', icon: 'postman', color: 'FF6C37'},
+                  {name: 'Webpack', icon: 'webpack', color: '8DD6F9'},
+                  {name: 'Vite', icon: 'vite', color: '646CFF'},
+                  {name: 'TypeScript', icon: 'typescript', color: '3178C6'},
+                  {name: 'JavaScript', icon: 'javascript', color: 'F7DF1E'}
                 ].map((tech, index) => (
                   <div key={index} className="tech-pill-logo tech-pill-purple" data-tech-name={tech.name}>
                     <img 
-                      src={`https://cdn.simpleicons.org/${tech.icon}/${tech.color.replace('#', '')}`} 
+                      src={`https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${tech.icon}.svg`} 
                       alt={tech.name}
                       className="tech-icon"
+                      style={{filter: `brightness(0) saturate(100%) invert(30%) sepia(100%) saturate(500%) hue-rotate(${240 + index * 15}deg)`}}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = `https://cdn.simpleicons.org/${tech.icon}/${tech.color}`;
+                      }}
                     />
                     <span className="tech-name">{tech.name}</span>
                   </div>
