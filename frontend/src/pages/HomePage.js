@@ -619,24 +619,18 @@ export const HomePage = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15, duration: 0.5 }}
-                className="glass-card rounded-[2rem] p-10 testimonial-card relative"
+                className="glass-card rounded-[2rem] p-10 testimonial-card relative dark:bg-gray-800"
                 data-testid={`testimonial-card-${index}`}
               >
                 <div className="flex items-center mb-6">
-                  {testimonial.avatar_url ? (
-                    <img
-                      src={testimonial.avatar_url}
-                      alt={testimonial.name}
-                      className="w-20 h-20 rounded-2xl object-cover mr-5 ring-4 ring-white shadow-lg"
-                      data-testid={`testimonial-avatar-${index}`}
-                    />
-                  ) : (
-                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#0DB4B9] to-[#6D28D9] mr-5 ring-4 ring-white shadow-lg"></div>
-                  )}
+                  {/* Icono de usuario en lugar de imagen de perfil */}
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0DB4B9] to-[#6D28D9] mr-5 flex items-center justify-center shadow-lg">
+                    <span className="text-2xl">👤</span>
+                  </div>
                   <div>
-                    <h4 className="font-black text-xl text-gray-900" data-testid={`testimonial-name-${index}`}>{testimonial.name}</h4>
+                    <h4 className="font-black text-xl text-gray-900 dark:text-white" data-testid={`testimonial-name-${index}`}>{testimonial.name}</h4>
                     {testimonial.company && (
-                      <p className="text-sm text-gray-500 font-medium" data-testid={`testimonial-company-${index}`}>{testimonial.company}</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 font-medium" data-testid={`testimonial-company-${index}`}>{testimonial.company}</p>
                     )}
                   </div>
                 </div>
@@ -647,7 +641,7 @@ export const HomePage = () => {
                   ))}
                 </div>
 
-                <p className="text-gray-600 text-lg leading-relaxed italic" data-testid={`testimonial-content-${index}`}>
+                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed italic" data-testid={`testimonial-content-${index}`}>
                   "{testimonial.content}"
                 </p>
               </motion.div>
