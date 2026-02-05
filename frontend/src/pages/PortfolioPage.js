@@ -29,7 +29,7 @@ const projectRoutes = {
   },
   'Boutique Fashion Store': {
     route: '/portfolio/boutique-moda',
-    screenshot: 'https://images.unsplash.com/photo-1558769132-cb1aea67f98e?w=800'
+    screenshot: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800'
   },
   'ElectroHogar Store': {
     route: '/portfolio/retail-hogar',
