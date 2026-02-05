@@ -7,23 +7,23 @@ import Footer from '../components/Footer';
 
 // Mapeo de proyectos a sus rutas y screenshots (imagenes hero de cada pagina)
 const projectRoutes = {
-  'Estudio Arquitectonico Moderno': {
+  'Estudio Arquitectónico Moderno': {
     route: '/portfolio/arquitectura-moderna',
     screenshot: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800'
   },
-  'Disenos Arquitectonicos Lopez': {
+  'Diseños Arquitectónicos López': {
     route: '/portfolio/arquitectura-urbanismo',
     screenshot: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800'
   },
-  'Clinica Dental Sonrisa': {
+  'Clínica Dental Sonrisa': {
     route: '/portfolio/clinica-dental',
     screenshot: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800'
   },
-  'Centro Medico Vida Sana': {
+  'Centro Médico Vida Sana': {
     route: '/portfolio/centro-medico',
     screenshot: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=800'
   },
-  'Consultorio Dr. Ramirez': {
+  'Consultorio Dr. Ramírez': {
     route: '/portfolio/centro-clinico',
     screenshot: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800'
   },
