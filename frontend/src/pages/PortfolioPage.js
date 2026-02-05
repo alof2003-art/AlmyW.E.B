@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Search, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -45,35 +45,41 @@ const getProjectRoute = (project) => {
 
 export const PortfolioPage = () => {
   const [projects, setProjects] = useState([]);
-  const [filteredProjects, setFilteredProjects] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
-  const [categories, setCategories] = useState(['All']);
 
-  const fetchProjects = useCallback(async () => {
-    try {
-      const response = await api.get('/portfolio');
-      // Actualizar imagenes con screenshots de las paginas reales
-      const projectsWithScreenshots = response.data.map(project => {
-        const projectInfo = projectRoutes[project.title];
-        if (projectInfo) {
-          return {
-            ...project,
-            image_url: projectInfo.screenshot,
-            demo_url: projectInfo.route
-          };
-        }
-        return project;
-      });
-      setProjects(projectsWithScreenshots);
-      const uniqueCategories = ['All', ...new Set(projectsWithScreenshots.map((p) => p.category))];
-      setCategories(uniqueCategories);
-    } catch (error) {
-      console.error('Error fetching projects:', error);
-    }
+  // Fetch projects on mount
+  useEffect(() => {
+    const loadProjects = async () => {
+      try {
+        const response = await api.get('/portfolio');
+        // Actualizar imagenes con screenshots de las paginas reales
+        const projectsWithScreenshots = response.data.map(project => {
+          const projectInfo = projectRoutes[project.title];
+          if (projectInfo) {
+            return {
+              ...project,
+              image_url: projectInfo.screenshot,
+              demo_url: projectInfo.route
+            };
+          }
+          return project;
+        });
+        setProjects(projectsWithScreenshots);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      }
+    };
+    loadProjects();
   }, []);
 
-  const filterProjects = useCallback(() => {
+  // Derive categories from projects
+  const categories = useMemo(() => {
+    return ['All', ...new Set(projects.map((p) => p.category))];
+  }, [projects]);
+
+  // Filter projects based on category and search term
+  const filteredProjects = useMemo(() => {
     let filtered = projects;
 
     if (selectedCategory !== 'All') {
@@ -88,16 +94,8 @@ export const PortfolioPage = () => {
       );
     }
 
-    setFilteredProjects(filtered);
+    return filtered;
   }, [projects, selectedCategory, searchTerm]);
-
-  useEffect(() => {
-    fetchProjects();
-  }, [fetchProjects]);
-
-  useEffect(() => {
-    filterProjects();
-  }, [filterProjects]);
 
   return (
     <div className="min-h-screen pt-24" data-testid="portfolio-page">
