@@ -211,32 +211,31 @@ export const HomePage = () => {
             <div className="tech-carousel">
               <div className="tech-carousel-track">
                 {[
-                  {name: 'React', icon: 'react', color: '61DAFB'},
-                  {name: 'Vue.js', icon: 'vuedotjs', color: '4FC08D'},
-                  {name: 'Angular', icon: 'angular', color: 'DD0031'},
-                  {name: 'Next.js', icon: 'nextdotjs', color: '000000'},
-                  {name: 'Svelte', icon: 'svelte', color: 'FF3E00'},
-                  {name: 'Node.js', icon: 'nodedotjs', color: '339933'},
-                  {name: 'Express', icon: 'express', color: '000000'},
-                  {name: 'NestJS', icon: 'nestjs', color: 'E0234E'},
-                  {name: 'Python', icon: 'python', color: '3776AB'},
-                  {name: 'Django', icon: 'django', color: '092E20'},
-                  {name: 'Flask', icon: 'flask', color: '000000'},
-                  {name: 'FastAPI', icon: 'fastapi', color: '009688'},
-                  {name: 'MongoDB', icon: 'mongodb', color: '47A248'},
-                  {name: 'PostgreSQL', icon: 'postgresql', color: '4169E1'},
-                  {name: 'MySQL', icon: 'mysql', color: '4479A1'},
-                  {name: 'Redis', icon: 'redis', color: 'DC382D'}
+                  {name: 'React', devicon: 'react', simple: 'react', color: '61DAFB'},
+                  {name: 'Vue.js', devicon: 'vuejs', simple: 'vuedotjs', color: '4FC08D'},
+                  {name: 'Angular', devicon: 'angularjs', simple: 'angular', color: 'DD0031'},
+                  {name: 'Next.js', devicon: 'nextjs', simple: 'nextdotjs', color: '000000'},
+                  {name: 'Svelte', devicon: 'svelte', simple: 'svelte', color: 'FF3E00'},
+                  {name: 'Node.js', devicon: 'nodejs', simple: 'nodedotjs', color: '339933'},
+                  {name: 'Express', devicon: 'express', simple: 'express', color: '000000'},
+                  {name: 'NestJS', devicon: 'nestjs', simple: 'nestjs', color: 'E0234E'},
+                  {name: 'Python', devicon: 'python', simple: 'python', color: '3776AB'},
+                  {name: 'Django', devicon: 'django', simple: 'django', color: '092E20'},
+                  {name: 'Flask', devicon: 'flask', simple: 'flask', color: '000000'},
+                  {name: 'FastAPI', devicon: 'fastapi', simple: 'fastapi', color: '009688'},
+                  {name: 'MongoDB', devicon: 'mongodb', simple: 'mongodb', color: '47A248'},
+                  {name: 'PostgreSQL', devicon: 'postgresql', simple: 'postgresql', color: '4169E1'},
+                  {name: 'MySQL', devicon: 'mysql', simple: 'mysql', color: '4479A1'},
+                  {name: 'Redis', devicon: 'redis', simple: 'redis', color: 'DC382D'}
                 ].map((tech, index) => (
                   <div key={index} className="tech-pill-logo" data-tech-name={tech.name}>
                     <img 
-                      src={`https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${tech.icon}.svg`} 
+                      src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.devicon}/${tech.devicon}-original.svg`} 
                       alt={tech.name}
                       className="tech-icon"
-                      style={{filter: `brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(500%) hue-rotate(${index * 30}deg)`}}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = `https://cdn.simpleicons.org/${tech.icon}/${tech.color}`;
+                        e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.devicon}/${tech.devicon}-plain.svg`;
                       }}
                     />
                     <span className="tech-name">{tech.name}</span>
@@ -248,32 +247,36 @@ export const HomePage = () => {
             <div className="tech-carousel tech-carousel-reverse">
               <div className="tech-carousel-track">
                 {[
-                  {name: 'AWS', icon: 'amazonaws', color: 'FF9900'},
-                  {name: 'Google Cloud', icon: 'googlecloud', color: '4285F4'},
-                  {name: 'Azure', icon: 'microsoftazure', color: '0078D4'},
-                  {name: 'Docker', icon: 'docker', color: '2496ED'},
-                  {name: 'Kubernetes', icon: 'kubernetes', color: '326CE5'},
-                  {name: 'Vercel', icon: 'vercel', color: '000000'},
-                  {name: 'Netlify', icon: 'netlify', color: '00C7B7'},
-                  {name: 'Railway', icon: 'railway', color: '0B0D0E'},
-                  {name: 'DigitalOcean', icon: 'digitalocean', color: '0080FF'},
-                  {name: 'Cloudflare', icon: 'cloudflare', color: 'F38020'},
-                  {name: 'Firebase', icon: 'firebase', color: 'FFCA28'},
-                  {name: 'Supabase', icon: 'supabase', color: '3ECF8E'},
-                  {name: 'GitHub', icon: 'github', color: '181717'},
-                  {name: 'GitLab', icon: 'gitlab', color: 'FC6D26'},
-                  {name: 'Bitbucket', icon: 'bitbucket', color: '0052CC'},
-                  {name: 'CircleCI', icon: 'circleci', color: '343434'}
+                  {name: 'AWS', devicon: 'amazonwebservices', simple: 'amazonaws', color: 'FF9900'},
+                  {name: 'Google Cloud', devicon: 'googlecloud', simple: 'googlecloud', color: '4285F4'},
+                  {name: 'Azure', devicon: 'azure', simple: 'microsoftazure', color: '0078D4'},
+                  {name: 'Docker', devicon: 'docker', simple: 'docker', color: '2496ED'},
+                  {name: 'Kubernetes', devicon: 'kubernetes', simple: 'kubernetes', color: '326CE5'},
+                  {name: 'Vercel', devicon: null, simple: 'vercel', color: '000000'},
+                  {name: 'Netlify', devicon: null, simple: 'netlify', color: '00C7B7'},
+                  {name: 'Heroku', devicon: 'heroku', simple: 'heroku', color: '430098'},
+                  {name: 'DigitalOcean', devicon: 'digitalocean', simple: 'digitalocean', color: '0080FF'},
+                  {name: 'Cloudflare', devicon: 'cloudflare', simple: 'cloudflare', color: 'F38020'},
+                  {name: 'Firebase', devicon: 'firebase', simple: 'firebase', color: 'FFCA28'},
+                  {name: 'Supabase', devicon: 'supabase', simple: 'supabase', color: '3ECF8E'},
+                  {name: 'GitHub', devicon: 'github', simple: 'github', color: '181717'},
+                  {name: 'GitLab', devicon: 'gitlab', simple: 'gitlab', color: 'FC6D26'},
+                  {name: 'Bitbucket', devicon: 'bitbucket', simple: 'bitbucket', color: '0052CC'},
+                  {name: 'Jenkins', devicon: 'jenkins', simple: 'jenkins', color: 'D24939'}
                 ].map((tech, index) => (
                   <div key={index} className="tech-pill-logo tech-pill-cyan" data-tech-name={tech.name}>
                     <img 
-                      src={`https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${tech.icon}.svg`} 
+                      src={tech.devicon 
+                        ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.devicon}/${tech.devicon}-original.svg`
+                        : `https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${tech.simple}.svg`
+                      }
                       alt={tech.name}
                       className="tech-icon"
-                      style={{filter: `brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(500%) hue-rotate(${180 + index * 20}deg)`}}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = `https://cdn.simpleicons.org/${tech.icon}/${tech.color}`;
+                        if (tech.devicon) {
+                          e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.devicon}/${tech.devicon}-plain.svg`;
+                        }
                       }}
                     />
                     <span className="tech-name">{tech.name}</span>
@@ -285,32 +288,36 @@ export const HomePage = () => {
             <div className="tech-carousel">
               <div className="tech-carousel-track">
                 {[
-                  {name: 'Stripe', icon: 'stripe', color: '008CDD'},
-                  {name: 'PayPal', icon: 'paypal', color: '00457C'},
-                  {name: 'Twilio', icon: 'twilio', color: 'F22F46'},
-                  {name: 'Mailchimp', icon: 'mailchimp', color: 'FFE01B'},
-                  {name: 'Notion', icon: 'notion', color: '000000'},
-                  {name: 'Figma', icon: 'figma', color: 'F24E1E'},
-                  {name: 'Sketch', icon: 'sketch', color: 'F7B500'},
-                  {name: 'Tailwind', icon: 'tailwindcss', color: '06B6D4'},
-                  {name: 'Bootstrap', icon: 'bootstrap', color: '7952B3'},
-                  {name: 'MUI', icon: 'mui', color: '007FFF'},
-                  {name: 'GraphQL', icon: 'graphql', color: 'E10098'},
-                  {name: 'Postman', icon: 'postman', color: 'FF6C37'},
-                  {name: 'Webpack', icon: 'webpack', color: '8DD6F9'},
-                  {name: 'Vite', icon: 'vite', color: '646CFF'},
-                  {name: 'TypeScript', icon: 'typescript', color: '3178C6'},
-                  {name: 'JavaScript', icon: 'javascript', color: 'F7DF1E'}
+                  {name: 'Stripe', devicon: null, simple: 'stripe', color: '008CDD'},
+                  {name: 'PayPal', devicon: null, simple: 'paypal', color: '00457C'},
+                  {name: 'Slack', devicon: 'slack', simple: 'slack', color: '4A154B'},
+                  {name: 'Trello', devicon: 'trello', simple: 'trello', color: '0052CC'},
+                  {name: 'Jira', devicon: 'jira', simple: 'jira', color: '0052CC'},
+                  {name: 'Figma', devicon: 'figma', simple: 'figma', color: 'F24E1E'},
+                  {name: 'Sketch', devicon: 'sketch', simple: 'sketch', color: 'F7B500'},
+                  {name: 'Tailwind', devicon: 'tailwindcss', simple: 'tailwindcss', color: '06B6D4'},
+                  {name: 'Bootstrap', devicon: 'bootstrap', simple: 'bootstrap', color: '7952B3'},
+                  {name: 'MUI', devicon: 'materialui', simple: 'mui', color: '007FFF'},
+                  {name: 'GraphQL', devicon: 'graphql', simple: 'graphql', color: 'E10098'},
+                  {name: 'Redux', devicon: 'redux', simple: 'redux', color: '764ABC'},
+                  {name: 'Webpack', devicon: 'webpack', simple: 'webpack', color: '8DD6F9'},
+                  {name: 'Vite', devicon: 'vitejs', simple: 'vite', color: '646CFF'},
+                  {name: 'TypeScript', devicon: 'typescript', simple: 'typescript', color: '3178C6'},
+                  {name: 'JavaScript', devicon: 'javascript', simple: 'javascript', color: 'F7DF1E'}
                 ].map((tech, index) => (
                   <div key={index} className="tech-pill-logo tech-pill-purple" data-tech-name={tech.name}>
                     <img 
-                      src={`https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${tech.icon}.svg`} 
+                      src={tech.devicon 
+                        ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.devicon}/${tech.devicon}-original.svg`
+                        : `https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${tech.simple}.svg`
+                      }
                       alt={tech.name}
                       className="tech-icon"
-                      style={{filter: `brightness(0) saturate(100%) invert(30%) sepia(100%) saturate(500%) hue-rotate(${240 + index * 15}deg)`}}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = `https://cdn.simpleicons.org/${tech.icon}/${tech.color}`;
+                        if (tech.devicon) {
+                          e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.devicon}/${tech.devicon}-plain.svg`;
+                        }
                       }}
                     />
                     <span className="tech-name">{tech.name}</span>
