@@ -1,8 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Filter } from 'lucide-react';
+import { Search, Filter, ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import api from '../utils/api';
 import Footer from '../components/Footer';
+
+// Mapeo de proyectos a sus rutas y screenshots (imágenes hero de cada página)
+const projectRoutes = {
+  'Estudio Arquitectonico Moderno': {
+    route: '/portfolio/arquitectura-moderna',
+    screenshot: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800'
+  },
+  'Disenos Arquitectonicos Lopez': {
+    route: '/portfolio/arquitectura-urbanismo',
+    screenshot: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800'
+  },
+  'Clinica Dental Sonrisa': {
+    route: '/portfolio/clinica-dental',
+    screenshot: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800'
+  },
+  'Centro Medico Vida Sana': {
+    route: '/portfolio/centro-medico',
+    screenshot: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=800'
+  },
+  'Consultorio Dr. Ramirez': {
+    route: '/portfolio/centro-clinico',
+    screenshot: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800'
+  },
+  'Boutique Fashion Store': {
+    route: '/portfolio/boutique-moda',
+    screenshot: 'https://images.unsplash.com/photo-1558769132-cb1aea67f98e?w=800'
+  },
+  'ElectroHogar Store': {
+    route: '/portfolio/retail-hogar',
+    screenshot: 'https://images.unsplash.com/photo-1556912167-f556f1f39fdf?w=800'
+  }
+};
 
 export const PortfolioPage = () => {
   const [projects, setProjects] = useState([]);
@@ -22,8 +55,20 @@ export const PortfolioPage = () => {
   const fetchProjects = async () => {
     try {
       const response = await api.get('/portfolio');
-      setProjects(response.data);
-      const uniqueCategories = ['All', ...new Set(response.data.map((p) => p.category))];
+      // Actualizar imágenes con screenshots de las páginas reales
+      const projectsWithScreenshots = response.data.map(project => {
+        const projectInfo = projectRoutes[project.title];
+        if (projectInfo) {
+          return {
+            ...project,
+            image_url: projectInfo.screenshot,
+            demo_url: projectInfo.route
+          };
+        }
+        return project;
+      });
+      setProjects(projectsWithScreenshots);
+      const uniqueCategories = ['All', ...new Set(projectsWithScreenshots.map((p) => p.category))];
       setCategories(uniqueCategories);
     } catch (error) {
       console.error('Error fetching projects:', error);
@@ -46,6 +91,12 @@ export const PortfolioPage = () => {
     }
 
     setFilteredProjects(filtered);
+  };
+
+  // Obtener ruta del proyecto
+  const getProjectRoute = (project) => {
+    const projectInfo = projectRoutes[project.title];
+    return projectInfo ? projectInfo.route : null;
   };
 
   return (
