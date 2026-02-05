@@ -120,35 +120,45 @@ export const TestimonialsManager = () => {
       </div>
 
       <div className="grid gap-4">
-        {testimonials.map((testimonial) => (
-          <Card key={testimonial.id}>
-            <CardContent className="p-6">
-              <div className="flex justify-between items-start">
-                <div className="flex-1">
-                  <div className="flex items-center mb-2">
-                    {testimonial.avatar_url && (
-                      <img src={testimonial.avatar_url} alt={testimonial.name} className="w-12 h-12 rounded-full mr-4" />
-                    )}
-                    <div>
-                      <h3 className="font-bold text-lg">{testimonial.name}</h3>
-                      {testimonial.company && <p className="text-sm text-gray-500">{testimonial.company}</p>}
+        {testimonials.map((testimonial, index) => {
+          const colors = [
+            'border-l-4 border-l-emerald-500 bg-emerald-50/30',
+            'border-l-4 border-l-amber-500 bg-amber-50/30',
+            'border-l-4 border-l-rose-500 bg-rose-50/30',
+            'border-l-4 border-l-indigo-500 bg-indigo-50/30',
+          ];
+          const colorClass = colors[index % colors.length];
+          
+          return (
+            <Card key={testimonial.id} className={colorClass}>
+              <CardContent className="p-6">
+                <div className="flex justify-between items-start">
+                  <div className="flex-1">
+                    <div className="flex items-center mb-2">
+                      {testimonial.avatar_url && (
+                        <img src={testimonial.avatar_url} alt={testimonial.name} className="w-12 h-12 rounded-full mr-4 border-2 border-white shadow-md" />
+                      )}
+                      <div>
+                        <h3 className="font-bold text-lg">{testimonial.name}</h3>
+                        {testimonial.company && <p className="text-sm text-gray-500">{testimonial.company}</p>}
+                      </div>
                     </div>
+                    <div className="flex mb-2">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      ))}
+                    </div>
+                    <p className="text-gray-600">"{testimonial.content}"</p>
                   </div>
-                  <div className="flex mb-2">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
+                  <div className="flex gap-2">
+                    <Button variant="outline" size="icon" onClick={() => handleEdit(testimonial)}><Edit size={16} /></Button>
+                    <Button variant="outline" size="icon" onClick={() => handleDelete(testimonial.id)} className="text-red-600 hover:bg-red-50"><Trash2 size={16} /></Button>
                   </div>
-                  <p className="text-gray-600">"{testimonial.content}"</p>
                 </div>
-                <div className="flex gap-2">
-                  <Button variant="outline" size="icon" onClick={() => handleEdit(testimonial)}><Edit size={16} /></Button>
-                  <Button variant="outline" size="icon" onClick={() => handleDelete(testimonial.id)} className="text-red-600"><Trash2 size={16} /></Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+              </CardContent>
+            </Card>
+          );
+        })}
       </div>
     </div>
   );

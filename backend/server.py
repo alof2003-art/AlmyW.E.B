@@ -220,11 +220,20 @@ async def login(request: LoginRequest, db: AsyncSession = Depends(get_db)):
 
 @api_router.get("/content", response_model=SiteContentResponse)
 async def get_site_content(db: AsyncSession = Depends(get_db)):
-    result = await db.execute(select(SiteContent).limit(1))
-    content = result.scalar_one_or_none()
-    if not content:
-        raise HTTPException(status_code=404, detail="Content not found")
-    return content
+    logger.info("→ GET /api/content - Iniciando")
+    try:
+        result = await db.execute(select(SiteContent).limit(1))
+        content = result.scalar_one_or_none()
+        if not content:
+            logger.warning("✗ Contenido no encontrado en la base de datos")
+            raise HTTPException(status_code=404, detail="Content not found")
+        logger.info("✓ Contenido obtenido exitosamente")
+        return content
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"✗ Error obteniendo contenido: {e}")
+        raise
 
 @api_router.get("/services", response_model=List[ServiceResponse])
 async def get_services(db: AsyncSession = Depends(get_db)):
@@ -545,12 +554,19 @@ async def delete_social_link(
     return {"message": "Social link deleted"}
 
 
-app.include_router(api_router)
-
 app.add_middleware(
     CORSMiddleware,
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(api_router)
+
+if __name__ == "__main__":
+    import uvicorn
+    logger.info("=" * 60)
+    logger.info("🚀 Iniciando servidor Almy.W.E.B.")
+    logger.info("=" * 60)
+    uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")

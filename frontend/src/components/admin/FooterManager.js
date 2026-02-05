@@ -59,7 +59,7 @@ export const FooterManager = () => {
       <h1 className="text-3xl font-bold mb-6">Gestionar Footer</h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        <Card>
+        <Card className="border-l-4 border-l-blue-500 bg-blue-50/20">
           <CardHeader>
             <CardTitle>Ubicacion</CardTitle>
           </CardHeader>
@@ -85,7 +85,7 @@ export const FooterManager = () => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-l-4 border-l-purple-500 bg-purple-50/20">
           <CardHeader>
             <CardTitle>Texto de Copyright</CardTitle>
           </CardHeader>
@@ -94,7 +94,7 @@ export const FooterManager = () => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-l-4 border-l-teal-500 bg-teal-50/20">
           <CardHeader>
             <CardTitle>Autores</CardTitle>
           </CardHeader>
@@ -110,7 +110,7 @@ export const FooterManager = () => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-l-4 border-l-pink-500 bg-pink-50/20">
           <CardHeader>
             <CardTitle>Redes Sociales</CardTitle>
           </CardHeader>

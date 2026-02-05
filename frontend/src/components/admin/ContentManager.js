@@ -45,7 +45,7 @@ export const ContentManager = () => {
       <h1 className="text-3xl font-bold mb-6">Gestionar Contenido</h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        <Card>
+        <Card className="border-l-4 border-l-cyan-500 bg-cyan-50/20">
           <CardHeader>
             <CardTitle>Hero Section</CardTitle>
             <CardDescription>Contenido de la seccion principal</CardDescription>
@@ -88,7 +88,7 @@ export const ContentManager = () => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-l-4 border-l-violet-500 bg-violet-50/20">
           <CardHeader>
             <CardTitle>Mision y Vision</CardTitle>
           </CardHeader>

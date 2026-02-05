@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Facebook, Instagram, Linkedin, Twitter, MapPin, Mail, Phone } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Twitter, MapPin, Mail, Phone, MessageCircle } from 'lucide-react';
 import api from '../utils/api';
 
 const Footer = () => {
   const [footerData, setFooterData] = useState(null);
   const [socialLinks, setSocialLinks] = useState([]);
+  const [clickCount, setClickCount] = useState(0);
+  const [clickTimer, setClickTimer] = useState(null);
 
   useEffect(() => {
     const fetchFooterData = async () => {
@@ -22,12 +24,36 @@ const Footer = () => {
     fetchFooterData();
   }, []);
 
+  const handleCopyrightClick = () => {
+    setClickCount(prev => prev + 1);
+    
+    // Limpiar el timer anterior
+    if (clickTimer) {
+      clearTimeout(clickTimer);
+    }
+    
+    // Si es el tercer clic, redirigir al admin
+    if (clickCount + 1 === 3) {
+      window.location.href = '/admin/login';
+      setClickCount(0);
+      return;
+    }
+    
+    // Resetear el contador después de 1 segundo
+    const timer = setTimeout(() => {
+      setClickCount(0);
+    }, 1000);
+    
+    setClickTimer(timer);
+  };
+
   const getSocialIcon = (platform) => {
     const icons = {
       facebook: <Facebook size={24} />,
       instagram: <Instagram size={24} />,
       linkedin: <Linkedin size={24} />,
       twitter: <Twitter size={24} />,
+      whatsapp: <MessageCircle size={24} />,
     };
     return icons[platform.toLowerCase()] || null;
   };
@@ -92,12 +118,14 @@ const Footer = () => {
             
             {/* Ubicación */}
             <h4 className="text-xl font-bold mb-4 text-white">Ubicación</h4>
-            {footerData.address && (
-              <div className="flex items-start gap-3 text-gray-400 justify-center">
-                <MapPin size={20} className="text-[#0DB4B9] flex-shrink-0 mt-1" />
-                <span className="text-sm">{footerData.address}</span>
-              </div>
-            )}
+            <div className="flex items-start gap-3 text-gray-400 justify-center">
+              <MapPin size={20} className="text-[#0DB4B9] flex-shrink-0 mt-1" />
+              <span className="text-sm">
+                {footerData.location_name && <strong>{footerData.location_name}</strong>}
+                {footerData.location_name && <br />}
+                {footerData.location_address || 'Escuela Superior Politécnica de Chimborazo, Riobamba, Chimborazo, Ecuador'}
+              </span>
+            </div>
           </div>
           
           {/* Columna Derecha - Mapa de Google */}
@@ -105,7 +133,7 @@ const Footer = () => {
             <h4 className="text-xl font-bold mb-4 text-white">Encuéntranos</h4>
             <div className="w-full max-w-[300px] h-[200px] rounded-2xl overflow-hidden border-2 border-white/20 shadow-lg">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7532866177907!2d-79.19950482394867!3d-0.2548899997519891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d54b3e4c4e6e5d%3A0x6c2b3c4d5e6f7a8b!2sSanto%20Domingo%2C%20Ecuador!5e0!3m2!1ses!2sec!4v1699999999999!5m2!1ses!2sec"
+                src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0!2d${footerData.map_lng || '-78.6795'}!3d${footerData.map_lat || '-1.6544'}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d3a828e2c0c5e5%3A0x7c4e5f6a7b8c9d0e!2sESPOCH!5e0!3m2!1ses!2sec!4v1699999999999!5m2!1ses!2sec`}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -121,7 +149,11 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-400 text-sm text-center md:text-left">
+            <p 
+              className="text-gray-400 text-sm text-center md:text-left cursor-default select-none"
+              onClick={handleCopyrightClick}
+              style={{ userSelect: 'none' }}
+            >
               © {new Date().getFullYear()} Almy.W.E.B. Todos los derechos reservados.
             </p>
             <div className="flex gap-6 text-sm text-gray-400">

@@ -193,41 +193,50 @@ export const ServicesManager = () => {
       </div>
 
       <div className="grid gap-4">
-        {services.map((service) => (
-          <Card key={service.id}>
-            <CardContent className="p-6">
-              <div className="flex justify-between items-start">
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-2">
-                    {service.title}
-                    {service.is_featured && (
-                      <span className="ml-2 text-xs bg-yellow-400 text-black px-2 py-1 rounded-full">
-                        DESTACADO
-                      </span>
-                    )}
-                  </h3>
-                  <p className="text-gray-600 mb-4">{service.description}</p>
-                  <div className="text-2xl font-bold text-[#0DB4B9]">
-                    ${service.price.toFixed(2)}
+        {services.map((service, index) => {
+          const colors = [
+            'border-l-4 border-l-blue-500 bg-blue-50/30',
+            'border-l-4 border-l-purple-500 bg-purple-50/30',
+            'border-l-4 border-l-teal-500 bg-teal-50/30',
+          ];
+          const colorClass = colors[index % colors.length];
+          
+          return (
+            <Card key={service.id} className={colorClass}>
+              <CardContent className="p-6">
+                <div className="flex justify-between items-start">
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold mb-2">
+                      {service.title}
+                      {service.is_featured && (
+                        <span className="ml-2 text-xs bg-yellow-400 text-black px-2 py-1 rounded-full font-semibold">
+                          DESTACADO
+                        </span>
+                      )}
+                    </h3>
+                    <p className="text-gray-600 mb-4">{service.description}</p>
+                    <div className="text-2xl font-bold text-[#0DB4B9]">
+                      ${service.price.toFixed(2)}
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button variant="outline" size="icon" onClick={() => handleEdit(service)}>
+                      <Edit size={16} />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => handleDelete(service.id)}
+                      className="text-red-600 hover:bg-red-50"
+                    >
+                      <Trash2 size={16} />
+                    </Button>
                   </div>
                 </div>
-                <div className="flex gap-2">
-                  <Button variant="outline" size="icon" onClick={() => handleEdit(service)}>
-                    <Edit size={16} />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={() => handleDelete(service.id)}
-                    className="text-red-600"
-                  >
-                    <Trash2 size={16} />
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+              </CardContent>
+            </Card>
+          );
+        })}
       </div>
     </div>
   );

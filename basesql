@@ -1,27 +1,99 @@
--- Script SQL para inicializar datos en Supabase
--- Ejecuta este script COMPLETO en tu SQL Editor de Supabase
--- Este script BORRARÁ todos los datos existentes y los reemplazará con datos frescos
+-- Script completo para configurar Supabase
+-- Ejecuta este script completo en el SQL Editor de Supabase
 
--- ============================================
--- PASO 1: BORRAR TODOS LOS DATOS EXISTENTES
--- ============================================
-TRUNCATE TABLE admins CASCADE;
-TRUNCATE TABLE site_content CASCADE;
-TRUNCATE TABLE services CASCADE;
-TRUNCATE TABLE portfolio_projects CASCADE;
-TRUNCATE TABLE testimonials CASCADE;
-TRUNCATE TABLE social_links CASCADE;
-TRUNCATE TABLE footer_config CASCADE;
+-- 1. CREAR TABLAS
 
--- ============================================
--- PASO 2: INSERTAR DATOS FRESCOS
--- ============================================
+-- Tabla de administradores
+CREATE TABLE IF NOT EXISTS admins (
+    id VARCHAR(36) PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
 
--- 1. Insertar admin por defecto (usuario: admin, password: admin123)
+-- Tabla de contenido del sitio
+CREATE TABLE IF NOT EXISTS site_content (
+    id VARCHAR(36) PRIMARY KEY,
+    hero_title VARCHAR(255) NOT NULL,
+    hero_slogan VARCHAR(255) NOT NULL,
+    hero_bg_url TEXT,
+    logo_url TEXT,
+    mission TEXT,
+    vision TEXT,
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Tabla de servicios
+CREATE TABLE IF NOT EXISTS services (
+    id VARCHAR(36) PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    pages VARCHAR(100),
+    features TEXT,
+    price FLOAT NOT NULL,
+    renewal_price FLOAT NOT NULL,
+    is_featured BOOLEAN DEFAULT FALSE,
+    display_order INTEGER DEFAULT 0,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Tabla de proyectos del portafolio
+CREATE TABLE IF NOT EXISTS portfolio_projects (
+    id VARCHAR(36) PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    category VARCHAR(100) NOT NULL,
+    description TEXT,
+    image_url TEXT NOT NULL,
+    demo_url TEXT,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS ix_portfolio_projects_category ON portfolio_projects(category);
+
+-- Tabla de testimonios
+CREATE TABLE IF NOT EXISTS testimonials (
+    id VARCHAR(36) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    company VARCHAR(255),
+    content TEXT NOT NULL,
+    rating INTEGER DEFAULT 5,
+    avatar_url TEXT,
+    display_order INTEGER DEFAULT 0,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Tabla de enlaces sociales
+CREATE TABLE IF NOT EXISTS social_links (
+    id VARCHAR(36) PRIMARY KEY,
+    platform VARCHAR(50) NOT NULL,
+    url TEXT NOT NULL,
+    icon_name VARCHAR(50),
+    display_order INTEGER DEFAULT 0
+);
+
+-- Tabla de configuración del footer
+CREATE TABLE IF NOT EXISTS footer_config (
+    id VARCHAR(36) PRIMARY KEY,
+    location_name VARCHAR(255),
+    location_address TEXT,
+    map_lat VARCHAR(50),
+    map_lng VARCHAR(50),
+    copyright_text VARCHAR(255),
+    show_authors BOOLEAN DEFAULT FALSE,
+    authors TEXT,
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 2. INSERTAR DATOS INICIALES
+
+-- Limpiar datos existentes (opcional, comenta estas líneas si quieres mantener datos)
+TRUNCATE TABLE admins, site_content, services, portfolio_projects, testimonials, social_links, footer_config CASCADE;
+
+-- Insertar admin por defecto (usuario: admin, password: admin123)
 INSERT INTO admins (id, username, password_hash) VALUES 
 ('admin-001', 'admin', '$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5QGjxj.WJgCGO');
 
--- 2. Insertar contenido del sitio
+-- Insertar contenido del sitio
 INSERT INTO site_content (id, hero_title, hero_slogan, hero_bg_url, logo_url, mission, vision) VALUES 
 ('content-001', 
  'Almy.W.E.B.', 
@@ -31,7 +103,7 @@ INSERT INTO site_content (id, hero_title, hero_slogan, hero_bg_url, logo_url, mi
  'Empoderar a las empresas con soluciones digitales accesibles y de alta calidad. Creemos que cada negocio merece una presencia en linea profesional sin importar su tamano o presupuesto.',
  'Ser el socio tecnologico lider para empresas emergentes en Ecuador, transformando ideas en experiencias digitales exitosas que impulsen el crecimiento de nuestros clientes.');
 
--- 3. Insertar servicios
+-- Insertar servicios
 INSERT INTO services (id, title, description, pages, features, price, renewal_price, is_featured, display_order) VALUES 
 ('service-001',
  'Web Presencial',
@@ -61,7 +133,7 @@ INSERT INTO services (id, title, description, pages, features, price, renewal_pr
  false,
  3);
 
--- 4. Insertar proyectos de portafolio
+-- Insertar proyectos de portafolio
 INSERT INTO portfolio_projects (id, title, category, description, image_url, demo_url) VALUES 
 ('project-001',
  'Estudio Arquitectonico Moderno',
@@ -106,7 +178,7 @@ INSERT INTO portfolio_projects (id, title, category, description, image_url, dem
  'https://images.unsplash.com/photo-1763819833135-d8e273798277?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBtaW5pbWFsJTIwYXJjaGl0ZWN0dXJlJTIwd2Vic2l0ZSUyMGRlc2lnbiUyMG1vY2t1cHN8ZW58MHx8fHwxNzcwMjQ0MTM3fDA&ixlib=rb-4.1.0&q=85',
  '#');
 
--- 5. Insertar testimonios
+-- Insertar testimonios
 INSERT INTO testimonials (id, name, company, content, rating, avatar_url, display_order) VALUES 
 ('testimonial-001',
  'Maria Gonzalez',
@@ -130,13 +202,13 @@ INSERT INTO testimonials (id, name, company, content, rating, avatar_url, displa
  'https://images.unsplash.com/photo-1760320483844-3d808de62def?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzJ8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBkaXZlcnNpdHklMjBidXNpbmVzcyUyMHBvcnRyYWl0cyUyMGZvciUyMHRlc3RpbW9uaWFsc3xlbnwwfHx8fDE3NzAyNDQxNDF8MA&ixlib=rb-4.1.0&q=85',
  3);
 
--- 6. Insertar enlaces de redes sociales
+-- Insertar enlaces de redes sociales
 INSERT INTO social_links (id, platform, url, icon_name, display_order) VALUES 
 ('social-001', 'Facebook', 'https://facebook.com', 'Facebook', 1),
 ('social-002', 'Instagram', 'https://instagram.com', 'Instagram', 2),
 ('social-003', 'WhatsApp', 'https://wa.me/593992286986', 'MessageCircle', 3);
 
--- 7. Insertar configuracion del footer
+-- Insertar configuracion del footer
 INSERT INTO footer_config (id, location_name, location_address, map_lat, map_lng, copyright_text, show_authors, authors) VALUES 
 ('footer-001',
  'ESPOCH, Riobamba',
@@ -147,7 +219,7 @@ INSERT INTO footer_config (id, location_name, location_address, map_lat, map_lng
  false,
  'Gabriel Jimenez|Myrian Daquilema');
 
--- Verificar los datos insertados
+-- 3. VERIFICAR LOS DATOS INSERTADOS
 SELECT 'Admins' as tabla, COUNT(*) as registros FROM admins
 UNION ALL
 SELECT 'Site Content', COUNT(*) FROM site_content
