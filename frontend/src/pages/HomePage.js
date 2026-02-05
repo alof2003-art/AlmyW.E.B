@@ -298,7 +298,7 @@ export const HomePage = () => {
                   {name: 'Tailwind', devicon: 'tailwindcss', simple: 'tailwindcss', color: '06B6D4'},
                   {name: 'Bootstrap', devicon: 'bootstrap', simple: 'bootstrap', color: '7952B3'},
                   {name: 'MUI', devicon: 'materialui', simple: 'mui', color: '007FFF'},
-                  {name: 'GraphQL', devicon: 'graphql', simple: 'graphql', color: 'E10098'},
+                  {name: 'GraphQL', devicon: 'graphql', simple: 'graphql', color: 'E10098', usePlain: true},
                   {name: 'Redux', devicon: 'redux', simple: 'redux', color: '764ABC'},
                   {name: 'Webpack', devicon: 'webpack', simple: 'webpack', color: '8DD6F9'},
                   {name: 'Vite', devicon: 'vitejs', simple: 'vite', color: '646CFF'},
