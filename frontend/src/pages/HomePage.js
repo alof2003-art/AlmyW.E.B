@@ -247,7 +247,7 @@ export const HomePage = () => {
             <div className="tech-carousel tech-carousel-reverse">
               <div className="tech-carousel-track">
                 {[
-                  {name: 'AWS', devicon: 'amazonwebservices', simple: 'amazonaws', color: 'FF9900'},
+                  {name: 'AWS', devicon: null, simple: 'amazon', color: 'FF9900'},
                   {name: 'Google Cloud', devicon: 'googlecloud', simple: 'googlecloud', color: '4285F4'},
                   {name: 'Azure', devicon: 'azure', simple: 'microsoftazure', color: '0078D4'},
                   {name: 'Docker', devicon: 'docker', simple: 'docker', color: '2496ED'},
