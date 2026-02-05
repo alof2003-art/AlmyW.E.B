@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { CircuitBoard, Star, ArrowRight } from 'lucide-react';
+import { CircuitBoard, Star, ArrowRight, Moon, Sun } from 'lucide-react';
 import { Particles } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
+import { useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 import Footer from '../components/Footer';
 
