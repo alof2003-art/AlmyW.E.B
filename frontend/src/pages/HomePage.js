@@ -308,7 +308,7 @@ export const HomePage = () => {
                   <div key={index} className="tech-pill-logo tech-pill-purple" data-tech-name={tech.name}>
                     <img 
                       src={tech.devicon 
-                        ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.devicon}/${tech.devicon}-original.svg`
+                        ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.devicon}/${tech.devicon}-${tech.usePlain ? 'plain' : 'original'}.svg`
                         : `https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${tech.simple}.svg`
                       }
                       alt={tech.name}
