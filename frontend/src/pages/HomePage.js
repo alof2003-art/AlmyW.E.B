@@ -230,7 +230,7 @@ export const HomePage = () => {
                 ].map((tech, index) => (
                   <div key={index} className="tech-pill-logo" data-tech-name={tech.name}>
                     <img 
-                      src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.devicon}/${tech.devicon}-original.svg`} 
+                      src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.devicon}/${tech.devicon}-${tech.usePlain ? 'plain' : 'original'}.svg`} 
                       alt={tech.name}
                       className="tech-icon"
                       onError={(e) => {
