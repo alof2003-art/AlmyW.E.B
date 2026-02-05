@@ -145,45 +145,63 @@ export const PortfolioPage = () => {
         </div>
 
         <div className="portfolio-grid" data-testid="portfolio-grid">
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.1 }}
-              className="portfolio-card bg-white rounded-3xl shadow-lg overflow-hidden hover-lift group"
-              data-testid={`portfolio-card-${index}`}
-            >
-              <div className="relative overflow-hidden h-64">
-                <img
-                  src={project.image_url}
-                  alt={project.title}
-                  className="portfolio-card-image"
-                  data-testid={`portfolio-image-${index}`}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                  <div className="text-white">
-                    <h3 className="text-2xl font-bold mb-2" data-testid={`portfolio-title-${index}`}>
-                      {project.title}
-                    </h3>
-                    {project.description && (
-                      <p className="text-sm" data-testid={`portfolio-description-${index}`}>
-                        {project.description}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </div>
-              <div className="p-6">
-                <span
-                  className="inline-block px-4 py-1 bg-[#0DB4B9]/10 text-[#0DB4B9] rounded-full text-sm font-medium"
-                  data-testid={`portfolio-category-${index}`}
+          {filteredProjects.map((project, index) => {
+            const projectRoute = getProjectRoute(project);
+            const CardWrapper = projectRoute ? Link : 'div';
+            const cardProps = projectRoute ? { to: projectRoute } : {};
+            
+            return (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 }}
+                className="portfolio-card-wrapper"
+                data-testid={`portfolio-card-${index}`}
+              >
+                <CardWrapper
+                  {...cardProps}
+                  className="portfolio-card bg-white rounded-3xl shadow-lg overflow-hidden hover-lift group block cursor-pointer"
+                  style={{ textDecoration: 'none' }}
                 >
-                  {project.category}
-                </span>
-              </div>
-            </motion.div>
-          ))}
+                  <div className="relative overflow-hidden h-64">
+                    <img
+                      src={project.image_url}
+                      alt={project.title}
+                      className="portfolio-card-image"
+                      data-testid={`portfolio-image-${index}`}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                      <div className="text-white w-full">
+                        <h3 className="text-2xl font-bold mb-2" data-testid={`portfolio-title-${index}`}>
+                          {project.title}
+                        </h3>
+                        {project.description && (
+                          <p className="text-sm mb-3" data-testid={`portfolio-description-${index}`}>
+                            {project.description}
+                          </p>
+                        )}
+                        {projectRoute && (
+                          <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#0DB4B9] bg-white/90 px-4 py-2 rounded-full">
+                            <ExternalLink size={14} />
+                            Ver Demo
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <span
+                      className="inline-block px-4 py-1 bg-[#0DB4B9]/10 text-[#0DB4B9] rounded-full text-sm font-medium"
+                      data-testid={`portfolio-category-${index}`}
+                    >
+                      {project.category}
+                    </span>
+                  </div>
+                </CardWrapper>
+              </motion.div>
+            );
+          })}
         </div>
 
         {filteredProjects.length === 0 && (
