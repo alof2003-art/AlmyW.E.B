@@ -158,10 +158,42 @@ export const HomePage = () => {
       
       {/* Hero Section */}
       <section
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden dark:bg-gray-900"
         data-testid="hero-section"
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 to-white/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 to-white/70 dark:from-gray-900 dark:via-gray-900/90 dark:to-gray-800/70"></div>
+        
+        {/* Tech Stack Icons flotantes detrás del logo */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {techStackIcons.map((icon, index) => (
+            <motion.div
+              key={icon}
+              className="absolute opacity-20 dark:opacity-30"
+              style={{
+                left: `${10 + (index % 4) * 25}%`,
+                top: `${15 + Math.floor(index / 4) * 30}%`,
+              }}
+              animate={{
+                y: [0, -20, 0],
+                rotate: [0, 5, -5, 0],
+              }}
+              transition={{
+                duration: 4 + index * 0.5,
+                repeat: Infinity,
+                delay: index * 0.3,
+              }}
+            >
+              <img
+                src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${icon}/${icon}-original.svg`}
+                alt={icon}
+                className="w-12 h-12 md:w-16 md:h-16"
+                onError={(e) => {
+                  e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${icon}/${icon}-plain.svg`;
+                }}
+              />
+            </motion.div>
+          ))}
+        </div>
         
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <motion.div
@@ -192,7 +224,7 @@ export const HomePage = () => {
             className="mb-12 px-4"
           >
             <p
-              className="text-3xl md:text-4xl lg:text-5xl text-gray-600 font-light italic inline-block"
+              className="text-3xl md:text-4xl lg:text-5xl text-gray-600 dark:text-gray-300 font-light italic inline-block"
               data-testid="hero-slogan"
             >
               {content.hero_slogan}
