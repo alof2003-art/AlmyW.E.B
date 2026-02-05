@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Filter, ExternalLink } from 'lucide-react';
+import { Search, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import api from '../utils/api';
 import Footer from '../components/Footer';
 
-// Mapeo de proyectos a sus rutas y screenshots (imágenes hero de cada página)
+// Mapeo de proyectos a sus rutas y screenshots (imagenes hero de cada pagina)
 const projectRoutes = {
   'Estudio Arquitectonico Moderno': {
     route: '/portfolio/arquitectura-moderna',
@@ -37,6 +37,12 @@ const projectRoutes = {
   }
 };
 
+// Obtener ruta del proyecto
+const getProjectRoute = (project) => {
+  const projectInfo = projectRoutes[project.title];
+  return projectInfo ? projectInfo.route : null;
+};
+
 export const PortfolioPage = () => {
   const [projects, setProjects] = useState([]);
   const [filteredProjects, setFilteredProjects] = useState([]);
@@ -44,18 +50,10 @@ export const PortfolioPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [categories, setCategories] = useState(['All']);
 
-  useEffect(() => {
-    fetchProjects();
-  }, []);
-
-  useEffect(() => {
-    filterProjects();
-  }, [selectedCategory, searchTerm, projects]);
-
-  const fetchProjects = async () => {
+  const fetchProjects = useCallback(async () => {
     try {
       const response = await api.get('/portfolio');
-      // Actualizar imágenes con screenshots de las páginas reales
+      // Actualizar imagenes con screenshots de las paginas reales
       const projectsWithScreenshots = response.data.map(project => {
         const projectInfo = projectRoutes[project.title];
         if (projectInfo) {
@@ -73,9 +71,9 @@ export const PortfolioPage = () => {
     } catch (error) {
       console.error('Error fetching projects:', error);
     }
-  };
+  }, []);
 
-  const filterProjects = () => {
+  const filterProjects = useCallback(() => {
     let filtered = projects;
 
     if (selectedCategory !== 'All') {
@@ -91,13 +89,15 @@ export const PortfolioPage = () => {
     }
 
     setFilteredProjects(filtered);
-  };
+  }, [projects, selectedCategory, searchTerm]);
 
-  // Obtener ruta del proyecto
-  const getProjectRoute = (project) => {
-    const projectInfo = projectRoutes[project.title];
-    return projectInfo ? projectInfo.route : null;
-  };
+  useEffect(() => {
+    fetchProjects();
+  }, [fetchProjects]);
+
+  useEffect(() => {
+    filterProjects();
+  }, [filterProjects]);
 
   return (
     <div className="min-h-screen pt-24" data-testid="portfolio-page">
