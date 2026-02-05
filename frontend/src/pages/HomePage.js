@@ -93,10 +93,24 @@ export const HomePage = () => {
     },
   };
 
-  if (!content) return <div className="min-h-screen flex items-center justify-center">Cargando</div>;
+  if (!content) return <div className="min-h-screen flex items-center justify-center dark:bg-gray-900 dark:text-white">Cargando</div>;
+
+  // Tech stack icons para el fondo del hero
+  const techStackIcons = [
+    'react', 'vuejs', 'angular', 'nodejs', 'python', 'mongodb', 
+    'docker', 'github', 'figma', 'typescript', 'javascript', 'postgresql'
+  ];
 
   return (
-    <div className="min-h-screen" data-testid="home-page">
+    <div className={`min-h-screen ${darkMode ? 'dark' : ''}`} data-testid="home-page">
+      {/* Botón de modo oscuro */}
+      <button
+        onClick={toggleDarkMode}
+        className="fixed top-24 right-4 z-50 p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg border-2 border-[#0DB4B9] hover:scale-110 transition-transform"
+        aria-label="Toggle dark mode"
+      >
+        {darkMode ? <Sun className="text-yellow-400" size={24} /> : <Moon className="text-[#6D28D9]" size={24} />}
+      </button>
       {/* Fondos animados ULTRA PREMIUM */}
       <div className="premium-animated-bg">
         {/* Mesh Gradient Background */}
