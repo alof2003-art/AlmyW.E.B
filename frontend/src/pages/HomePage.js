@@ -14,6 +14,29 @@ export const HomePage = () => {
   const [hoveredService, setHoveredService] = useState(null);
   const [particlesInit, setParticlesInit] = useState(false);
   const [showTypewriter, setShowTypewriter] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const navigate = useNavigate();
+
+  // Cargar preferencia de modo oscuro
+  useEffect(() => {
+    const savedMode = localStorage.getItem('darkMode');
+    if (savedMode === 'true') {
+      setDarkMode(true);
+      document.documentElement.classList.add('dark');
+    }
+  }, []);
+
+  // Toggle modo oscuro
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem('darkMode', !darkMode);
+  };
+
+  // Manejar selección de plan
+  const handleSelectPlan = (service) => {
+    navigate('/contacto', { state: { selectedPlan: service } });
+  };
 
   useEffect(() => {
     fetchData();
