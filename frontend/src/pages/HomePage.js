@@ -522,8 +522,8 @@ export const HomePage = () => {
                   </div>
 
                   <button
-                    className="w-full btn-primary shimmer-effect"
-                    onClick={() => window.location.href = '/contacto'}
+                    className="w-full btn-primary shimmer-effect border-2 border-[#0DB4B9]"
+                    onClick={() => handleSelectPlan(service)}
                     data-testid={`service-cta-${index}`}
                   >
                     Comenzar Ahora <ArrowRight className="inline ml-2" size={18} />
