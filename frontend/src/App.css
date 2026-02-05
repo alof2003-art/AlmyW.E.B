@@ -4,6 +4,57 @@
   overflow-x: hidden;
 }
 
+/* ===== MODO OSCURO ===== */
+.dark {
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+}
+
+.dark .App {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.dark .premium-animated-bg {
+  opacity: 0.5;
+}
+
+.dark .mesh-gradient-bg {
+  background: 
+    radial-gradient(at 0% 0%, rgba(109, 40, 217, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(13, 180, 185, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(16, 185, 129, 0.15) 0px, transparent 50%),
+    linear-gradient(180deg, #111827 0%, #1f2937 100%);
+}
+
+.dark .glass-card {
+  background: rgba(31, 41, 55, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark h1, .dark h2, .dark h3, .dark h4 {
+  color: #f9fafb;
+}
+
+.dark p {
+  color: #d1d5db;
+}
+
+.dark .text-gray-900 {
+  color: #f9fafb !important;
+}
+
+.dark .text-gray-600 {
+  color: #d1d5db !important;
+}
+
+.dark .text-gray-700 {
+  color: #e5e7eb !important;
+}
+
 /* ===== FONDOS ANIMADOS ULTRA PREMIUM ===== */
 .premium-animated-bg {
   position: fixed;
