@@ -1,0 +1,84 @@
+/* ============================================================
+   MASTER.CSS - Casa & Estilo v2.0
+   Importación de módulos CSS
+   ============================================================ */
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Module Imports */
+@import url('variables.css');
+@import url('typography.css');
+@import url('grid.css');
+@import url('animations.css');
+@import url('components.css');
+
+/* Base Styles */
+body {
+    background: var(--gallery-white);
+    overflow-x: hidden;
+}
+
+/* Selection */
+::selection {
+    background: var(--matte-gold);
+    color: var(--deep-charcoal);
+}
+
+::-moz-selection {
+    background: var(--matte-gold);
+    color: var(--deep-charcoal);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--gallery-white);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--matte-gold);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--technical-grey);
+}
+
+/* Image Optimization */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Link Reset */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* List Reset */
+ul, ol {
+    list-style: none;
+}
+
+/* Button Reset */
+button {
+    border: none;
+    background: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* Focus Visible */
+:focus-visible {
+    outline: 2px solid var(--matte-gold);
+    outline-offset: 2px;
+}

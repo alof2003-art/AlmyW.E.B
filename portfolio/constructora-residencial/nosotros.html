@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros - Constructora Residencial Elite | AlmyWEB</title>
+    <meta name="description" content="Conoce nuestra historia, valores y equipo. Más de 15 años construyendo hogares de lujo en Ecuador.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            line-height: 1.6; 
+            overflow-x: hidden;
+            background: #ffffff;
+            color: #2c3e50;
+        }
+        .playfair { font-family: 'Playfair Display', serif; }
+        
+        :root {
+            --primary: #c9a96e;
+            --secondary: #8b7355;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --accent: #f8f9fa;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: var(--primary); }
+        .nav-link.active { color: var(--primary); }
+        
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-cta:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        /* Page Header */
+        .page-header {
+            padding: 180px 40px 100px;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: clamp(40px, 5vw, 60px);
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Story Section */
+        .story-section {
+            padding: 100px 40px;
+            background: var(--white);
+        }
+        
+        .story-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .story-content h2 {
+            font-size: 48px;
+            font-weight: 300;
+            color: var(--text);
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+        
+        .story-content .highlight {
+            color: var(--primary);
+            font-style: italic;
+        }
+        
+        .story-content p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        
+        .story-image {
+            width: 100%;
+            height: 500px;
+            background: url('https://images.unsplash.com/photo-1600607687644-c7171b42498b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            padding: 100px 40px;
+            background: var(--accent);
+        }
+        
+        .stats-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 50px 30px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: var(--text);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .stat-description {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        /* Values Section */
+        .values-section {
+            padding: 100px 40px;
+            background: var(--white);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-title {
+            font-size: 48px;
+            font-weight: 300;
+            color: var(--text);
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .values-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 50px 30px;
+            background: var(--accent);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-10px);
+        }
+        
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover .value-icon {
+            background: white;
+        }
+        
+        .value-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover .value-icon svg {
+            fill: var(--primary);
+        }
+        
+        .value-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover .value-title {
+            color: white;
+        }
+        
+        .value-description {
+            color: var(--text-light);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover .value-description {
+            color: rgba(255,255,255,0.9);
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: 100px 40px;
+            background: var(--accent);
+        }
+        
+        .team-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        
+        .team-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .team-image {
+            width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .team-content {
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .team-name {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+        
+        .team-role {
+            color: var(--primary);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .team-description {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 40px;
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1a252f;
+            color: white;
+            padding: 60px 40px 30px;
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #95a5a6;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container { padding: 0 20px; }
+            .story-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            .stats-grid,
+            .values-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .footer-bottom { 
+                flex-direction: column; 
+                gap: 20px; 
+                text-align: center; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">CONSTRUCTORA ELITE</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="proyectos.html" class="nav-link">Proyectos</a>
+                <a href="servicios.html" class="nav-link">Servicios</a>
+                <a href="nosotros.html" class="nav-link active">Nosotros</a>
+                <a href="contacto.html" class="nav-cta">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1 class="playfair">Nuestra Historia</h1>
+        <p>Más de 15 años construyendo hogares que trascienden el tiempo y reflejan la excelencia en cada detalle</p>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="story-container">
+            <div class="story-content">
+                <h2 class="playfair">Construyendo <span class="highlight">Sueños</span> desde 2008</h2>
+                <p>Constructora Residencial Elite nació de una visión clara: crear hogares que no solo cumplan con las expectativas de nuestros clientes, sino que las superen en cada aspecto.</p>
+                <p>Desde nuestros inicios en 2008, hemos mantenido un compromiso inquebrantable con la calidad, la innovación y la satisfacción del cliente. Cada proyecto es una oportunidad para demostrar nuestra pasión por la construcción de excelencia.</p>
+                <p>Nuestro equipo de arquitectos, ingenieros y maestros constructores trabaja con dedicación para transformar terrenos en hogares extraordinarios, utilizando las mejores prácticas de la industria y materiales de primera calidad.</p>
+            </div>
+            <div class="story-image"></div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">Proyectos Completados</div>
+                <div class="stat-description">Residencias de lujo entregadas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Años de Experiencia</div>
+                <div class="stat-description">Construyendo con excelencia</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Clientes Satisfechos</div>
+                <div class="stat-description">Recomiendan nuestros servicios</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">25</div>
+                <div class="stat-label">Profesionales</div>
+                <div class="stat-description">Equipo altamente calificado</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="section-header">
+            <h2 class="section-title playfair">Nuestros Valores</h2>
+            <p class="section-subtitle">Los principios que guían cada decisión y cada proyecto que emprendemos</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                </div>
+                <h3 class="value-title">Calidad</h3>
+                <p class="value-description">Compromiso absoluto con los más altos estándares en materiales, procesos y acabados.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                    </svg>
+                </div>
+                <h3 class="value-title">Confianza</h3>
+                <p class="value-description">Transparencia y honestidad en cada etapa del proyecto, cumpliendo nuestras promesas.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+                <h3 class="value-title">Excelencia</h3>
+                <p class="value-description">Búsqueda constante de la perfección en cada detalle de nuestras construcciones.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 11.75A1.25 1.25 0 0 0 7.75 13A1.25 1.25 0 0 0 9 14.25A1.25 1.25 0 0 0 10.25 13A1.25 1.25 0 0 0 9 11.75zm6 0A1.25 1.25 0 0 0 13.75 13A1.25 1.25 0 0 0 15 14.25A1.25 1.25 0 0 0 16.25 13A1.25 1.25 0 0 0 15 11.75zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37C11.07 8.33 14.05 10 17.42 10c.78 0 1.53-.09 2.25-.26.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8z"/>
+                    </svg>
+                </div>
+                <h3 class="value-title">Innovación</h3>
+                <p class="value-description">Incorporamos las últimas tecnologías y tendencias en construcción residencial.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                    </svg>
+                </div>
+                <h3 class="value-title">Compromiso</h3>
+                <p class="value-description">Dedicación total a la satisfacción de nuestros clientes y al éxito de cada proyecto.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
+                    </svg>
+                </div>
+                <h3 class="value-title">Sostenibilidad</h3>
+                <p class="value-description">Construcciones responsables con el medio ambiente y eficientes energéticamente.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="section-header">
+            <h2 class="section-title playfair">Nuestro Equipo</h2>
+            <p class="section-subtitle">Profesionales apasionados comprometidos con la excelencia en cada proyecto</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-image" style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                <div class="team-content">
+                    <h3 class="team-name">Ing. Carlos Mendoza</h3>
+                    <div class="team-role">Director General</div>
+                    <p class="team-description">Ingeniero Civil con 20 años de experiencia en construcción residencial de lujo.</p>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-image" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                <div class="team-content">
+                    <h3 class="team-name">Arq. María Rodríguez</h3>
+                    <div class="team-role">Directora de Diseño</div>
+                    <p class="team-description">Arquitecta especializada en diseño residencial contemporáneo y sostenible.</p>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-image" style="background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                <div class="team-content">
+                    <h3 class="team-name">Ing. Roberto Silva</h3>
+                    <div class="team-role">Gerente de Proyectos</div>
+                    <p class="team-description">Experto en gestión y coordinación de proyectos de construcción complejos.</p>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-image" style="background-image: url('https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80')"></div>
+                <div class="team-content">
+                    <h3 class="team-name">Arq. Ana Torres</h3>
+                    <div class="team-role">Diseñadora de Interiores</div>
+                    <p class="team-description">Especialista en crear espacios interiores elegantes y funcionales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2 class="playfair">Construyamos Juntos su Proyecto</h2>
+        <p>Contáctenos hoy y descubra cómo nuestro equipo puede hacer realidad el hogar de sus sueños</p>
+        <a href="contacto.html" class="btn-primary">Iniciar Conversación</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Constructora Elite</h3>
+                    <p>Especialistas en construcción residencial de lujo con más de 15 años de experiencia en el mercado ecuatoriano.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces</h3>
+                    <p><a href="index.html">Inicio</a></p>
+                    <p><a href="proyectos.html">Proyectos</a></p>
+                    <p><a href="servicios.html">Servicios</a></p>
+                    <p><a href="nosotros.html">Nosotros</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>+593 2 234-5678</p>
+                    <p>info@constructoraelite.com</p>
+                    <p>Quito, Ecuador</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Desarrollado por</h3>
+                    <p><a href="../../">AlmyWEB | Full Stack</a></p>
+                    <p>Tu Imagen Digital</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Constructora Elite. Todos los derechos reservados.</p>
+                <p>Desarrollado por <a href="../../">AlmyWEB</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Premium - Casa & Estilo | AlmyWEB</title>
+    <meta name="description" content="Explore nuestra colección completa de mobiliario de alta gama. Cocinas, salas, dormitorios y oficinas con diseño arquitectónico.">
+    <link rel="stylesheet" href="../assets/css/master.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav__container">
+            <div class="nav__logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" style="stroke: var(--matte-gold); stroke-width: 0.5px; fill: none;">
+                    <rect x="4" y="4" width="24" height="24" stroke-linecap="square"/>
+                    <line x1="4" y1="16" x2="28" y2="16" stroke-linecap="square"/>
+                    <line x1="16" y1="4" x2="16" y2="28" stroke-linecap="square"/>
+                </svg>
+                <span class="cormorant" style="font-size: 1.25rem; letter-spacing: 0.1em; color: var(--deep-charcoal);">CASA & ESTILO</span>
+            </div>
+            <div class="nav__menu">
+                <a href="../index.html" class="nav__link">Inicio</a>
+                <a href="catalogo_premium.html" class="nav__link nav__link--active">Catálogo</a>
+                <a href="servicios_detallados.html" class="nav__link">Servicios</a>
+                <a href="portafolio_proyectos.html" class="nav__link">Portafolio</a>
+                <a href="contacto_directo.html" class="nav__link">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="section section--hero" style="padding-top: 8rem; min-height: 60vh;">
+        <div class="container text-center">
+            <p class="text-small cormorant" style="color: var(--matte-gold); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem;">
+                Catálogo Premium
+            </p>
+            <h1 class="cormorant text-hero" style="color: var(--deep-charcoal); margin-bottom: 2rem;">
+                Colecciones de<br>
+                <span style="color: var(--matte-gold);">Alta Gama</span>
+            </h1>
+            <p class="text-body" style="color: var(--technical-grey); max-width: 640px; margin: 0 auto 3rem;">
+                Cada pieza es resultado de un proceso de diseño meticuloso donde la funcionalidad 
+                y la estética convergen en perfecta armonía arquitectónica.
+            </p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="filter" style="justify-content: center; margin-bottom: 4rem;">
+                <button class="filter__item filter__item--active" data-filter="all">Todas</button>
+                <button class="filter__item" data-filter="cocinas">Cocinas</button>
+                <button class="filter__item" data-filter="salas">Salas</button>
+                <button class="filter__item" data-filter="dormitorios">Dormitorios</button>
+                <button class="filter__item" data-filter="oficinas">Oficinas</button>
+            </div>
+
+            <!-- Collections Grid (Asymmetric) -->
+            <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem;" id="collectionsGrid">
+                <!-- Cocinas Collection -->
+                <div class="card hover-lift" style="grid-column: span 6;" data-category="cocinas">
+                    <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?w=800&q=90" 
+                         alt="Cocinas Modulares" 
+                         class="card__image">
+                    <div class="card__content">
+                        <p class="text-small" style="color: var(--matte-gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem;">
+                            Cocinas
+                        </p>
+                        <h3 class="cormorant text-title card__title" style="color: var(--deep-charcoal);">
+                            Cocinas Modulares
+                        </h3>
+                        <p class="text-body card__description" style="color: var(--technical-grey);">
+                            Diseño técnico con materiales de especificación arquitectónica. 
+                            Roble europeo, acero inoxidable y superficies de cuarzo.
+                        </p>
+                        <div class="card__footer">
+                            <span class="cormorant text-title" style="color: var(--matte-gold);">Desde $2,500</span>
+                            <a href="coleccion-cocinas.html" class="btn btn--small">Explorar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Salas Collection -->
+                <div class="card hover-lift" style="grid-column: span 6;" data-category="salas">
+                    <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800&q=90" 
+                         alt="Salas de Estar" 
+                         class="card__image">
+                    <div class="card__content">
+                        <p class="text-small" style="color: var(--matte-gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem;">
+                            Salas
+                        </p>
+                        <h3 class="cormorant text-title card__title" style="color: var(--deep-charcoal);">
+                            Salas de Estar
+                        </h3>
+                        <p class="text-body card__description" style="color: var(--technical-grey);">
+                            Geometría pura y texturas naturales. Lino belga, estructura de nogal macizo 
+                            y detalles en latón cepillado.
+                        </p>
+                        <div class="card__footer">
+                            <span class="cormorant text-title" style="color: var(--matte-gold);">Desde $1,800</span>
+                            <a href="coleccion-salas.html" class="btn btn--small">Explorar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dormitorios Collection -->
+                <div class="card hover-lift" style="grid-column: span 7;" data-category="dormitorios">
+                    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=90" 
+                         alt="Dormitorios" 
+                         class="card__image">
+                    <div class="card__content">
+                        <p class="text-small" style="color: var(--matte-gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem;">
+                            Dormitorios
+                        </p>
+                        <h3 class="cormorant text-title card__title" style="color: var(--deep-charcoal);">
+                            Espacios de Descanso
+                        </h3>
+                        <p class="text-body card__description" style="color: var(--technical-grey);">
+                            Diseño centrado en el bienestar. Maderas certificadas FSC, textiles orgánicos 
+                            y acabados libres de VOC. Arquitectura del sueño.
+                        </p>
+                        <div class="card__footer">
+                            <span class="cormorant text-title" style="color: var(--matte-gold);">Desde $1,200</span>
+                            <a href="coleccion-dormitorios.html" class="btn btn--small">Explorar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Oficinas Collection -->
+                <div class="card hover-lift" style="grid-column: span 5;" data-category="oficinas">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=90" 
+                         alt="Oficinas" 
+                         class="card__image">
+                    <div class="card__content">
+                        <p class="text-small" style="color: var(--matte-gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem;">
+                            Oficinas
+                        </p>
+                        <h3 class="cormorant text-title card__title" style="color: var(--deep-charcoal);">
+                            Estudios Profesionales
+                        </h3>
+                        <p class="text-body card__description" style="color: var(--technical-grey);">
+                            Ergonomía y estética en equilibrio. Diseño funcional 
+                            para espacios de trabajo contemporáneos.
+                        </p>
+                        <div class="card__footer">
+                            <span class="cormorant text-title" style="color: var(--matte-gold);">Desde $980</span>
+                            <a href="coleccion-oficinas.html" class="btn btn--small">Explorar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: var(--deep-charcoal); color: var(--gallery-white);">
+        <div class="container text-center">
+            <h2 class="cormorant text-display" style="color: var(--gallery-white); margin-bottom: 2rem;">
+                ¿Necesita Asesoría Técnica?
+            </h2>
+            <p class="text-body" style="color: rgba(249,249,249,0.7); margin-bottom: 3rem; max-width: 640px; margin-left: auto; margin-right: auto;">
+                Nuestro equipo de diseño está disponible para consultas personalizadas 
+                sobre especificaciones técnicas y configuraciones a medida.
+            </p>
+            <a href="contacto_directo.html" class="btn btn--primary">Agendar Consulta</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--deep-charcoal); color: rgba(249,249,249,0.7); padding: 4rem 0 2rem; border-top: 1px solid rgba(249,249,249,0.06);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem;">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <svg width="32" height="32" viewBox="0 0 32 32" style="stroke: var(--matte-gold); stroke-width: 0.5px; fill: none;">
+                            <rect x="4" y="4" width="24" height="24" stroke-linecap="square"/>
+                            <line x1="4" y1="16" x2="28" y2="16" stroke-linecap="square"/>
+                            <line x1="16" y1="4" x2="16" y2="28" stroke-linecap="square"/>
+                        </svg>
+                        <span class="cormorant" style="font-size: 1.25rem; letter-spacing: 0.1em; color: var(--gallery-white);">CASA & ESTILO</span>
+                    </div>
+                    <p class="text-body" style="line-height: 1.618;">
+                        Arquitectura de interiores basada en principios de diseño técnico 
+                        y reducción formal. Minimalismo suizo aplicado al espacio habitable.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-small" style="color: var(--gallery-white); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem;">
+                        Catálogo
+                    </h3>
+                    <ul style="list-style: none; line-height: 2;">
+                        <li><a href="coleccion-cocinas.html" class="text-body" style="color: rgba(249,249,249,0.7); text-decoration: none;">Cocinas</a></li>
+                        <li><a href="coleccion-salas.html" class="text-body" style="color: rgba(249,249,249,0.7); text-decoration: none;">Salas</a></li>
+                        <li><a href="coleccion-dormitorios.html" class="text-body" style="color: rgba(249,249,249,0.7); text-decoration: none;">Dormitorios</a></li>
+                        <li><a href="coleccion-oficinas.html" class="text-body" style="color: rgba(249,249,249,0.7); text-decoration: none;">Oficinas</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-small" style="color: var(--gallery-white); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem;">
+                        Servicios
+                    </h3>
+                    <ul style="list-style: none; line-height: 2;">
+                        <li><a href="servicios_detallados.html" class="text-body" style="color: rgba(249,249,249,0.7); text-decoration: none;">Diseño</a></li>
+                        <li><a href="servicios_detallados.html" class="text-body" style="color: rgba(249,249,249,0.7); text-decoration: none;">Instalación</a></li>
+                        <li><a href="servicios_detallados.html" class="text-body" style="color: rgba(249,249,249,0.7); text-decoration: none;">Garantía</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-small" style="color: var(--gallery-white); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem;">
+                        Contacto
+                    </h3>
+                    <p class="text-body" style="margin-bottom: 1rem;">
+                        info@casaestilo.com<br>
+                        +593 99 123 4567
+                    </p>
+                </div>
+            </div>
+            
+            <div style="border-top: 1px solid rgba(249,249,249,0.06); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center;">
+                <p class="text-small">© 2026 Casa & Estilo. Todos los derechos reservados.</p>
+                <p class="text-small">Desarrollado por <a href="../../" style="color: var(--matte-gold); text-decoration: none;">AlmyWEB</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/js/data_mapping.js"></script>
+    <script src="../assets/js/core.js"></script>
+    <script src="../assets/js/interactions.js"></script>
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especialistas - MediCenter Plus | AlmyWEB</title>
+    <meta name="description" content="Especialistas médicos certificados - Equipo de profesionales de primer nivel.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6; 
+            overflow-x: hidden;
+            background: #f8fafb;
+            color: #1e293b;
+        }
+        
+        :root {
+            --primary: #0ea5e9;
+            --secondary: #0284c7;
+            --accent: #e0f2fe;
+            --success: #10b981;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --white: #ffffff;
+            --light-bg: #f8fafb;
+        }
+        
+        /* Animated Medical Background */
+        .medical-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafb 0%, #e0f2fe 50%, #f8fafb 100%);
+        }
+        
+        .medical-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(14, 165, 233, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .medical-particle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .medical-particle:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+        
+        .medical-particle:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            top: 80%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.1;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.3;
+            }
+        }
+        
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text);
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .nav-item {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-item.active,
+        .nav-item:hover {
+            color: var(--primary);
+        }
+        
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-item.active::after,
+        .nav-item:hover::after { width: 100%; }
+        
+        .back-button {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--accent) 0%, white 100%);
+            padding: 80px 30px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: clamp(40px, 5vw, 56px);
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        
+        .hero .highlight {
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Doctors Grid */
+        .doctors {
+            padding: 100px 30px;
+            background: white;
+        }
+        
+        .doctors-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .doctor-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #f1f5f9;
+        }
+        
+        .doctor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(14, 165, 233, 0.15);
+            border-color: var(--primary);
+        }
+        
+        .doctor-image {
+            width: 100%;
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .doctor-info {
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .doctor-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        
+        .doctor-specialty {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .doctor-description {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .doctor-contact {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .doctor-contact:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--text);
+            color: white;
+            padding: 60px 30px 30px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-content p {
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+        
+        .footer-content a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container { padding: 15px 20px; }
+            .doctors-grid { grid-template-columns: 1fr; }
+            .nav-menu { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Medical Background -->
+    <div class="medical-bg">
+        <div class="medical-particle"></div>
+        <div class="medical-particle"></div>
+        <div class="medical-particle"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">M+</div>
+                <div>
+                    <div class="logo-text">MediCenter Plus</div>
+                </div>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">Inicio</a>
+                <a href="servicios.html" class="nav-item">Servicios</a>
+                <a href="especialistas.html" class="nav-item active">Especialistas</a>
+                <a href="contacto.html" class="nav-item">Contacto</a>
+                <a href="index.html" class="back-button">← Volver</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="animate__animated animate__fadeInUp">
+            Nuestros <span class="highlight">Especialistas</span>
+        </h1>
+        <p class="animate__animated animate__fadeInUp animate__delay-1s">
+            Equipo médico de primer nivel con certificaciones internacionales y amplia experiencia 
+            en sus respectivas especialidades.
+        </p>
+    </section>
+
+    <!-- Doctors Section -->
+    <section class="doctors">
+        <div class="doctors-grid">
+            <!-- Cardiólogos -->
+            <div class="doctor-card animate__animated animate__fadeInUp">
+                <div class="doctor-image" style="background-image: url('https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="doctor-info">
+                    <h3 class="doctor-name">Dr. Carlos Mendoza</h3>
+                    <p class="doctor-specialty">Cardiólogo Intervencionista</p>
+                    <p class="doctor-description">
+                        Especialista en cateterismo cardíaco y angioplastias. 15 años de experiencia en cardiología intervencionista. 
+                        Certificado por la Sociedad Europea de Cardiología.
+                    </p>
+                    <a href="contacto.html" class="doctor-contact">Agendar Cita</a>
+                </div>
+            </div>
+
+            <div class="doctor-card animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="doctor-image" style="background-image: url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="doctor-info">
+                    <h3 class="doctor-name">Dra. María González</h3>
+                    <p class="doctor-specialty">Cardióloga Clínica</p>
+                    <p class="doctor-description">
+                        Experta en ecocardiografía y medicina preventiva cardiovascular. Pionera en técnicas de diagnóstico no invasivo. 
+                        Más de 12 años de experiencia.
+                    </p>
+                    <a href="contacto.html" class="doctor-contact">Agendar Cita</a>
+                </div>
+            </div>
+
+            <!-- Neurólogos -->
+            <div class="doctor-card animate__animated animate__fadeInUp animate__delay-2s">
+                <div class="doctor-image" style="background-image: url('https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="doctor-info">
+                    <h3 class="doctor-name">Dr. Luis Herrera</h3>
+                    <p class="doctor-specialty">Neurólogo Clínico</p>
+                    <p class="doctor-description">
+                        Especialista en epilepsia y trastornos del sueño. 20 años de experiencia en neurología clínica. 
+                        Experto en electroencefalografía y medicina del sueño.
+                    </p>
+                    <a href="contacto.html" class="doctor-contact">Agendar Cita</a>
+                </div>
+            </div>
+
+            <div class="doctor-card animate__animated animate__fadeInUp animate__delay-3s">
+                <div class="doctor-image" style="background-image: url('https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="doctor-info">
+                    <h3 class="doctor-name">Dra. Ana Morales</h3>
+                    <p class="doctor-specialty">Neuróloga Vascular</p>
+                    <p class="doctor-description">
+                        Experta en accidentes cerebrovasculares y neurología vascular. Certificada en ultrasonido vascular cerebral. 
+                        Líder en prevención de ACV.
+                    </p>
+                    <a href="contacto.html" class="doctor-contact">Agendar Cita</a>
+                </div>
+            </div>
+
+            <!-- Traumatólogos -->
+            <div class="doctor-card animate__animated animate__fadeInUp animate__delay-4s">
+                <div class="doctor-image" style="background-image: url('https://images.unsplash.com/photo-1537368910025-700350fe46c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="doctor-info">
+                    <h3 class="doctor-name">Dr. Roberto Silva</h3>
+                    <p class="doctor-specialty">Traumatólogo Ortopedista</p>
+                    <p class="doctor-description">
+                        Especialista en cirugía artroscópica y traumatología deportiva. 18 años de experiencia en cirugías mínimamente invasivas. 
+                        Experto en lesiones deportivas.
+                    </p>
+                    <a href="contacto.html" class="doctor-contact">Agendar Cita</a>
+                </div>
+            </div>
+
+            <div class="doctor-card animate__animated animate__fadeInUp animate__delay-5s">
+                <div class="doctor-image" style="background-image: url('https://images.unsplash.com/photo-1638202993928-7267aad84c31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="doctor-info">
+                    <h3 class="doctor-name">Dra. Patricia Vega</h3>
+                    <p class="doctor-specialty">Cirujana Ortopédica</p>
+                    <p class="doctor-description">
+                        Especialista en cirugía de columna vertebral y reemplazos articulares. Pionera en técnicas de cirugía robótica. 
+                        Más de 14 años de experiencia.
+                    </p>
+                    <a href="contacto.html" class="doctor-contact">Agendar Cita</a>
+                </div>
+            </div>
+
+            <!-- Oftalmólogos -->
+            <div class="doctor-card animate__animated animate__fadeInUp animate__delay-6s">
+                <div class="doctor-image" style="background-image: url('https://images.unsplash.com/photo-1651008376811-b90baee60c1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="doctor-info">
+                    <h3 class="doctor-name">Dr. Miguel Torres</h3>
+                    <p class="doctor-specialty">Oftalmólogo</p>
+                    <p class="doctor-description">
+                        Especialista en cirugía refractiva y cataratas. Experto en láser excimer y técnicas de última generación. 
+                        Más de 16 años devolviendo la visión a sus pacientes.
+                    </p>
+                    <a href="contacto.html" class="doctor-contact">Agendar Cita</a>
+                </div>
+            </div>
+
+            <!-- Internistas -->
+            <div class="doctor-card animate__animated animate__fadeInUp animate__delay-7s">
+                <div class="doctor-image" style="background-image: url('https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="doctor-info">
+                    <h3 class="doctor-name">Dra. Carmen López</h3>
+                    <p class="doctor-specialty">Internista</p>
+                    <p class="doctor-description">
+                        Especialista en medicina interna y enfermedades crónicas. Experta en diabetes y hipertensión arterial. 
+                        22 años de experiencia en medicina preventiva.
+                    </p>
+                    <a href="contacto.html" class="doctor-contact">Agendar Cita</a>
+                </div>
+            </div>
+
+            <!-- Pediatras -->
+            <div class="doctor-card animate__animated animate__fadeInUp animate__delay-8s">
+                <div class="doctor-image" style="background-image: url('https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="doctor-info">
+                    <h3 class="doctor-name">Dr. Fernando Ruiz</h3>
+                    <p class="doctor-specialty">Pediatra</p>
+                    <p class="doctor-description">
+                        Especialista en pediatría general y neonatología. Experto en cuidados intensivos pediátricos. 
+                        19 años dedicados al cuidado de niños y adolescentes.
+                    </p>
+                    <a href="contacto.html" class="doctor-contact">Agendar Cita</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p>© 2026 MediCenter Plus - Especialistas Médicos Certificados</p>
+                <p>Desarrollado por <a href="../../">AlmyWEB</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Doctor cards hover effects
+        document.querySelectorAll('.doctor-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px)';
+                this.style.boxShadow = '0 25px 80px rgba(14, 165, 233, 0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.08)';
+            });
+        });
+    </script>
+</body>
+</html>

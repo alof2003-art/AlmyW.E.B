@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constructora Residencial Elite - Proyectos de Lujo | AlmyWEB</title>
+    <meta name="description" content="Constructora Residencial Elite - Especialistas en proyectos residenciales de lujo. Construimos hogares que trascienden el tiempo.">
+    <meta name="keywords" content="constructora residencial, proyectos lujo, construcción ecuador, viviendas premium, almyweb">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            line-height: 1.6; 
+            overflow-x: hidden;
+            background: #ffffff;
+            color: #2c3e50;
+        }
+        .playfair { font-family: 'Playfair Display', serif; }
+        
+        /* Luxury color palette */
+        :root {
+            --primary: #c9a96e;
+            --secondary: #8b7355;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --accent: #f8f9fa;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+        }
+        
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        
+        .preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--light);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: var(--primary); }
+        
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-cta:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background-color: var(--dark);
+            background-image: linear-gradient(rgba(44, 62, 80, 0.6), rgba(44, 62, 80, 0.6)), url('https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .hero-title {
+            font-size: clamp(50px, 6vw, 80px);
+            font-weight: 300;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+        
+        .hero-description {
+            font-size: 20px;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto 50px;
+            opacity: 0.9;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 80px;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 18px 40px;
+            border: 2px solid white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: var(--text);
+        }
+        
+        .hero-scroll {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+        
+        /* About Section */
+        .about {
+            padding: 120px 40px;
+            background: var(--white);
+        }
+        
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+        
+        .about-content h2 {
+            font-size: 48px;
+            font-weight: 300;
+            color: var(--text);
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+        
+        .about-content .highlight {
+            color: var(--primary);
+            font-style: italic;
+        }
+        
+        .about-content p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+            background: var(--accent);
+            border-radius: 10px;
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .about-image {
+            position: relative;
+        }
+        
+        .about-main-image {
+            width: 100%;
+            height: 600px;
+            background: url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        .floating-badge {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            background: var(--primary);
+            color: white;
+            padding: 30px;
+            border-radius: 50%;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(201, 169, 110, 0.3);
+        }
+        
+        .badge-number {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .badge-text {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Projects Section */
+        .projects {
+            padding: 120px 40px;
+            background: var(--accent);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-title {
+            font-size: 48px;
+            font-weight: 300;
+            color: var(--text);
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .projects-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+        
+        .project-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.7));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+        }
+        
+        .project-card:hover .project-overlay { opacity: 1; }
+        
+        .project-overlay-content {
+            color: white;
+        }
+        
+        .project-overlay-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .project-overlay-text {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .project-content {
+            padding: 40px;
+        }
+        
+        .project-category {
+            color: var(--primary);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .project-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 15px;
+        }
+        
+        .project-description {
+            color: var(--text-light);
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .project-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .project-specs {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        .project-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .project-link:hover {
+            color: var(--secondary);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 120px 40px;
+            background: var(--white);
+        }
+        
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .service-card {
+            text-align: center;
+            padding: 50px 30px;
+            background: var(--accent);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            background: white;
+        }
+        
+        .service-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon svg {
+            fill: var(--primary);
+        }
+        
+        .service-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .service-title {
+            color: white;
+        }
+        
+        .service-description {
+            color: var(--text-light);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .service-description {
+            color: rgba(255,255,255,0.9);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 120px 40px;
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+        
+        .contact p {
+            font-size: 18px;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto 60px;
+        }
+        
+        .contact-item {
+            padding: 40px 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-item h3 {
+            color: var(--primary);
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-item p {
+            margin: 0;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1a252f;
+            color: white;
+            padding: 60px 40px 30px;
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #95a5a6;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container { padding: 0 20px; }
+            .hero-content { padding: 0 20px; }
+            .about-container { 
+                grid-template-columns: 1fr; 
+                gap: 60px; 
+            }
+            .hero-buttons { 
+                flex-direction: column; 
+                align-items: center; 
+            }
+            .about-stats { grid-template-columns: 1fr; }
+            .contact-info { grid-template-columns: 1fr; }
+            .footer-bottom { 
+                flex-direction: column; 
+                gap: 20px; 
+                text-align: center; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">CONSTRUCTORA ELITE</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="proyectos.html" class="nav-link">Proyectos</a>
+                <a href="servicios.html" class="nav-link">Servicios</a>
+                <a href="nosotros.html" class="nav-link">Nosotros</a>
+                <a href="contacto.html" class="nav-cta">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle animate__animated animate__fadeInUp">Constructora Residencial Elite</div>
+            <h1 class="hero-title playfair animate__animated animate__fadeInUp animate__delay-1s">Construimos <span class="highlight">Hogares</span> que Trascienden</h1>
+            <p class="hero-description animate__animated animate__fadeInUp animate__delay-2s">Especialistas en proyectos residenciales de lujo con más de 15 años de experiencia creando espacios únicos</p>
+            <div class="hero-buttons animate__animated animate__fadeInUp animate__delay-3s">
+                <a href="#projects" class="btn-primary">Ver Proyectos</a>
+                <a href="#contact" class="btn-secondary">Consultar</a>
+            </div>
+        </div>
+        <a href="#about" class="hero-scroll">Descubrir más</a>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <h2 class="playfair">Construyendo <span class="highlight">Sueños</span> desde 2008</h2>
+                <p>Somos una constructora especializada en proyectos residenciales de alta gama, comprometidos con la excelencia en cada detalle. Nuestro equipo de arquitectos e ingenieros trabaja con los más altos estándares de calidad.</p>
+                <p>Cada proyecto es único y refleja la personalidad de nuestros clientes, utilizando materiales premium y técnicas de construcción innovadoras que garantizan durabilidad y elegancia.</p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">150+</div>
+                        <div class="stat-label">Proyectos Completados</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Años de Experiencia</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Clientes Satisfechos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">25</div>
+                        <div class="stat-label">Profesionales</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <div class="about-main-image"></div>
+                <div class="floating-badge">
+                    <div class="badge-number">A+</div>
+                    <div class="badge-text">Calidad</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="section-header">
+            <h2 class="section-title playfair">Nuestros <span class="highlight">Proyectos</span></h2>
+            <p class="section-subtitle">Cada construcción cuenta una historia única de calidad, diseño y funcionalidad</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    <div class="project-overlay">
+                        <div class="project-overlay-content">
+                            <div class="project-overlay-title">Villa Moderna</div>
+                            <div class="project-overlay-text">Residencia de lujo con diseño contemporáneo</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Residencial Premium</div>
+                    <h3 class="project-title">Villa Moderna Los Ceibos</h3>
+                    <p class="project-description">Residencia de 450m² con acabados de lujo, piscina infinita y jardines paisajísticos en exclusivo sector residencial.</p>
+                    <div class="project-details">
+                        <div class="project-specs">450m² • 4 habitaciones</div>
+                        <a href="#" class="project-link">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    <div class="project-overlay">
+                        <div class="project-overlay-content">
+                            <div class="project-overlay-title">Casa Familiar</div>
+                            <div class="project-overlay-text">Hogar acogedor con espacios amplios</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Residencial Familiar</div>
+                    <h3 class="project-title">Casa Familiar Cumbayá</h3>
+                    <p class="project-description">Vivienda de 320m² diseñada para familias, con amplios espacios sociales y áreas verdes privadas.</p>
+                    <div class="project-details">
+                        <div class="project-specs">320m² • 3 habitaciones</div>
+                        <a href="#" class="project-link">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1600607687644-c7171b42498b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    <div class="project-overlay">
+                        <div class="project-overlay-content">
+                            <div class="project-overlay-title">Conjunto Residencial</div>
+                            <div class="project-overlay-text">Desarrollo habitacional exclusivo</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Desarrollo Inmobiliario</div>
+                    <h3 class="project-title">Conjunto Residencial Miravalle</h3>
+                    <p class="project-description">Desarrollo de 24 casas con áreas comunales, seguridad 24/7 y acabados de primera calidad.</p>
+                    <div class="project-details">
+                        <div class="project-specs">24 unidades • Desde 280m²</div>
+                        <a href="#" class="project-link">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <h2 class="section-title playfair">Nuestros <span class="highlight">Servicios</span></h2>
+            <p class="section-subtitle">Ofrecemos soluciones integrales para todos sus proyectos de construcción</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Construcción Residencial</h3>
+                <p class="service-description">Construcción de viviendas unifamiliares y multifamiliares con los más altos estándares de calidad.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Diseño Arquitectónico</h3>
+                <p class="service-description">Diseños personalizados que reflejan su estilo de vida y maximizan la funcionalidad de los espacios.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Gestión de Proyectos</h3>
+                <p class="service-description">Administración completa del proyecto desde la planificación hasta la entrega final.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Control de Calidad</h3>
+                <p class="service-description">Supervisión constante y control de calidad en cada etapa de la construcción.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="playfair">¿Listo para construir su <span class="highlight">sueño</span>?</h2>
+        <p>Contáctenos para una consulta gratuita y descubra cómo podemos hacer realidad su proyecto residencial</p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3>Teléfono</h3>
+                <p>+593 2 234-5678</p>
+            </div>
+            <div class="contact-item">
+                <h3>Email</h3>
+                <p>info@constructoraelite.com</p>
+            </div>
+            <div class="contact-item">
+                <h3>Ubicación</h3>
+                <p>Quito, Ecuador</p>
+            </div>
+        </div>
+        <a href="contacto.html" class="btn-primary">Solicitar Cotización</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Constructora Elite</h3>
+                    <p>Especialistas en construcción residencial de lujo con más de 15 años de experiencia en el mercado ecuatoriano.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <p><a href="#">Construcción Residencial</a></p>
+                    <p><a href="#">Diseño Arquitectónico</a></p>
+                    <p><a href="#">Gestión de Proyectos</a></p>
+                    <p><a href="#">Control de Calidad</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>+593 2 234-5678</p>
+                    <p>info@constructoraelite.com</p>
+                    <p>Quito, Ecuador</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Desarrollado por</h3>
+                    <p><a href="../../index.html">AlmyWEB | Full Stack</a></p>
+                    <p>Tu Imagen Digital</p>
+                    <p>Desarrollo web Ecuador</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Constructora Elite. Todos los derechos reservados.</p>
+                <p>Desarrollado por <a href="../../index.html">AlmyWEB</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.classList.add('hidden');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.project-card, .service-card, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neurología - MediCenter Plus | AlmyWEB</title>
+    <meta name="description" content="Especialidad en Neurología - Atención especializada en trastornos del sistema nervioso central y periférico.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6; 
+            overflow-x: hidden;
+            background: #f8fafb;
+            color: #1e293b;
+        }
+        .lora { font-family: 'Lora', serif; }
+        
+        :root {
+            --primary: #7c3aed;
+            --secondary: #6d28d9;
+            --accent: #f3f4f6;
+            --success: #10b981;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --white: #ffffff;
+            --light-bg: #f8fafb;
+        }
+        
+        /* Animated Neurology Background */
+        .neuro-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f3f4f6 0%, #f8fafb 50%, #ede9fe 100%);
+        }
+        
+        .neural-network {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(124, 58, 237, 0.3);
+            border-radius: 50%;
+            animation: neural-pulse 3s ease-in-out infinite;
+        }
+        
+        .neural-network::before {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.2), transparent);
+            top: 50%;
+            left: 2px;
+            animation: neural-flow 4s ease-in-out infinite;
+        }
+        
+        .neural-network:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .neural-network:nth-child(2) {
+            top: 60%;
+            left: 70%;
+            animation-delay: 1s;
+        }
+        
+        .neural-network:nth-child(3) {
+            top: 80%;
+            left: 30%;
+            animation-delay: 2s;
+        }
+        
+        .neural-network:nth-child(4) {
+            top: 40%;
+            left: 80%;
+            animation-delay: 0.5s;
+        }
+        
+        .brain-wave {
+            position: absolute;
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.1), transparent);
+            animation: brain-activity 5s ease-in-out infinite;
+        }
+        
+        .brain-wave:nth-child(5) {
+            top: 30%;
+            left: 20%;
+            animation-delay: 0s;
+        }
+        
+        .brain-wave:nth-child(6) {
+            top: 70%;
+            left: 50%;
+            animation-delay: 2.5s;
+        }
+        
+        @keyframes neural-pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+        
+        @keyframes neural-flow {
+            0% { opacity: 0; transform: translateX(0); }
+            50% { opacity: 1; transform: translateX(50px); }
+            100% { opacity: 0; transform: translateX(100px); }
+        }
+        
+        @keyframes brain-activity {
+            0%, 100% { opacity: 0.1; transform: scaleX(1); }
+            50% { opacity: 0.4; transform: scaleX(1.2); }
+        }
+        
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text);
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .nav-item {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-item:hover::after { width: 100%; }
+        .nav-item:hover { color: var(--primary); }
+        
+        .back-button {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--accent) 0%, white 100%);
+            padding: 80px 30px;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-content h1 {
+            font-size: clamp(40px, 5vw, 56px);
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-content .highlight {
+            color: var(--primary);
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.2);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 100px 30px;
+            background: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #f1f5f9;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.15);
+            border-color: var(--primary);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: white;
+            font-size: 28px;
+        }
+        
+        .service-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 15px;
+        }
+        
+        .service-description {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        /* Doctors Section */
+        .doctors {
+            padding: 100px 30px;
+            background: var(--light-bg);
+        }
+        
+        .doctors-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        
+        .doctor-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .doctor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .doctor-image {
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .doctor-info {
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .doctor-name {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        
+        .doctor-specialty {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .doctor-description {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--text);
+            color: white;
+            padding: 60px 30px 30px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-content p {
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+        
+        .footer-content a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container { padding: 15px 20px; }
+            .hero-container { 
+                grid-template-columns: 1fr; 
+                gap: 40px; 
+                text-align: center;
+            }
+            .nav-menu { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Neurology Background -->
+    <div class="neuro-bg">
+        <div class="neural-network"></div>
+        <div class="neural-network"></div>
+        <div class="neural-network"></div>
+        <div class="neural-network"></div>
+        <div class="brain-wave"></div>
+        <div class="brain-wave"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">N</div>
+                <div>
+                    <div class="logo-text">Neurología</div>
+                </div>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">Inicio</a>
+                <a href="servicios.html" class="nav-item">Servicios</a>
+                <a href="especialistas.html" class="nav-item">Especialistas</a>
+                <a href="contacto.html" class="nav-item">Contacto</a>
+                <a href="index.html" class="back-button">← Volver</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="animate__animated animate__fadeInUp">
+                    <span class="highlight">Neurología</span><br>
+                    Avanzada
+                </h1>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">
+                    Atención especializada en trastornos del sistema nervioso central y periférico. 
+                    Diagnóstico preciso y tratamientos innovadores con tecnología de vanguardia.
+                </p>
+                <a href="contacto.html" class="btn-primary animate__animated animate__fadeInUp animate__delay-2s">
+                    Agendar Consulta
+                </a>
+            </div>
+            <div class="hero-image animate__animated animate__fadeInRight"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="section-header">
+            <h2 class="section-title animate__animated animate__fadeInUp">Servicios Neurológicos</h2>
+            <p class="section-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+                Diagnóstico y tratamiento integral de enfermedades del sistema nervioso
+            </p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card animate__animated animate__fadeInUp">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Electroencefalograma</h3>
+                <p class="service-description">
+                    Registro de la actividad eléctrica cerebral para diagnóstico de epilepsia y otros trastornos neurológicos.
+                </p>
+                <a href="contacto.html" class="btn-primary">Agendar</a>
+            </div>
+
+            <div class="service-card animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Resonancia Magnética</h3>
+                <p class="service-description">
+                    Imágenes detalladas del cerebro y médula espinal para diagnóstico preciso de patologías neurológicas.
+                </p>
+                <a href="contacto.html" class="btn-primary">Agendar</a>
+            </div>
+
+            <div class="service-card animate__animated animate__fadeInUp animate__delay-2s">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Electroneurografía</h3>
+                <p class="service-description">
+                    Evaluación de la función de nervios periféricos para diagnóstico de neuropatías y lesiones nerviosas.
+                </p>
+                <a href="contacto.html" class="btn-primary">Agendar</a>
+            </div>
+
+            <div class="service-card animate__animated animate__fadeInUp animate__delay-3s">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Tratamiento de Migraña</h3>
+                <p class="service-description">
+                    Manejo integral de cefaleas y migrañas con tratamientos personalizados y preventivos.
+                </p>
+                <a href="contacto.html" class="btn-primary">Agendar</a>
+            </div>
+
+            <div class="service-card animate__animated animate__fadeInUp animate__delay-4s">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Neurología Vascular</h3>
+                <p class="service-description">
+                    Prevención y tratamiento de accidentes cerebrovasculares y enfermedades vasculares cerebrales.
+                </p>
+                <a href="contacto.html" class="btn-primary">Agendar</a>
+            </div>
+
+            <div class="service-card animate__animated animate__fadeInUp animate__delay-5s">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Trastornos del Movimiento</h3>
+                <p class="service-description">
+                    Diagnóstico y tratamiento de Parkinson, temblores y otros trastornos del movimiento.
+                </p>
+                <a href="contacto.html" class="btn-primary">Agendar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors Section -->
+    <section class="doctors">
+        <div class="section-header">
+            <h2 class="section-title animate__animated animate__fadeInUp">Especialistas en Neurología</h2>
+            <p class="section-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+                Neurólogos certificados con experiencia en las últimas técnicas diagnósticas y terapéuticas
+            </p>
+        </div>
+        <div class="doctors-grid">
+            <div class="doctor-card animate__animated animate__fadeInUp">
+                <div class="doctor-image" style="background-image: url('https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="doctor-info">
+                    <h3 class="doctor-name">Dr. Luis Herrera</h3>
+                    <p class="doctor-specialty">Neurólogo Clínico</p>
+                    <p class="doctor-description">
+                        Especialista en epilepsia y trastornos del sueño. 20 años de experiencia en neurología clínica y electroencefalografía.
+                    </p>
+                    <a href="contacto.html" class="btn-primary">Agendar Cita</a>
+                </div>
+            </div>
+
+            <div class="doctor-card animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="doctor-image" style="background-image: url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="doctor-info">
+                    <h3 class="doctor-name">Dra. Ana Morales</h3>
+                    <p class="doctor-specialty">Neuróloga Vascular</p>
+                    <p class="doctor-description">
+                        Experta en accidentes cerebrovasculares y neurología vascular. Certificada en ultrasonido vascular cerebral.
+                    </p>
+                    <a href="contacto.html" class="btn-primary">Agendar Cita</a>
+                </div>
+            </div>
+
+            <div class="doctor-card animate__animated animate__fadeInUp animate__delay-2s">
+                <div class="doctor-image" style="background-image: url('https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="doctor-info">
+                    <h3 class="doctor-name">Dr. Miguel Torres</h3>
+                    <p class="doctor-specialty">Especialista en Trastornos del Movimiento</p>
+                    <p class="doctor-description">
+                        Experto en enfermedad de Parkinson y trastornos del movimiento. Pionero en terapias de estimulación cerebral profunda.
+                    </p>
+                    <a href="contacto.html" class="btn-primary">Agendar Cita</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p>© 2026 MediCenter Plus - Especialidad en Neurología</p>
+                <p>Desarrollado por <a href="../../">AlmyWEB</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Service cards hover effects
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px)';
+                this.style.boxShadow = '0 25px 80px rgba(124, 58, 237, 0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.08)';
+            });
+        });
+
+        // Doctor cards hover effects
+        document.querySelectorAll('.doctor-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px)';
+                this.style.boxShadow = '0 25px 80px rgba(0,0,0,0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.08)';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+/* ============================================================
+   DESIGN TOKENS - Casa & Estilo v2.0
+   Chromatic Spec & Typographic Scale
+   ============================================================ */
+
+:root {
+    /* Chromatic Spec */
+    --deep-charcoal: #0A0A0A;
+    --gallery-white: #F9F9F9;
+    --matte-gold: #C5A059;
+    --technical-grey: #333333;
+    
+    /* Typographic Scale - Golden Ratio (1.618) */
+    --base-unit: 1rem;
+    --golden-ratio: 1.618;
+    
+    /* Spacing System */
+    --space-xs: calc(var(--base-unit) * 0.25);
+    --space-sm: calc(var(--base-unit) * 0.5);
+    --space-md: var(--base-unit);
+    --space-lg: calc(var(--base-unit) * 1.5);
+    --space-xl: calc(var(--base-unit) * 2);
+    --space-2xl: calc(var(--base-unit) * 3);
+    --space-3xl: calc(var(--base-unit) * 4);
+    --space-4xl: calc(var(--base-unit) * 6);
+    --space-5xl: calc(var(--base-unit) * 8);
+    
+    /* Transitions */
+    --transition-fast: 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+    --transition-base: 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    --transition-slow: 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+    
+    /* Shadows */
+    --shadow-sm: 0 4px 8px rgba(10, 10, 10, 0.04);
+    --shadow-md: 0 8px 16px rgba(10, 10, 10, 0.06);
+    --shadow-lg: 0 16px 32px rgba(10, 10, 10, 0.08);
+    --shadow-xl: 0 24px 48px rgba(10, 10, 10, 0.1);
+    
+    /* Borders */
+    --border-light: 1px solid rgba(51, 51, 51, 0.06);
+    --border-medium: 1px solid rgba(51, 51, 51, 0.1);
+    --border-heavy: 1px solid rgba(51, 51, 51, 0.2);
+}

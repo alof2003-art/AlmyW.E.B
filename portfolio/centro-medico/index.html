@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCenter Plus - Centro Médico Integral | AlmyWEB</title>
+    <meta name="description" content="MediCenter Plus - Centro médico integral con especialistas de primer nivel. Tu salud es nuestra prioridad.">
+    <meta name="keywords" content="centro médico, especialistas médicos, salud integral, consultas médicas, almyweb">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6; 
+            overflow-x: hidden;
+            background: #f8fafb;
+            color: #1e293b;
+        }
+        .lora { font-family: 'Lora', serif; }
+        
+        /* Medical color palette */
+        :root {
+            --primary: #0ea5e9;
+            --secondary: #0284c7;
+            --accent: #e0f2fe;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --white: #ffffff;
+            --light-bg: #f8fafb;
+        }
+        
+        /* Animated Medical Background */
+        .medical-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafb 0%, #e0f2fe 50%, #f8fafb 100%);
+        }
+        
+        .medical-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(14, 165, 233, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .medical-particle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .medical-particle:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+        
+        .medical-particle:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            top: 80%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        .medical-particle:nth-child(4) {
+            width: 40px;
+            height: 40px;
+            top: 30%;
+            left: 70%;
+            animation-delay: 1s;
+        }
+        
+        .medical-particle:nth-child(5) {
+            width: 120px;
+            height: 120px;
+            top: 10%;
+            left: 60%;
+            animation-delay: 3s;
+        }
+        
+        .medical-cross {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            opacity: 0.05;
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        .medical-cross::before,
+        .medical-cross::after {
+            content: '';
+            position: absolute;
+            background: var(--primary);
+        }
+        
+        .medical-cross::before {
+            width: 30px;
+            height: 6px;
+            top: 12px;
+            left: 0;
+        }
+        
+        .medical-cross::after {
+            width: 6px;
+            height: 30px;
+            top: 0;
+            left: 12px;
+        }
+        
+        .medical-cross:nth-child(6) {
+            top: 15%;
+            left: 25%;
+            animation-delay: 0s;
+        }
+        
+        .medical-cross:nth-child(7) {
+            top: 45%;
+            left: 15%;
+            animation-delay: 2s;
+        }
+        
+        .medical-cross:nth-child(8) {
+            top: 70%;
+            left: 75%;
+            animation-delay: 1s;
+        }
+        
+        .medical-cross:nth-child(9) {
+            top: 25%;
+            left: 85%;
+            animation-delay: 3s;
+        }
+        
+        .medical-dna {
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--primary), transparent);
+            opacity: 0.1;
+            animation: rotate 8s linear infinite;
+        }
+        
+        .medical-dna:nth-child(10) {
+            top: 20%;
+            left: 40%;
+            animation-delay: 0s;
+        }
+        
+        .medical-dna:nth-child(11) {
+            top: 60%;
+            left: 60%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.1;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.3;
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.05;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.15;
+                transform: scale(1.1);
+            }
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background: var(--primary);
+            color: white;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+        
+        .top-bar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+        
+        .top-bar-info {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .top-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .top-bar-icon {
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: var(--primary);
+        }
+        
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text);
+        }
+        
+        .logo-subtitle {
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .nav-item {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-item:hover::after { width: 100%; }
+        .nav-item:hover { color: var(--primary); }
+        
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--accent) 0%, white 100%);
+            padding: 80px 30px;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-content h1 {
+            font-size: clamp(40px, 5vw, 56px);
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-content .highlight {
+            color: var(--primary);
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            padding: 16px 32px;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        .hero-image {
+            position: relative;
+        }
+        
+        .hero-main-image {
+            width: 100%;
+            height: 500px;
+            background: url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(14, 165, 233, 0.2);
+        }
+        
+        .floating-card {
+            position: absolute;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+        
+        .card-1 {
+            top: 50px;
+            left: -30px;
+            width: 200px;
+        }
+        
+        .card-2 {
+            bottom: 50px;
+            right: -30px;
+            width: 180px;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 100px 30px;
+            background: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #f1f5f9;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .service-card:hover::before {
+            left: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 80px rgba(14, 165, 233, 0.2);
+            border-color: var(--primary);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: white;
+            font-size: 28px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+            transition: all 0.4s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(14, 165, 233, 0.4);
+        }
+        
+        .service-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: rotate 3s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon::before {
+            opacity: 1;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .service-icon.cardiology::after {
+            content: '♥';
+            position: absolute;
+            font-size: 24px;
+            z-index: 2;
+        }
+        
+        .service-icon.neurology::after {
+            content: '🧠';
+            position: absolute;
+            font-size: 24px;
+            z-index: 2;
+        }
+        
+        .service-icon.traumatology::after {
+            content: '🦴';
+            position: absolute;
+            font-size: 24px;
+            z-index: 2;
+        }
+        
+        .service-icon.ophthalmology::after {
+            content: '👁';
+            position: absolute;
+            font-size: 24px;
+            z-index: 2;
+        }
+        
+        .service-icon.internal::after {
+            content: '🩺';
+            position: absolute;
+            font-size: 24px;
+            z-index: 2;
+        }
+        
+        .service-icon.pediatrics::after {
+            content: '👶';
+            position: absolute;
+            font-size: 24px;
+            z-index: 2;
+        }
+        
+        .service-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+        
+        .service-card:hover .service-title {
+            color: var(--primary);
+        }
+        
+        .service-description {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+        
+        .service-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .service-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover .service-link::after {
+            transform: translateX(5px);
+        }
+        
+        .service-link::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .service-card:hover .service-link::before {
+            width: calc(100% - 20px);
+        }
+        
+        /* Doctors Section */
+        .doctors {
+            padding: 100px 30px;
+            background: var(--light-bg);
+        }
+        
+        .doctors-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        
+        .doctor-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .doctor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .doctor-image {
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .doctor-info {
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .doctor-name {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        
+        .doctor-specialty {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .doctor-description {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .doctor-contact {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .doctor-contact:hover {
+            background: var(--secondary);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 30px;
+            background: white;
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+        
+        .contact-info h2 {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 30px;
+        }
+        
+        .contact-info p {
+            color: var(--text-light);
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 20px;
+        }
+        
+        .contact-text h3 {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 5px;
+        }
+        
+        .contact-text p {
+            color: var(--text-light);
+            margin: 0;
+            font-size: 16px;
+        }
+        
+        .contact-form {
+            background: var(--light-bg);
+            padding: 40px;
+            border-radius: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+        
+        .form-submit {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .form-submit:hover {
+            background: var(--secondary);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--text);
+            color: white;
+            padding: 60px 30px 30px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #94a3b8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .top-bar-container { padding: 0 20px; }
+            .header-container { padding: 15px 20px; }
+            .hero-container { 
+                grid-template-columns: 1fr; 
+                gap: 40px; 
+                text-align: center;
+            }
+            .contact-container { 
+                grid-template-columns: 1fr; 
+                gap: 40px; 
+            }
+            .hero-stats { grid-template-columns: repeat(3, 1fr); }
+            .hero-buttons { 
+                flex-direction: column; 
+                align-items: center; 
+            }
+            .footer-bottom { 
+                flex-direction: column; 
+                gap: 20px; 
+                text-align: center; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Medical Background -->
+    <div class="medical-bg">
+        <div class="medical-particle"></div>
+        <div class="medical-particle"></div>
+        <div class="medical-particle"></div>
+        <div class="medical-particle"></div>
+        <div class="medical-particle"></div>
+        <div class="medical-cross"></div>
+        <div class="medical-cross"></div>
+        <div class="medical-cross"></div>
+        <div class="medical-cross"></div>
+        <div class="medical-dna"></div>
+        <div class="medical-dna"></div>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="top-bar-info">
+                <div class="top-bar-item">
+                    <div class="top-bar-icon">📞</div>
+                    <span>Emergencias: +593 2 911-2345</span>
+                </div>
+                <div class="top-bar-item">
+                    <div class="top-bar-icon">⏰</div>
+                    <span>Lun-Vie: 7:00-20:00 | Sáb: 8:00-16:00</span>
+                </div>
+            </div>
+            <div class="top-bar-info">
+                <div class="top-bar-item">
+                    <div class="top-bar-icon">📧</div>
+                    <span>info@medicenterplus.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">M+</div>
+                <div>
+                    <div class="logo-text">MediCenter Plus</div>
+                    <div class="logo-subtitle">Centro Médico Integral</div>
+                </div>
+            </a>
+            <nav class="nav-menu">
+                <a href="#home" class="nav-item">Inicio</a>
+                <a href="servicios.html" class="nav-item">Servicios</a>
+                <a href="calendario.html" class="nav-item">Calendario</a>
+                <a href="especialistas.html" class="nav-item">Especialistas</a>
+                <a href="contacto.html" class="nav-item">Contacto</a>
+                <a href="../" class="cta-button">← Volver</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="animate__animated animate__fadeInUp">
+                    Tu <span class="highlight">Salud</span><br>
+                    Nuestra <span class="highlight">Prioridad</span>
+                </h1>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">
+                    Centro médico integral con especialistas de primer nivel y tecnología de vanguardia. 
+                    Brindamos atención médica de calidad con calidez humana.
+                </p>
+                <div class="hero-buttons animate__animated animate__fadeInUp animate__delay-2s">
+                    <a href="agendar-cita.html" class="btn-primary">Agendar Cita</a>
+                    <a href="calendario.html" class="btn-secondary">Ver Calendario</a>
+                </div>
+                <div class="hero-stats animate__animated animate__fadeInUp animate__delay-3s">
+                    <div class="stat-item">
+                        <div class="stat-number lora">25+</div>
+                        <div class="stat-label">Especialistas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number lora">15K+</div>
+                        <div class="stat-label">Pacientes Atendidos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number lora">98%</div>
+                        <div class="stat-label">Satisfacción</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image animate__animated animate__fadeInRight">
+                <div class="hero-main-image"></div>
+                <div class="floating-card card-1">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 40px; height: 40px; background: var(--success); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--text); font-size: 14px;">Cita Confirmada</div>
+                            <div style="color: var(--text-light); font-size: 12px;">Dr. García - 10:30 AM</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="floating-card card-2">
+                    <div style="text-align: center;">
+                        <div style="font-size: 24px; font-weight: 700; color: var(--primary); margin-bottom: 5px;">4.9
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: inline; margin-left: 2px;">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <div style="font-size: 12px; color: var(--text-light);">Calificación Promedio</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-header">
+            <h2 class="section-title animate__animated animate__fadeInUp">Nuestros Servicios</h2>
+            <p class="section-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+                Ofrecemos una amplia gama de especialidades médicas con tecnología de última generación
+            </p>
+        </div>
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card animate__animated animate__fadeInUp">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Cardiología</h3>
+                <p class="service-description">
+                    Diagnóstico y tratamiento de enfermedades cardiovasculares con equipos de última generación 
+                    y especialistas certificados internacionalmente.
+                </p>
+                <a href="cardiologia.html" class="service-link">Ver Especialidad →</a>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-card animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Neurología</h3>
+                <p class="service-description">
+                    Atención especializada en trastornos del sistema nervioso central y periférico. 
+                    Diagnóstico preciso y tratamientos innovadores.
+                </p>
+                <a href="neurologia.html" class="service-link">Ver Especialidad →</a>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-card animate__animated animate__fadeInUp animate__delay-2s">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Traumatología</h3>
+                <p class="service-description">
+                    Especialistas en lesiones del sistema musculoesquelético. Cirugías mínimamente invasivas 
+                    y rehabilitación integral.
+                </p>
+                <a href="sub-categorias/traumatologia.html" class="service-link">Ver Especialidad →</a>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="service-card animate__animated animate__fadeInUp animate__delay-3s">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Oftalmología</h3>
+                <p class="service-description">
+                    Cuidado integral de la salud visual. Cirugías refractivas, tratamiento de cataratas 
+                    y enfermedades de la retina.
+                </p>
+                <a href="sub-categorias/oftalmologia.html" class="service-link">Ver Especialidad →</a>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="service-card animate__animated animate__fadeInUp animate__delay-4s">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Medicina Interna</h3>
+                <p class="service-description">
+                    Diagnóstico y tratamiento integral de enfermedades en adultos. Medicina preventiva 
+                    y seguimiento de patologías crónicas.
+                </p>
+                <a href="sub-categorias/medicina-interna.html" class="service-link">Ver Especialidad →</a>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="service-card animate__animated animate__fadeInUp animate__delay-5s">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Pediatría</h3>
+                <p class="service-description">
+                    Atención médica especializada para niños y adolescentes. Consultas de crecimiento, 
+                    vacunación y medicina preventiva.
+                </p>
+                <a href="sub-categorias/pediatria.html" class="service-link">Ver Especialidad →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>MediCenter Plus</h3>
+                    <p>
+                        Centro médico integral comprometido con brindar atención médica de calidad 
+                        con tecnología de vanguardia y calidez humana.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Especialidades</h3>
+                    <p><a href="#services">Cardiología</a></p>
+                    <p><a href="#services">Neurología</a></p>
+                    <p><a href="#services">Traumatología</a></p>
+                    <p><a href="#services">Oftalmología</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>Av. Salud 789, Torre Médica</p>
+                    <p>Quito, Ecuador</p>
+                    <p>+593 2 456-7890</p>
+                    <p>info@medicenterplus.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2026 MediCenter Plus. Todos los derechos reservados.</p>
+                <p>Desarrollado por <a href="../" style="color: var(--primary);">AlmyWEB</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Service cards hover effects
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px)';
+                this.style.boxShadow = '0 25px 80px rgba(14, 165, 233, 0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.08)';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DentalPro - Clínica Dental Profesional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Sidebar de Navegación -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <svg class="brand-logo" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path class="logo-path" d="M7 21L6.11576 20.3061C3.59604 18.3278 2 15.3371 2 12.1386V8.5C2 5.5 4.5 3 7.5 3C9.36 3 11.02 3.96 12 5.39C12.98 3.96 14.64 3 16.5 3C19.5 3 22 5.5 22 8.5V12.1386C22 15.3371 20.404 18.3278 17.8842 20.3061L17 21"/>
+                    <path class="logo-path" d="M7 21C8.5 17 10 15 12 15C14 15 15.5 17 17 21" opacity="0.5"/>
+                </svg>
+                <span class="brand-name">DentalPro</span>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="#dashboard" class="nav-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                <span>Dashboard</span>
+            </a>
+            <a href="#calendario" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span>Calendario</span>
+            </a>
+            <a href="#pacientes" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <span>Pacientes</span>
+            </a>
+            <a href="#ajustes" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M12 1v6m0 6v6m9-9h-6m-6 0H3"></path>
+                </svg>
+                <span>Ajustes</span>
+            </a>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <span>DR</span>
+                    <div class="status-indicator"></div>
+                </div>
+                <div class="user-info">
+                    <div class="user-name">Dr. Rodriguez</div>
+                    <div class="user-role">Odontólogo</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <!-- Header con Blur -->
+        <header class="main-header">
+            <div class="header-content">
+                <h1 class="page-title gradient-text">Dashboard</h1>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                        <input type="text" placeholder="Buscar paciente...">
+                    </div>
+                    <button class="btn-primary" id="btnNuevaCita">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Nueva Cita
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sección de Estadísticas -->
+        <section class="stats-section">
+            <div class="stat-card fade-in-up" style="animation-delay: 0.1s">
+                <div class="stat-icon" style="background: rgba(59, 130, 246, 0.1);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-label">Pacientes Hoy</div>
+                    <div class="stat-value" id="statPacientesHoy">0</div>
+                </div>
+            </div>
+
+            <div class="stat-card fade-in-up" style="animation-delay: 0.2s">
+                <div class="stat-icon" style="background: rgba(6, 182, 212, 0.1);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-label">Ingresos del Mes</div>
+                    <div class="stat-value" id="statIngresos">$0</div>
+                </div>
+            </div>
+
+            <div class="stat-card fade-in-up" style="animation-delay: 0.3s">
+                <div class="stat-icon" style="background: rgba(251, 191, 36, 0.1);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-label">Citas Pendientes</div>
+                    <div class="stat-value" id="statPendientes">0</div>
+                </div>
+            </div>
+
+            <div class="stat-card fade-in-up" style="animation-delay: 0.4s">
+                <div class="stat-icon" style="background: rgba(34, 197, 94, 0.1);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-label">Ocupación</div>
+                    <div class="stat-value" id="statOcupacion">0%</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calendario -->
+        <section class="calendar-section">
+            <div class="calendar-container glass-card">
+                <div class="calendar-header">
+                    <h2 class="calendar-title">Calendario de Citas</h2>
+                    <div class="calendar-controls">
+                        <button class="btn-icon" id="btnPrevMonth">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <span class="current-month" id="currentMonth">Febrero 2026</span>
+                        <button class="btn-icon" id="btnNextMonth">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- El calendario se genera dinámicamente con JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal para Citas -->
+    <div class="modal-overlay" id="modalCitas">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Citas del Día</h3>
+                <button class="btn-close" id="btnCloseModal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Contenido dinámico -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+        <span id="toastMessage">Operación exitosa</span>
+    </div>
+
+    <script src="js/database.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

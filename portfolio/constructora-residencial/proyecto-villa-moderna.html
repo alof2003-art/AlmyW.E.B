@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villa Moderna Los Ceibos - Constructora Elite | AlmyWEB</title>
+    <meta name="description" content="Residencia de lujo de 450m² con acabados premium, piscina infinita y jardines paisajísticos.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            line-height: 1.6; 
+            overflow-x: hidden;
+            background: #ffffff;
+            color: #2c3e50;
+        }
+        .playfair { font-family: 'Playfair Display', serif; }
+        
+        :root {
+            --primary: #c9a96e;
+            --secondary: #8b7355;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --accent: #f8f9fa;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: var(--primary); }
+        
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-cta:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .project-hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            display: flex;
+            align-items: flex-end;
+            padding: 100px 40px 60px;
+            margin-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            color: white;
+        }
+        
+        .project-category {
+            color: var(--primary);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .project-title {
+            font-size: clamp(40px, 5vw, 60px);
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        
+        .project-subtitle {
+            font-size: 20px;
+            opacity: 0.9;
+            max-width: 700px;
+        }
+        
+        /* Project Info */
+        .project-info {
+            padding: 80px 40px;
+            background: var(--white);
+        }
+        
+        .info-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 80px;
+        }
+        
+        .info-content h2 {
+            font-size: 36px;
+            font-weight: 300;
+            color: var(--text);
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+        
+        .info-content p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        
+        .specs-grid {
+            display: grid;
+            gap: 25px;
+        }
+        
+        .spec-item {
+            background: var(--accent);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .spec-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+        
+        .spec-value {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        /* Gallery */
+        .gallery-section {
+            padding: 80px 40px;
+            background: var(--accent);
+        }
+        
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            font-weight: 300;
+            color: var(--text);
+            margin-bottom: 50px;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .gallery-item {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .gallery-item:first-child {
+            grid-column: span 2;
+            height: 500px;
+        }
+        
+        /* Features */
+        .features-section {
+            padding: 80px 40px;
+            background: var(--white);
+        }
+        
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 40px 30px;
+            background: var(--accent);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover .feature-icon {
+            background: white;
+        }
+        
+        .feature-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover .feature-icon svg {
+            fill: var(--primary);
+        }
+        
+        .feature-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover .feature-title {
+            color: white;
+        }
+        
+        /* CTA */
+        .cta-section {
+            padding: 100px 40px;
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1a252f;
+            color: white;
+            padding: 60px 40px 30px;
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #95a5a6;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container { padding: 0 20px; }
+            .info-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .gallery-item:first-child {
+                grid-column: span 1;
+            }
+            .footer-bottom { 
+                flex-direction: column; 
+                gap: 20px; 
+                text-align: center; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">CONSTRUCTORA ELITE</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="proyectos.html" class="nav-link">Proyectos</a>
+                <a href="servicios.html" class="nav-link">Servicios</a>
+                <a href="nosotros.html" class="nav-link">Nosotros</a>
+                <a href="contacto.html" class="nav-cta">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="project-hero">
+        <div class="hero-content">
+            <div class="project-category">Residencial Premium</div>
+            <h1 class="project-title playfair">Villa Moderna Los Ceibos</h1>
+            <p class="project-subtitle">Residencia de lujo con diseño contemporáneo y acabados excepcionales</p>
+        </div>
+    </section>
+
+    <!-- Project Info -->
+    <section class="project-info">
+        <div class="info-container">
+            <div class="info-content">
+                <h2 class="playfair">Elegancia Contemporánea</h2>
+                <p>Villa Moderna Los Ceibos representa la perfecta fusión entre diseño contemporáneo y funcionalidad. Esta residencia de 450m² fue diseñada para una familia que buscaba un hogar que reflejara su estilo de vida moderno y sofisticado.</p>
+                <p>El proyecto destaca por sus amplios espacios abiertos, abundante luz natural y una conexión fluida entre interiores y exteriores. La piscina infinita con vista panorámica es el punto focal del área social, complementada por jardines paisajísticos diseñados por expertos.</p>
+                <p>Los acabados incluyen pisos de mármol italiano, carpintería en madera noble, sistema domótico completo y cocina de diseño con electrodomésticos de última generación. Cada detalle fue cuidadosamente seleccionado para garantizar la máxima calidad y durabilidad.</p>
+            </div>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <div class="spec-label">Área Construida</div>
+                    <div class="spec-value">450 m²</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Habitaciones</div>
+                    <div class="spec-value">4 Suites</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Baños</div>
+                    <div class="spec-value">5 Completos</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Estacionamientos</div>
+                    <div class="spec-value">3 Cubiertos</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Ubicación</div>
+                    <div class="spec-value">Los Ceibos</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Estado</div>
+                    <div class="spec-value">Completado 2025</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery-section">
+        <div class="gallery-container">
+            <h2 class="section-title playfair">Galería del Proyecto</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')"></div>
+                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1600607687644-c7171b42498b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section">
+        <div class="features-container">
+            <h2 class="section-title playfair">Características Destacadas</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+                    </div>
+                    <div class="feature-title">Piscina Infinita</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <div class="feature-title">Sistema Domótico</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>
+                    </div>
+                    <div class="feature-title">Jardines Paisajísticos</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+                    </div>
+                    <div class="feature-title">Pisos de Mármol</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                    </div>
+                    <div class="feature-title">Seguridad 24/7</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2z"/></svg>
+                    </div>
+                    <div class="feature-title">Cocina Gourmet</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2 class="playfair">¿Interesado en un Proyecto Similar?</h2>
+        <p>Contáctenos para una consulta gratuita y descubra cómo podemos crear su hogar ideal</p>
+        <a href="contacto.html" class="btn-primary">Solicitar Información</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Constructora Elite</h3>
+                    <p>Especialistas en construcción residencial de lujo con más de 15 años de experiencia.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces</h3>
+                    <p><a href="index.html">Inicio</a></p>
+                    <p><a href="proyectos.html">Proyectos</a></p>
+                    <p><a href="servicios.html">Servicios</a></p>
+                    <p><a href="nosotros.html">Nosotros</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>+593 2 234-5678</p>
+                    <p>info@constructoraelite.com</p>
+                    <p>Quito, Ecuador</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Desarrollado por</h3>
+                    <p><a href="../../">AlmyWEB | Full Stack</a></p>
+                    <p>Tu Imagen Digital</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Constructora Elite. Todos los derechos reservados.</p>
+                <p>Desarrollado por <a href="../../">AlmyWEB</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

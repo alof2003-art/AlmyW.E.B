@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de Citas - MediCenter Plus | AlmyWEB</title>
+    <meta name="description" content="Sistema de calendario médico - Gestión de citas y horarios disponibles">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6; 
+            overflow-x: hidden;
+            background: #f8fafb;
+            color: #1e293b;
+        }
+        
+        :root {
+            --primary: #0ea5e9;
+            --secondary: #0284c7;
+            --accent: #e0f2fe;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --white: #ffffff;
+            --light-bg: #f8fafb;
+            --border: #e2e8f0;
+        }
+        
+        /* Medical Background */
+        .medical-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #f8fafb 0%, #e0f2fe 50%, #f8fafb 100%);
+        }
+        
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text);
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .nav-item {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-item.active,
+        .nav-item:hover {
+            color: var(--primary);
+        }
+        
+        .back-button {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 30px;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 40px;
+        }
+        
+        /* Calendar Section */
+        .calendar-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        
+        .calendar-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .calendar-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .calendar-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .calendar-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .month-navigation {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: var(--accent);
+            color: var(--primary);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .current-month {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text);
+            min-width: 200px;
+            text-align: center;
+        }
+        
+        .view-toggle {
+            display: flex;
+            background: var(--light-bg);
+            border-radius: 10px;
+            padding: 4px;
+        }
+        
+        .toggle-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            color: var(--text-light);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .toggle-btn.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Calendar Grid */
+        .calendar-grid {
+            padding: 30px;
+        }
+        
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .calendar-table th {
+            padding: 15px 10px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-light);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .calendar-table td {
+            padding: 0;
+            text-align: center;
+            vertical-align: top;
+            border: 1px solid #f1f5f9;
+        }
+        
+        .calendar-day {
+            width: 100%;
+            height: 90px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 10px 6px;
+        }
+        
+        .calendar-day:hover {
+            background: var(--accent);
+            box-shadow: inset 0 0 0 2px var(--primary);
+            transform: scale(1.05);
+            z-index: 10;
+        }
+        
+        .calendar-day.today {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+        }
+        
+        .calendar-day.today:hover {
+            box-shadow: inset 0 0 0 2px white, 0 6px 20px rgba(14, 165, 233, 0.5);
+        }
+        
+        .calendar-day.has-appointments {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 1px solid #fbbf24;
+        }
+        
+        .calendar-day.has-appointments:hover {
+            background: linear-gradient(135deg, #fde68a, #fbbf24);
+        }
+        
+        .calendar-day.selected {
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+        }
+        
+        .calendar-day.past-day {
+            opacity: 0.5;
+            background: #f8fafc;
+            cursor: not-allowed;
+        }
+        
+        .calendar-day.past-day:hover {
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .calendar-day.weekend {
+            background: #f8fafc;
+        }
+        
+        .day-number {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 6px;
+            transition: transform 0.3s ease;
+        }
+        
+        .calendar-day:hover .day-number {
+            transform: scale(1.1);
+        }
+        
+        .appointment-indicators {
+            display: flex;
+            gap: 3px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 4px;
+        }
+        
+        .appointment-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .appointment-indicator.confirmed {
+            background: var(--success);
+        }
+        
+        .appointment-indicator.pending {
+            background: var(--primary);
+        }
+        
+        .appointment-indicator.urgent {
+            background: var(--warning);
+            animation: pulse-indicator 2s infinite;
+        }
+        
+        .calendar-day:hover .appointment-indicator {
+            transform: scale(1.3);
+        }
+        
+        .appointment-count {
+            font-size: 10px;
+            background: var(--danger);
+            color: white;
+            border-radius: 12px;
+            padding: 2px 8px;
+            margin-top: 4px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+        }
+        
+        @keyframes pulse-indicator {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.2);
+            }
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* Quick Actions */
+        .quick-actions {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .quick-actions h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        
+        .action-btn {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            text-align: left;
+        }
+        
+        .btn-primary-action {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary-action:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary-action {
+            background: var(--light-bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        
+        .btn-secondary-action:hover {
+            background: var(--accent);
+            border-color: var(--primary);
+        }
+        
+        /* Today's Appointments */
+        .todays-appointments {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+        
+        .todays-appointments h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .appointment-item {
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            background: var(--light-bg);
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .appointment-item:hover {
+            background: var(--accent);
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.15);
+        }
+        
+        .appointment-item:hover .appointment-actions {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .appointment-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+        }
+        
+        .appointment-details {
+            flex: 1;
+        }
+        
+        .appointment-time {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+        
+        .appointment-patient {
+            font-weight: 600;
+            color: var(--text);
+            margin: 4px 0;
+            font-size: 15px;
+        }
+        
+        .appointment-type {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 6px;
+        }
+        
+        .appointment-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+        
+        .badge-confirmed {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .badge-pending {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .badge-urgent {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .appointment-actions {
+            display: flex;
+            gap: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .action-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .action-icon.edit {
+            background: #dbeafe;
+            color: var(--primary);
+        }
+        
+        .action-icon.edit:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .action-icon.call {
+            background: #d1fae5;
+            color: var(--success);
+        }
+        
+        .action-icon.call:hover {
+            background: var(--success);
+            color: white;
+        }
+        
+        .action-icon.cancel {
+            background: #fee2e2;
+            color: var(--danger);
+        }
+        
+        .action-icon.cancel:hover {
+            background: var(--danger);
+            color: white;
+        }
+        
+        /* Statistics */
+        .statistics {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .statistics h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: var(--light-bg);
+            border-radius: 12px;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .sidebar {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+            }
+            
+            .todays-appointments {
+                position: relative;
+                top: 0;
+                max-height: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container { padding: 15px 20px; }
+            .main-container { padding: 20px; }
+            .calendar-controls { 
+                flex-direction: column; 
+                gap: 20px; 
+                align-items: stretch;
+            }
+            .month-navigation { justify-content: center; }
+            .calendar-day { height: 70px; }
+        }
+        
+        /* Appointment Details Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-overlay.show {
+            display: flex;
+        }
+        
+        .appointment-modal {
+            background: white;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .modal-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .modal-appointment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .modal-appointment-card {
+            padding: 20px;
+            border-radius: 12px;
+            background: var(--light-bg);
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-appointment-card:hover {
+            background: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .modal-appointment-card.cardiologia {
+            border-left-color: #ef4444;
+        }
+        
+        .modal-appointment-card.neurologia {
+            border-left-color: #8b5cf6;
+        }
+        
+        .modal-appointment-card.traumatologia {
+            border-left-color: #f59e0b;
+        }
+        
+        .modal-appointment-card.oftalmologia {
+            border-left-color: #06b6d4;
+        }
+        
+        .modal-appointment-card.medicina-interna {
+            border-left-color: #10b981;
+        }
+        
+        .modal-appointment-card.pediatria {
+            border-left-color: #ec4899;
+        }
+        
+        .modal-appointment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .modal-appointment-time {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .modal-appointment-patient {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+        
+        .modal-appointment-type {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        .modal-footer {
+            padding: 20px 30px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .modal-btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .modal-btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Medical Background -->
+    <div class="medical-bg"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">M+</div>
+                <div>
+                    <div class="logo-text">MediCenter Plus</div>
+                </div>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">Inicio</a>
+                <a href="servicios.html" class="nav-item">Servicios</a>
+                <a href="especialistas.html" class="nav-item">Especialistas</a>
+                <a href="contacto.html" class="nav-item">Contacto</a>
+                <a href="index.html" class="back-button">← Volver</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Calendar Section -->
+        <div class="calendar-section">
+            <div class="calendar-header">
+                <h1 class="calendar-title">Sistema de Citas Médicas</h1>
+                <p class="calendar-subtitle">Gestión profesional de horarios y consultas</p>
+            </div>
+            
+            <div class="calendar-controls">
+                <div class="month-navigation">
+                    <button class="nav-btn" onclick="previousMonth()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                        </svg>
+                    </button>
+                    <div class="current-month" id="currentMonth">Febrero 2026</div>
+                    <button class="nav-btn" onclick="nextMonth()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="view-toggle">
+                    <button class="toggle-btn active" onclick="setView('month')">Mes</button>
+                    <button class="toggle-btn" onclick="setView('week')">Semana</button>
+                    <button class="toggle-btn" onclick="setView('day')">Día</button>
+                </div>
+            </div>
+            
+            <div class="calendar-grid">
+                <table class="calendar-table">
+                    <thead>
+                        <tr>
+                            <th>Dom</th>
+                            <th>Lun</th>
+                            <th>Mar</th>
+                            <th>Mié</th>
+                            <th>Jue</th>
+                            <th>Vie</th>
+                            <th>Sáb</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calendarBody">
+                        <!-- Calendar days will be generated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h3>Acciones Rápidas</h3>
+                <a href="agendar-cita.html" class="action-btn btn-primary-action">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    </svg>
+                    Nueva Cita
+                </a>
+                <button class="action-btn btn-secondary-action" onclick="showTodayAppointments()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    Ver Citas de Hoy
+                </button>
+                <button class="action-btn btn-secondary-action" onclick="exportCalendar()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 2 2h8c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/>
+                    </svg>
+                    Exportar Calendario
+                </button>
+            </div>
+            
+            <!-- Today's Appointments -->
+            <div class="todays-appointments">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    Citas de Hoy
+                </h3>
+                
+                <div class="appointment-item">
+                    <div class="appointment-avatar">MG</div>
+                    <div class="appointment-details">
+                        <div class="appointment-time">09:00 AM</div>
+                        <div class="appointment-patient">María González</div>
+                        <div class="appointment-type">Cardiología - Dr. Ramírez</div>
+                        <span class="appointment-badge badge-confirmed">Confirmada</span>
+                    </div>
+                    <div class="appointment-actions">
+                        <div class="action-icon edit" title="Editar">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                            </svg>
+                        </div>
+                        <div class="action-icon call" title="Llamar">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                        </div>
+                        <div class="action-icon cancel" title="Cancelar">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="appointment-item">
+                    <div class="appointment-avatar">CM</div>
+                    <div class="appointment-details">
+                        <div class="appointment-time">10:30 AM</div>
+                        <div class="appointment-patient">Carlos Mendoza</div>
+                        <div class="appointment-type">Neurología - Dr. López</div>
+                        <span class="appointment-badge badge-confirmed">Confirmada</span>
+                    </div>
+                    <div class="appointment-actions">
+                        <div class="action-icon edit" title="Editar">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                            </svg>
+                        </div>
+                        <div class="action-icon call" title="Llamar">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                        </div>
+                        <div class="action-icon cancel" title="Cancelar">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="appointment-item">
+                    <div class="appointment-avatar">AR</div>
+                    <div class="appointment-details">
+                        <div class="appointment-time">02:00 PM</div>
+                        <div class="appointment-patient">Ana Rodríguez</div>
+                        <div class="appointment-type">Oftalmología - Dra. Silva</div>
+                        <span class="appointment-badge badge-pending">En Espera</span>
+                    </div>
+                    <div class="appointment-actions">
+                        <div class="action-icon edit" title="Editar">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                            </svg>
+                        </div>
+                        <div class="action-icon call" title="Llamar">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                        </div>
+                        <div class="action-icon cancel" title="Cancelar">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="appointment-item">
+                    <div class="appointment-avatar">LH</div>
+                    <div class="appointment-details">
+                        <div class="appointment-time">04:30 PM</div>
+                        <div class="appointment-patient">Luis Herrera</div>
+                        <div class="appointment-type">Traumatología - Dr. Castro</div>
+                        <span class="appointment-badge badge-urgent">Urgente</span>
+                    </div>
+                    <div class="appointment-actions">
+                        <div class="action-icon edit" title="Editar">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                            </svg>
+                        </div>
+                        <div class="action-icon call" title="Llamar">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                        </div>
+                        <div class="action-icon cancel" title="Cancelar">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Statistics -->
+            <div class="statistics">
+                <h3>Estadísticas del Mes</h3>
+                <div class="stat-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">247</div>
+                        <div class="stat-label">Citas Totales</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">18</div>
+                        <div class="stat-label">Citas Hoy</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Asistencia</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Especialistas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Appointment Details Modal -->
+    <div class="modal-overlay" id="appointmentModal">
+        <div class="appointment-modal">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeAppointmentModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </button>
+                <h2 class="modal-title" id="modalTitle">Citas del Día</h2>
+                <p class="modal-subtitle" id="modalSubtitle">Detalles de las consultas programadas</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-appointment-list" id="modalAppointmentList">
+                    <!-- Appointments will be populated by JavaScript -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-primary" onclick="closeAppointmentModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Calendar functionality
+        let currentDate = new Date();
+        let selectedDate = null;
+        
+        // Sample appointment data with status
+        const appointments = {
+            '2026-02-05': [
+                { time: '09:00', patient: 'María González', type: 'Cardiología', status: 'confirmed', specialty: 'cardiologia' },
+                { time: '10:30', patient: 'Carlos Mendoza', type: 'Neurología', status: 'confirmed', specialty: 'neurologia' },
+                { time: '14:00', patient: 'Ana Rodríguez', type: 'Oftalmología', status: 'pending', specialty: 'oftalmologia' },
+                { time: '16:30', patient: 'Luis Herrera', type: 'Traumatología', status: 'urgent', specialty: 'traumatologia' }
+            ],
+            '2026-02-06': [
+                { time: '08:30', patient: 'Elena Vargas', type: 'Pediatría', status: 'confirmed', specialty: 'pediatria' },
+                { time: '11:00', patient: 'Roberto Silva', type: 'Medicina Interna', status: 'pending', specialty: 'medicina-interna' }
+            ],
+            '2026-02-07': [
+                { time: '09:30', patient: 'Patricia Morales', type: 'Cardiología', status: 'confirmed', specialty: 'cardiologia' },
+                { time: '15:00', patient: 'Diego Ruiz', type: 'Traumatología', status: 'urgent', specialty: 'traumatologia' },
+                { time: '17:00', patient: 'Carmen López', type: 'Neurología', status: 'confirmed', specialty: 'neurologia' }
+            ],
+            '2026-02-10': [
+                { time: '10:00', patient: 'Fernando Castro', type: 'Oftalmología', status: 'pending', specialty: 'oftalmologia' },
+                { time: '13:30', patient: 'Isabel Jiménez', type: 'Medicina Interna', status: 'confirmed', specialty: 'medicina-interna' }
+            ],
+            '2026-02-12': [
+                { time: '08:00', patient: 'Miguel Ángel Torres', type: 'Cardiología', status: 'confirmed', specialty: 'cardiologia' },
+                { time: '11:30', patient: 'Sofía Delgado', type: 'Pediatría', status: 'pending', specialty: 'pediatria' },
+                { time: '14:30', patient: 'Andrés Vega', type: 'Traumatología', status: 'urgent', specialty: 'traumatologia' }
+            ],
+            '2026-02-14': [
+                { time: '09:15', patient: 'Valentina Rojas', type: 'Neurología', status: 'confirmed', specialty: 'neurologia' },
+                { time: '16:00', patient: 'Sebastián Ortiz', type: 'Oftalmología', status: 'pending', specialty: 'oftalmologia' }
+            ]
+        };
+        
+        function generateCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            
+            // Update month display
+            const monthNames = [
+                'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+            ];
+            document.getElementById('currentMonth').textContent = `${monthNames[month]} ${year}`;
+            
+            // Get first day of month and number of days
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const today = new Date();
+            
+            let html = '';
+            let date = 1;
+            
+            // Generate calendar rows
+            for (let week = 0; week < 6; week++) {
+                html += '<tr>';
+                
+                for (let day = 0; day < 7; day++) {
+                    if (week === 0 && day < firstDay) {
+                        html += '<td></td>';
+                    } else if (date > daysInMonth) {
+                        html += '<td></td>';
+                    } else {
+                        const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
+                        const dayAppointments = appointments[dateStr] || [];
+                        const isToday = date === today.getDate() && month === today.getMonth() && year === today.getFullYear();
+                        const isPast = new Date(year, month, date) < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                        const isWeekend = day === 0 || day === 6;
+                        const hasAppointments = dayAppointments.length > 0;
+                        
+                        let classes = 'calendar-day';
+                        if (isToday) classes += ' today';
+                        if (hasAppointments) classes += ' has-appointments';
+                        if (selectedDate === dateStr) classes += ' selected';
+                        if (isPast) classes += ' past-day';
+                        if (isWeekend) classes += ' weekend';
+                        
+                        html += `<td>
+                            <button class="${classes}" onclick="selectDate('${dateStr}')" ${isPast ? 'disabled' : ''}>
+                                <span class="day-number">${date}</span>`;
+                        
+                        // Add appointment indicators with status colors
+                        if (hasAppointments) {
+                            html += '<div class="appointment-indicators">';
+                            const visibleIndicators = Math.min(dayAppointments.length, 3);
+                            for (let i = 0; i < visibleIndicators; i++) {
+                                const status = dayAppointments[i].status;
+                                html += `<div class="appointment-indicator ${status}"></div>`;
+                            }
+                            html += '</div>';
+                            
+                            if (dayAppointments.length > 3) {
+                                html += `<div class="appointment-count">+${dayAppointments.length - 3}</div>`;
+                            }
+                        }
+                        
+                        html += '</button></td>';
+                        date++;
+                    }
+                }
+                
+                html += '</tr>';
+                
+                if (date > daysInMonth) break;
+            }
+            
+            document.getElementById('calendarBody').innerHTML = html;
+        }
+        
+        function selectDate(dateStr) {
+            selectedDate = dateStr;
+            generateCalendar();
+            
+            // Show appointments for selected date
+            const dayAppointments = appointments[dateStr] || [];
+            if (dayAppointments.length > 0) {
+                showAppointmentDetails(dateStr, dayAppointments);
+            }
+        }
+        
+        function showAppointmentDetails(date, appointmentList) {
+            const dateObj = new Date(date);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = dateObj.toLocaleDateString('es-ES', options);
+            
+            // Update modal title
+            document.getElementById('modalTitle').textContent = `Citas para ${formattedDate}`;
+            document.getElementById('modalSubtitle').textContent = `${appointmentList.length} consulta${appointmentList.length !== 1 ? 's' : ''} programada${appointmentList.length !== 1 ? 's' : ''}`;
+            
+            // Generate appointment cards
+            let html = '';
+            appointmentList.forEach(apt => {
+                const statusBadge = apt.status === 'confirmed' ? 'Confirmada' : 
+                                   apt.status === 'pending' ? 'En Espera' : 'Urgente';
+                const badgeClass = apt.status === 'confirmed' ? 'badge-confirmed' : 
+                                  apt.status === 'pending' ? 'badge-pending' : 'badge-urgent';
+                
+                html += `
+                    <div class="modal-appointment-card ${apt.specialty}">
+                        <div class="modal-appointment-header">
+                            <div class="modal-appointment-time">${apt.time}</div>
+                            <span class="appointment-badge ${badgeClass}">${statusBadge}</span>
+                        </div>
+                        <div class="modal-appointment-patient">${apt.patient}</div>
+                        <div class="modal-appointment-type">${apt.type}</div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('modalAppointmentList').innerHTML = html;
+            
+            // Show modal
+            document.getElementById('appointmentModal').classList.add('show');
+        }
+        
+        function closeAppointmentModal() {
+            document.getElementById('appointmentModal').classList.remove('show');
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('appointmentModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAppointmentModal();
+            }
+        });
+        
+        function previousMonth() {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            generateCalendar();
+        }
+        
+        function nextMonth() {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            generateCalendar();
+        }
+        
+        function setView(view) {
+            // Update active toggle button
+            document.querySelectorAll('.toggle-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Here you would implement different view logic
+            console.log(`Switching to ${view} view`);
+        }
+        
+        function showTodayAppointments() {
+            const today = new Date();
+            const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+            const todayAppointments = appointments[todayStr] || [];
+            
+            if (todayAppointments.length > 0) {
+                showAppointmentDetails(todayStr, todayAppointments);
+            } else {
+                // Show modal with no appointments message
+                document.getElementById('modalTitle').textContent = 'Citas de Hoy';
+                document.getElementById('modalSubtitle').textContent = 'No hay citas programadas';
+                document.getElementById('modalAppointmentList').innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: var(--text-light);">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor" style="opacity: 0.3; margin-bottom: 20px;">
+                            <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                        </svg>
+                        <p style="font-size: 16px;">No hay citas programadas para hoy</p>
+                    </div>
+                `;
+                document.getElementById('appointmentModal').classList.add('show');
+            }
+        }
+        
+        function exportCalendar() {
+            // Show modal with export options
+            document.getElementById('modalTitle').textContent = 'Exportar Calendario';
+            document.getElementById('modalSubtitle').textContent = 'Seleccione el formato de exportación';
+            document.getElementById('modalAppointmentList').innerHTML = `
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <button class="modal-btn modal-btn-primary" style="width: 100%; padding: 20px; display: flex; align-items: center; gap: 15px; justify-content: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                        </svg>
+                        Exportar como PDF
+                    </button>
+                    <button class="modal-btn modal-btn-primary" style="width: 100%; padding: 20px; display: flex; align-items: center; gap: 15px; justify-content: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                        </svg>
+                        Exportar como Excel
+                    </button>
+                    <button class="modal-btn modal-btn-primary" style="width: 100%; padding: 20px; display: flex; align-items: center; gap: 15px; justify-content: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/>
+                        </svg>
+                        Sincronizar con Google Calendar
+                    </button>
+                </div>
+            `;
+            document.getElementById('appointmentModal').classList.add('show');
+        }
+        
+        // Initialize calendar
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCalendar();
+        });
+        
+        // Add smooth animations
+        document.querySelectorAll('.calendar-day').forEach(day => {
+            day.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            
+            day.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

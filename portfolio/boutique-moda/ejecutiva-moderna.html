@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejecutiva Moderna - Bella Moda | AlmyWEB</title>
+    <meta name="description" content="Colección Ejecutiva Moderna - Looks profesionales que combinan elegancia y funcionalidad.">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700;800;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Source Sans Pro', sans-serif; 
+            line-height: 1.6; 
+            overflow-x: hidden;
+            background: #faf8f5;
+            color: #2c2c2c;
+        }
+        .playfair { font-family: 'Playfair Display', serif; }
+        
+        :root {
+            --primary: #d4a574;
+            --secondary: #8b6f47;
+            --accent: #f4f1ec;
+            --text: #2c2c2c;
+            --text-light: #6b6b6b;
+            --white: #ffffff;
+            --executive: #2c3e50;
+            --executive-light: #34495e;
+        }
+        
+        /* Loading Animation */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        
+        .loading-screen.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loading-logo {
+            font-size: 48px;
+            font-weight: 300;
+            color: var(--primary);
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(212, 165, 116, 0.2);
+            border-top: 2px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        .loading-text {
+            color: #bdc3c7;
+            font-size: 16px;
+            letter-spacing: 1px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(44, 62, 80, 0.2);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: 300;
+            color: var(--executive);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .nav-item {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: var(--executive);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-item:hover::after { width: 100%; }
+        .nav-item:hover { color: var(--executive); }
+        
+        .back-button {
+            padding: 8px 20px;
+            background: transparent;
+            border: 2px solid var(--executive);
+            color: var(--executive);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            font-size: 12px;
+        }
+        
+        .back-button:hover {
+            background: var(--executive);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(52, 73, 94, 0.8)), url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            position: relative;
+            margin-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-title {
+            font-size: clamp(40px, 5vw, 60px);
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+        
+        .hero-subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Products Grid */
+        .products {
+            padding: 100px 30px;
+            background: var(--white);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-title {
+            font-size: 48px;
+            font-weight: 300;
+            color: var(--text);
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .products-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .product-card {
+            background: var(--white);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            overflow: hidden;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(44, 62, 80, 0.3);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(44, 62, 80, 0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .product-card:hover .product-overlay { opacity: 1; }
+        
+        .product-button {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 12px 30px;
+            border: 2px solid white;
+            transition: all 0.3s ease;
+        }
+        
+        .product-button:hover {
+            background: white;
+            color: var(--executive);
+        }
+        
+        .product-price {
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .product-info {
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .product-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+        
+        .product-description {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--executive);
+            color: white;
+            padding: 60px 30px 30px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-content p {
+            color: #bdc3c7;
+            margin-bottom: 20px;
+        }
+        
+        .footer-content a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container { padding: 0 20px; }
+            .hero-content { padding: 0 20px; }
+            .products { padding: 60px 20px; }
+            .nav-menu { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo playfair">EJECUTIVA MODERNA</div>
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Cargando colección...</div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo playfair">BELLA MODA</a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">Inicio</a>
+                <a href="index.html#collections" class="nav-item">Colecciones</a>
+                <a href="index.html#about" class="nav-item">Nosotros</a>
+                <a href="index.html#contact" class="nav-item">Contacto</a>
+                <a href="index.html" class="back-button">← Volver</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title playfair animate__animated animate__fadeInUp">
+                EJECUTIVA<br>
+                <span style="font-style: italic;">MODERNA</span>
+            </h1>
+            <p class="hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+                Looks profesionales que combinan elegancia y funcionalidad. 
+                Perfectos para la mujer contemporánea que conquista el mundo empresarial.
+            </p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="section-header">
+            <h2 class="section-title playfair animate__animated animate__fadeInUp">Poder y Elegancia</h2>
+            <p class="section-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+                Piezas diseñadas para la mujer que lidera con confianza y estilo impecable
+            </p>
+        </div>
+        
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card animate__animated animate__fadeInUp">
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="product-overlay">
+                        <div class="product-price">$149.99</div>
+                        <a href="#" class="product-button">Ver Detalles</a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name playfair">Traje Ejecutivo Negro</h3>
+                    <p class="product-description">
+                        Traje de dos piezas en corte clásico, perfecto para reuniones importantes y presentaciones.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="product-overlay">
+                        <div class="product-price">$89.99</div>
+                        <a href="#" class="product-button">Ver Detalles</a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name playfair">Blusa Ejecutiva</h3>
+                    <p class="product-description">
+                        Blusa de seda con corte impecable, ideal para combinar con trajes o faldas profesionales.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card animate__animated animate__fadeInUp animate__delay-2s">
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="product-overlay">
+                        <div class="product-price">$125.99</div>
+                        <a href="#" class="product-button">Ver Detalles</a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name playfair">Vestido Corporativo</h3>
+                    <p class="product-description">
+                        Vestido midi con líneas limpias y corte estructurado, perfecto para el ambiente profesional.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card animate__animated animate__fadeInUp animate__delay-3s">
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1566479179817-c0b5b4b4b1e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="product-overlay">
+                        <div class="product-price">$95.99</div>
+                        <a href="#" class="product-button">Ver Detalles</a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name playfair">Falda Lápiz Premium</h3>
+                    <p class="product-description">
+                        Falda lápiz de talle alto en tela premium, esencial en el guardarropa ejecutivo.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card animate__animated animate__fadeInUp animate__delay-4s">
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1544957992-20514f595d6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="product-overlay">
+                        <div class="product-price">$110.99</div>
+                        <a href="#" class="product-button">Ver Detalles</a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name playfair">Blazer Estructurado</h3>
+                    <p class="product-description">
+                        Blazer con corte impecable y detalles sofisticados, versátil para múltiples ocasiones.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card animate__animated animate__fadeInUp animate__delay-5s">
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="product-overlay">
+                        <div class="product-price">$75.99</div>
+                        <a href="#" class="product-button">Ver Detalles</a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name playfair">Pantalón Ejecutivo</h3>
+                    <p class="product-description">
+                        Pantalón de corte recto con tela de alta calidad, cómodo y elegante para largas jornadas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p>© 2026 Bella Moda - Colección Ejecutiva Moderna</p>
+                <p>Desarrollado por <a href="../../">AlmyWEB</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Loading screen animation
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            setTimeout(() => {
+                loadingScreen.classList.add('fade-out');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 800);
+            }, 1500);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.borderBottom = '1px solid rgba(44, 62, 80, 0.3)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.borderBottom = '1px solid rgba(44, 62, 80, 0.2)';
+            }
+        });
+
+        // Product cards hover effects
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px)';
+                this.style.boxShadow = '0 25px 80px rgba(44, 62, 80, 0.4)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 10px 40px rgba(0,0,0,0.1)';
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.animate__animated').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

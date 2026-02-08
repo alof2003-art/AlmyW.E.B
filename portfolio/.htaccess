@@ -1,0 +1,5 @@
+DirectoryIndex index.html
+Options +FollowSymLinks -Indexes
+AddType text/html .html
+AddType text/css .css
+AddType application/javascript .js

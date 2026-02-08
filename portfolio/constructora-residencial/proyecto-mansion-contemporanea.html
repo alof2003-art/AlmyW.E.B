@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mansión Contemporánea Tumbaco - Constructora Elite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; line-height: 1.6; background: #ffffff; color: #2c3e50; }
+        .playfair { font-family: 'Playfair Display', serif; }
+        :root { --primary: #c9a96e; --secondary: #8b7355; --dark: #2c3e50; --accent: #f8f9fa; --text-light: #7f8c8d; }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); padding: 20px 0; box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; }
+        .logo { font-size: 28px; font-weight: 700; color: var(--primary); text-decoration: none; }
+        .nav-links { display: flex; gap: 40px; align-items: center; }
+        .nav-link { color: var(--dark); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-link:hover { color: var(--primary); }
+        .nav-cta { background: var(--primary); color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; }
+        .project-hero { height: 70vh; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover; display: flex; align-items: flex-end; padding: 100px 40px 60px; margin-top: 80px; }
+        .hero-content { max-width: 1400px; margin: 0 auto; color: white; }
+        .project-category { color: var(--primary); font-size: 14px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 15px; }
+        .project-title { font-size: clamp(40px, 5vw, 60px); font-weight: 300; margin-bottom: 20px; }
+        .project-subtitle { font-size: 20px; opacity: 0.9; }
+        .project-info { padding: 80px 40px; }
+        .info-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr; gap: 80px; }
+        .info-content h2 { font-size: 36px; font-weight: 300; margin-bottom: 30px; }
+        .info-content p { font-size: 18px; color: var(--text-light); margin-bottom: 25px; line-height: 1.8; }
+        .specs-grid { display: grid; gap: 25px; }
+        .spec-item { background: var(--accent); padding: 25px; border-radius: 8px; border-left: 4px solid var(--primary); }
+        .spec-label { font-size: 12px; text-transform: uppercase; color: var(--text-light); margin-bottom: 8px; }
+        .spec-value { font-size: 20px; font-weight: 600; }
+        .gallery-section { padding: 80px 40px; background: var(--accent); }
+        .section-title { font-size: 36px; font-weight: 300; margin-bottom: 50px; text-align: center; }
+        .gallery-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .gallery-item { height: 400px; background-size: cover; background-position: center; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .gallery-item:first-child { grid-column: span 2; height: 500px; }
+        .cta-section { padding: 100px 40px; background: var(--dark); color: white; text-align: center; }
+        .cta-section h2 { font-size: 48px; font-weight: 300; margin-bottom: 30px; }
+        .btn-primary { background: var(--primary); color: white; padding: 18px 40px; border-radius: 6px; text-decoration: none; font-weight: 600; text-transform: uppercase; display: inline-block; }
+        .footer { background: #1a252f; color: white; padding: 60px 40px 30px; }
+        .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
+        .footer-section h3 { color: var(--primary); margin-bottom: 20px; }
+        .footer-section a { color: #bdc3c7; text-decoration: none; }
+        .footer-bottom { max-width: 1400px; margin: 0 auto; border-top: 1px solid #34495e; padding-top: 30px; display: flex; justify-content: space-between; color: #95a5a6; }
+        @media (max-width: 768px) { .info-container, .gallery-grid { grid-template-columns: 1fr; } .gallery-item:first-child { grid-column: span 1; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">CONSTRUCTORA ELITE</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="proyectos.html" class="nav-link">Proyectos</a>
+                <a href="servicios.html" class="nav-link">Servicios</a>
+                <a href="nosotros.html" class="nav-link">Nosotros</a>
+                <a href="contacto.html" class="nav-cta">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="project-hero">
+        <div class="hero-content">
+            <div class="project-category">Residencial Premium</div>
+            <h1 class="project-title playfair">Mansión Contemporánea Tumbaco</h1>
+            <p class="project-subtitle">Arquitectura de vanguardia con tecnología domótica y espacios de lujo</p>
+        </div>
+    </section>
+
+    <section class="project-info">
+        <div class="info-container">
+            <div class="info-content">
+                <h2 class="playfair">Vanguardia Arquitectónica</h2>
+                <p>La Mansión Contemporánea Tumbaco representa el máximo nivel de sofisticación en construcción residencial. Con 600m² de espacios meticulosamente diseñados, esta residencia incorpora las últimas tendencias en arquitectura y tecnología.</p>
+                <p>El proyecto incluye un gimnasio privado completamente equipado, spa con sauna y jacuzzi, cava de vinos climatizada, y un sistema domótico integral que controla iluminación, climatización, seguridad y entretenimiento desde cualquier dispositivo.</p>
+                <p>Los acabados son de nivel internacional: pisos de mármol Calacatta, carpintería italiana, cocina Bulthaup, y baños con grifería Hansgrohe. Cada detalle fue seleccionado para crear una experiencia de vida incomparable.</p>
+            </div>
+            <div class="specs-grid">
+                <div class="spec-item"><div class="spec-label">Área Construida</div><div class="spec-value">600 m²</div></div>
+                <div class="spec-item"><div class="spec-label">Habitaciones</div><div class="spec-value">5 Suites</div></div>
+                <div class="spec-item"><div class="spec-label">Baños</div><div class="spec-value">6 Completos</div></div>
+                <div class="spec-item"><div class="spec-label">Estacionamientos</div><div class="spec-value">4 Cubiertos</div></div>
+                <div class="spec-item"><div class="spec-label">Ubicación</div><div class="spec-value">Tumbaco</div></div>
+                <div class="spec-item"><div class="spec-label">Estado</div><div class="spec-value">En Construcción</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <div class="section-title playfair">Galería del Proyecto</div>
+        <div class="gallery-grid">
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')"></div>
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2 class="playfair">¿Interesado en un Proyecto de Lujo?</h2>
+        <p>Contáctenos para conocer más sobre nuestros proyectos premium</p>
+        <a href="contacto.html" class="btn-primary">Solicitar Información</a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section"><h3>Constructora Elite</h3><p>Especialistas en construcción residencial de lujo.</p></div>
+            <div class="footer-section"><h3>Enlaces</h3><p><a href="index.html">Inicio</a></p><p><a href="proyectos.html">Proyectos</a></p></div>
+            <div class="footer-section"><h3>Contacto</h3><p>+593 2 234-5678</p><p>info@constructoraelite.com</p></div>
+            <div class="footer-section"><h3>Desarrollado por</h3><p><a href="../../">AlmyWEB</a></p></div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Constructora Elite</p>
+            <p>Desarrollado por <a href="../../">AlmyWEB</a></p>
+        </div>
+    </footer>
+</body>
+</html>

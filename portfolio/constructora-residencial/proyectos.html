@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos - Constructora Residencial Elite | AlmyWEB</title>
+    <meta name="description" content="Descubre nuestros proyectos residenciales de lujo. Construcciones que combinan diseño, calidad y funcionalidad.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            line-height: 1.6; 
+            overflow-x: hidden;
+            background: #ffffff;
+            color: #2c3e50;
+        }
+        .playfair { font-family: 'Playfair Display', serif; }
+        
+        :root {
+            --primary: #c9a96e;
+            --secondary: #8b7355;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --accent: #f8f9fa;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: var(--primary); }
+        .nav-link.active { color: var(--primary); }
+        
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-cta:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        /* Page Header */
+        .page-header {
+            padding: 180px 40px 100px;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: clamp(40px, 5vw, 60px);
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Filter Section */
+        .filter-section {
+            padding: 60px 40px;
+            background: var(--white);
+            border-bottom: 1px solid var(--light);
+        }
+        
+        .filter-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 12px 30px;
+            background: transparent;
+            border: 2px solid var(--light);
+            border-radius: 50px;
+            color: var(--text);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+        
+        /* Projects Grid */
+        .projects-section {
+            padding: 80px 40px 120px;
+            background: var(--accent);
+        }
+        
+        .projects-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 40px;
+        }
+        
+        .project-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+        .project-card:nth-child(5) { animation-delay: 0.5s; }
+        .project-card:nth-child(6) { animation-delay: 0.6s; }
+        
+        .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .project-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.7));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+        }
+        
+        .project-card:hover .project-overlay { opacity: 1; }
+        
+        .project-overlay-content {
+            color: white;
+        }
+        
+        .project-overlay-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .project-overlay-text {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .project-content {
+            padding: 40px;
+        }
+        
+        .project-category {
+            color: var(--primary);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .project-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 15px;
+        }
+        
+        .project-description {
+            color: var(--text-light);
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .project-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--light);
+        }
+        
+        .project-specs {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        .project-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .project-link:hover {
+            color: var(--secondary);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1a252f;
+            color: white;
+            padding: 60px 40px 30px;
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #95a5a6;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container { padding: 0 20px; }
+            .projects-grid { 
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .filter-container { gap: 10px; }
+            .filter-btn { padding: 10px 20px; font-size: 14px; }
+            .footer-bottom { 
+                flex-direction: column; 
+                gap: 20px; 
+                text-align: center; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">CONSTRUCTORA ELITE</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="proyectos.html" class="nav-link active">Proyectos</a>
+                <a href="servicios.html" class="nav-link">Servicios</a>
+                <a href="nosotros.html" class="nav-link">Nosotros</a>
+                <a href="contacto.html" class="nav-cta">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1 class="playfair">Nuestros Proyectos</h1>
+        <p>Cada construcción es una obra maestra que refleja nuestro compromiso con la excelencia, el diseño y la calidad</p>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="premium">Premium</button>
+            <button class="filter-btn" data-filter="familiar">Familiar</button>
+            <button class="filter-btn" data-filter="desarrollo">Desarrollos</button>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects-section">
+        <div class="projects-grid">
+            <div class="project-card" data-category="premium">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    <div class="project-badge">Completado</div>
+                    <div class="project-overlay">
+                        <div class="project-overlay-content">
+                            <div class="project-overlay-title">Villa Moderna</div>
+                            <div class="project-overlay-text">Residencia de lujo con diseño contemporáneo</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Residencial Premium</div>
+                    <h3 class="project-title">Villa Moderna Los Ceibos</h3>
+                    <p class="project-description">Residencia de 450m² con acabados de lujo, piscina infinita y jardines paisajísticos en exclusivo sector residencial.</p>
+                    <div class="project-details">
+                        <div class="project-specs">450m² • 4 habitaciones</div>
+                        <a href="proyecto-villa-moderna.html" class="project-link">Ver detalles →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="familiar">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    <div class="project-badge">Completado</div>
+                    <div class="project-overlay">
+                        <div class="project-overlay-content">
+                            <div class="project-overlay-title">Casa Familiar</div>
+                            <div class="project-overlay-text">Hogar acogedor con espacios amplios</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Residencial Familiar</div>
+                    <h3 class="project-title">Casa Familiar Cumbayá</h3>
+                    <p class="project-description">Vivienda de 320m² diseñada para familias, con amplios espacios sociales y áreas verdes privadas.</p>
+                    <div class="project-details">
+                        <div class="project-specs">320m² • 3 habitaciones</div>
+                        <a href="proyecto-casa-familiar.html" class="project-link">Ver detalles →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="desarrollo">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1600607687644-c7171b42498b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    <div class="project-badge">Completado</div>
+                    <div class="project-overlay">
+                        <div class="project-overlay-content">
+                            <div class="project-overlay-title">Conjunto Residencial</div>
+                            <div class="project-overlay-text">Desarrollo habitacional exclusivo</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Desarrollo Inmobiliario</div>
+                    <h3 class="project-title">Conjunto Residencial Miravalle</h3>
+                    <p class="project-description">Desarrollo de 24 casas con áreas comunales, seguridad 24/7 y acabados de primera calidad.</p>
+                    <div class="project-details">
+                        <div class="project-specs">24 unidades • Desde 280m²</div>
+                        <a href="proyecto-conjunto-miravalle.html" class="project-link">Ver detalles →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="premium">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    <div class="project-badge">En Construcción</div>
+                    <div class="project-overlay">
+                        <div class="project-overlay-content">
+                            <div class="project-overlay-title">Mansión Contemporánea</div>
+                            <div class="project-overlay-text">Arquitectura de vanguardia</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Residencial Premium</div>
+                    <h3 class="project-title">Mansión Contemporánea Tumbaco</h3>
+                    <p class="project-description">Residencia de 600m² con tecnología domótica, gimnasio privado y spa. Diseño arquitectónico de vanguardia.</p>
+                    <div class="project-details">
+                        <div class="project-specs">600m² • 5 habitaciones</div>
+                        <a href="proyecto-mansion-contemporanea.html" class="project-link">Ver detalles →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="familiar">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    <div class="project-badge">Completado</div>
+                    <div class="project-overlay">
+                        <div class="project-overlay-content">
+                            <div class="project-overlay-title">Casa Tradicional</div>
+                            <div class="project-overlay-text">Elegancia clásica</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Residencial Familiar</div>
+                    <h3 class="project-title">Casa Tradicional San Rafael</h3>
+                    <p class="project-description">Vivienda de 380m² con estilo tradicional ecuatoriano, amplios jardines y acabados en madera noble.</p>
+                    <div class="project-details">
+                        <div class="project-specs">380m² • 4 habitaciones</div>
+                        <a href="proyecto-casa-tradicional.html" class="project-link">Ver detalles →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="desarrollo">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    <div class="project-badge">En Planificación</div>
+                    <div class="project-overlay">
+                        <div class="project-overlay-content">
+                            <div class="project-overlay-title">Urbanización Privada</div>
+                            <div class="project-overlay-text">Comunidad exclusiva</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Desarrollo Inmobiliario</div>
+                    <h3 class="project-title">Urbanización Privada Valle Verde</h3>
+                    <p class="project-description">Desarrollo de 40 viviendas con club house, canchas deportivas y áreas verdes comunitarias.</p>
+                    <div class="project-details">
+                        <div class="project-specs">40 unidades • Desde 250m²</div>
+                        <a href="proyecto-urbanizacion-valle-verde.html" class="project-link">Ver detalles →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Constructora Elite</h3>
+                    <p>Especialistas en construcción residencial de lujo con más de 15 años de experiencia en el mercado ecuatoriano.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces</h3>
+                    <p><a href="index.html">Inicio</a></p>
+                    <p><a href="proyectos.html">Proyectos</a></p>
+                    <p><a href="servicios.html">Servicios</a></p>
+                    <p><a href="nosotros.html">Nosotros</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>+593 2 234-5678</p>
+                    <p>info@constructoraelite.com</p>
+                    <p>Quito, Ecuador</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Desarrollado por</h3>
+                    <p><a href="../../">AlmyWEB | Full Stack</a></p>
+                    <p>Tu Imagen Digital</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Constructora Elite. Todos los derechos reservados.</p>
+                <p>Desarrollado por <a href="../../">AlmyWEB</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

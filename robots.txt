@@ -1,0 +1,31 @@
+# Robots.txt para AlmyWEB - Desarrollo Web Ecuador
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://almyweb.com/sitemap.xml
+
+# Disallow admin y API
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*.json$
+Disallow: /*.txt$
+Disallow: /*.md$
+
+# Allow páginas importantes
+Allow: /portfolio/
+Allow: /contacto/
+Allow: /static/
+
+# Crawl-delay para no sobrecargar el servidor
+Crawl-delay: 1
+
+# User-agents específicos
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
